@@ -324,47 +324,11 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/googletest/src/gtest.cc
 
-//Value Computed by CMake
-beginner_tutorials_BINARY_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/beginner_tutorials
-
-//Value Computed by CMake
-beginner_tutorials_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-beginner_tutorials_SOURCE_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/beginner_tutorials
-
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 
-//Value Computed by CMake
-code_BINARY_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/code
-
-//Value Computed by CMake
-code_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-code_SOURCE_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/code
-
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
-
-//The directory containing a CMake configuration file for gencpp.
-gencpp_DIR:PATH=/opt/ros/noetic/share/gencpp/cmake
-
-//The directory containing a CMake configuration file for geneus.
-geneus_DIR:PATH=/opt/ros/noetic/share/geneus/cmake
-
-//The directory containing a CMake configuration file for genlisp.
-genlisp_DIR:PATH=/opt/ros/noetic/share/genlisp/cmake
-
-//The directory containing a CMake configuration file for genmsg.
-genmsg_DIR:PATH=/opt/ros/noetic/share/genmsg/cmake
-
-//The directory containing a CMake configuration file for gennodejs.
-gennodejs_DIR:PATH=/opt/ros/noetic/share/gennodejs/cmake
-
-//The directory containing a CMake configuration file for genpy.
-genpy_DIR:PATH=/opt/ros/noetic/share/genpy/cmake
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/gtest
@@ -443,13 +407,13 @@ rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
 std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake
 
 //Value Computed by CMake
-test_BINARY_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/test
+testing_BINARY_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing
 
 //Value Computed by CMake
-test_IS_TOP_LEVEL:STATIC=OFF
+testing_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-test_SOURCE_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/test
+testing_SOURCE_DIR:STATIC=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/testing
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/noetic/share/xmlrpcpp/cmake

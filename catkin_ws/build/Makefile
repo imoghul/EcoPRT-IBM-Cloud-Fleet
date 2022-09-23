@@ -298,7 +298,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make test/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make testing/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -311,7 +311,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/roscpp_generate_messages_eus.dir/build.make test/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/roscpp_generate_messages_eus.dir/build.make testing/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -324,7 +324,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make test/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make testing/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -337,7 +337,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make test/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make testing/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -350,7 +350,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/roscpp_generate_messages_py.dir/build.make test/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/roscpp_generate_messages_py.dir/build.make testing/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -363,7 +363,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make test/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make testing/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -376,7 +376,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make test/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make testing/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -389,7 +389,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make test/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make testing/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -402,7 +402,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make test/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make testing/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -415,7 +415,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make test/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make testing/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -428,7 +428,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make test/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make testing/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -441,7 +441,7 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make test/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make testing/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -454,7 +454,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make test/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make testing/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -467,7 +467,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make test/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make testing/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -480,177 +480,8 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/std_msgs_generate_messages_py.dir/build.make test/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) $(MAKESILENT) -f testing/CMakeFiles/std_msgs_generate_messages_py.dir/build.make testing/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages
-
-# Build rule for target.
-test_generate_messages: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages
-.PHONY : test_generate_messages
-
-# fast build rule for target.
-test_generate_messages/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages.dir/build.make test/CMakeFiles/test_generate_messages.dir/build
-.PHONY : test_generate_messages/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages_cpp
-
-# Build rule for target.
-test_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages_cpp
-.PHONY : test_generate_messages_cpp
-
-# fast build rule for target.
-test_generate_messages_cpp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages_cpp.dir/build.make test/CMakeFiles/test_generate_messages_cpp.dir/build
-.PHONY : test_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named test_gencpp
-
-# Build rule for target.
-test_gencpp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gencpp
-.PHONY : test_gencpp
-
-# fast build rule for target.
-test_gencpp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_gencpp.dir/build.make test/CMakeFiles/test_gencpp.dir/build
-.PHONY : test_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages_eus
-
-# Build rule for target.
-test_generate_messages_eus: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages_eus
-.PHONY : test_generate_messages_eus
-
-# fast build rule for target.
-test_generate_messages_eus/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages_eus.dir/build.make test/CMakeFiles/test_generate_messages_eus.dir/build
-.PHONY : test_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named test_geneus
-
-# Build rule for target.
-test_geneus: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_geneus
-.PHONY : test_geneus
-
-# fast build rule for target.
-test_geneus/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_geneus.dir/build.make test/CMakeFiles/test_geneus.dir/build
-.PHONY : test_geneus/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages_lisp
-
-# Build rule for target.
-test_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages_lisp
-.PHONY : test_generate_messages_lisp
-
-# fast build rule for target.
-test_generate_messages_lisp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages_lisp.dir/build.make test/CMakeFiles/test_generate_messages_lisp.dir/build
-.PHONY : test_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named test_genlisp
-
-# Build rule for target.
-test_genlisp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_genlisp
-.PHONY : test_genlisp
-
-# fast build rule for target.
-test_genlisp/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_genlisp.dir/build.make test/CMakeFiles/test_genlisp.dir/build
-.PHONY : test_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages_nodejs
-
-# Build rule for target.
-test_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages_nodejs
-.PHONY : test_generate_messages_nodejs
-
-# fast build rule for target.
-test_generate_messages_nodejs/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages_nodejs.dir/build.make test/CMakeFiles/test_generate_messages_nodejs.dir/build
-.PHONY : test_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named test_gennodejs
-
-# Build rule for target.
-test_gennodejs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gennodejs
-.PHONY : test_gennodejs
-
-# fast build rule for target.
-test_gennodejs/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_gennodejs.dir/build.make test/CMakeFiles/test_gennodejs.dir/build
-.PHONY : test_gennodejs/fast
-
-#=============================================================================
-# Target rules for targets named test_generate_messages_py
-
-# Build rule for target.
-test_generate_messages_py: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_generate_messages_py
-.PHONY : test_generate_messages_py
-
-# fast build rule for target.
-test_generate_messages_py/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_generate_messages_py.dir/build.make test/CMakeFiles/test_generate_messages_py.dir/build
-.PHONY : test_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named test_genpy
-
-# Build rule for target.
-test_genpy: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_genpy
-.PHONY : test_genpy
-
-# fast build rule for target.
-test_genpy/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_genpy.dir/build.make test/CMakeFiles/test_genpy.dir/build
-.PHONY : test_genpy/fast
-
-#=============================================================================
-# Target rules for targets named talker
-
-# Build rule for target.
-talker: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 talker
-.PHONY : talker
-
-# fast build rule for target.
-talker/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/talker.dir/build.make test/CMakeFiles/talker.dir/build
-.PHONY : talker/fast
-
-#=============================================================================
-# Target rules for targets named listener
-
-# Build rule for target.
-listener: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener
-.PHONY : listener
-
-# fast build rule for target.
-listener/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/listener.dir/build.make test/CMakeFiles/listener.dir/build
-.PHONY : listener/fast
 
 # Help Target
 help:
@@ -684,24 +515,11 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_py"
-	@echo "... test_gencpp"
-	@echo "... test_generate_messages"
-	@echo "... test_generate_messages_cpp"
-	@echo "... test_generate_messages_eus"
-	@echo "... test_generate_messages_lisp"
-	@echo "... test_generate_messages_nodejs"
-	@echo "... test_generate_messages_py"
-	@echo "... test_geneus"
-	@echo "... test_genlisp"
-	@echo "... test_gennodejs"
-	@echo "... test_genpy"
 	@echo "... tests"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... listener"
-	@echo "... talker"
 .PHONY : help
 
 
