@@ -136,7 +136,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/beginner_tutorials/cmake_install.cmake")
 
 endif()
 
