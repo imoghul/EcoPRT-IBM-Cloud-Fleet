@@ -12,20 +12,20 @@ controller.start()
 average = 0
 
 time = []
-Ax = []
-AxRaw  =[]
-Vx = []
+A = []
+ARaw  =[]
+V = []
 for t in range(samples):
     #plt.stem(t,controller.Vx,color="red")
     #plt.stem(t,controller.Ax)#,color="blue")
     #plt.pause(.000005)
     time.append(t)
-    Ax.append(controller.Ax)
-    AxRaw.append(controller.AxRaw)
-    Vx.append(controller.Vx)
-    print(controller.Ax)
-    average += controller.Ax
-plt.plot(time,Ax,color="blue")
-plt.plot(time,Vx,color="red")
+    A.append(controller.Az)
+    ARaw.append(controller.AzRaw)
+    V.append(controller.Vz)
+    print(controller.Az)
+    average += controller.Az
+plt.plot(time,A,color="blue")
+plt.plot(time,V,color="red")
 plt.show()
 print(average/samples)

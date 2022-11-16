@@ -20,7 +20,7 @@ class IMUController():
     def __init__(self):
         MPU_Init()
         
-        self.BUFFER_LEN = 10
+        self.BUFFER_LEN = 25
 
         self.AxCalib = 0
         self.AyCalib = 0
@@ -40,7 +40,7 @@ class IMUController():
 
         self.thread = threading.Thread(target = self.run)
 
-    def calibrate(self,samples=1000):
+    def calibrate(self,samples=100):
         print("CALIBRATNG...")
         sumAx = []
         sumAy = []
