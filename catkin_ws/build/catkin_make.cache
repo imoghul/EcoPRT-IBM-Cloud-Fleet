@@ -1,2 +1,2 @@
-testing
--DCATKIN_DEVEL_PREFIX=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/install -G Unix Makefiles
+localization:roadquality:sensors:testing
+-DCATKIN_DEVEL_PREFIX=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/install -G Unix Makefiles
