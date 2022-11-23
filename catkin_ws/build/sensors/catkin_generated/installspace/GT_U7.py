@@ -2,7 +2,6 @@ import io
 import pynmea2
 import serial
 import time
-import logging
 import sys
 import os
 
@@ -22,7 +21,6 @@ def getGPSData():
             status = msg.status
 
             if status == 'A':
-                logger.debug('Got Fix')
 
                 zeit = msg.datetime
 
@@ -31,9 +29,9 @@ def getGPSData():
                 return(zeit, latitude,longitude)
 
     except serial.SerialException as e:
-        pass
+        print(str(e))#pass
     except pynmea2.ParseError as e:
-        raise e
+        print(str(e))#raise e
     except UnicodeDecodeError as e:
-        raise e
+        print(str(e))#raise e
     return (0,0,0)

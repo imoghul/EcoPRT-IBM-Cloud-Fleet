@@ -19,7 +19,7 @@ class IMUController():
     #AzCalib = 0
     def __init__(self):
         MPU_Init()
-        
+
         self.BUFFER_LEN = 25
 
         self.AxCalib = 0
@@ -28,14 +28,14 @@ class IMUController():
         self.Vx = 0
         self.Vy = 0
         self.Vz = 0
-        
+
         self.AxBuffer = None
         self.AyBuffer = None
         self.AzBuffer = None
 
         self.calibrate()
         self.refereshIMUData()
-        
+
 
 
         self.thread = threading.Thread(target = self.run)
@@ -53,7 +53,7 @@ class IMUController():
         self.AxCalib = sum(sumAx)/len(sumAx)
         self.AyCalib = sum(sumAy)/len(sumAy)
         self.AzCalib = sum(sumAz)/len(sumAz)
-        
+
         self.AxBuffer = Buffer(self.BUFFER_LEN,sumAx[-self.BUFFER_LEN:])
         self.AyBuffer = Buffer(self.BUFFER_LEN,sumAy[-self.BUFFER_LEN:])
         self.AzBuffer = Buffer(self.BUFFER_LEN,sumAz[-self.BUFFER_LEN:])
@@ -87,7 +87,7 @@ class IMUController():
         self.refereshIMUData()
 
         timeDiff = self.currTime-origTime
-        self.Vx = self.Vx+timeDiff*(origAx+self.Ax)/2 
+        self.Vx = self.Vx+timeDiff*(origAx+self.Ax)/2
         self.Vy = self.Vy+timeDiff*(origAy+self.Ay)/2
         self.Vz = self.Vz+timeDiff*(origAz+self.Az)/2
 

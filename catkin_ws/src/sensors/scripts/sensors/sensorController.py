@@ -20,8 +20,8 @@ def talker():
     gps.start()
     imu.start()
     while not rospy.is_shutdown():
-        gps_str = "%s\n%d\n%d" % (gps.satTime,gps.lat,gps.lon)
-        imu_str = "%d\n%d\n%d" % (imu.Ax,imu.Ay,imu.Az)
+        gps_str = "GPS: %s\t%s\t%s" % (str(gps.satTime),str(gps.lat),str(gps.lon))
+        imu_str = "IMU: %s\t%s\t%s" % (str(imu.Ax),str(imu.Ay),str(imu.Az))
         rospy.loginfo(gps_str)
         rospy.loginfo(imu_str)
         gpsTopic.publish(gps_str)

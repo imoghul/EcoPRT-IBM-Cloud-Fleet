@@ -1,0 +1,7 @@
+# this script will gather data from the road test on 11/23/22
+from imuController import *
+
+controller = IMUController()
+controller.start()
+data = open("roadTestData.csv",'w'
+)
