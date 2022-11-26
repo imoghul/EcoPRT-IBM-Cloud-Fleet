@@ -11,7 +11,6 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
-let std_msgs = _finder('std_msgs');
 
 //-----------------------------------------------------------
 
@@ -41,97 +40,97 @@ class IMUData {
         this.AxCalib = initObj.AxCalib
       }
       else {
-        this.AxCalib = new std_msgs.msg.Float64();
+        this.AxCalib = 0.0;
       }
       if (initObj.hasOwnProperty('AyCalib')) {
         this.AyCalib = initObj.AyCalib
       }
       else {
-        this.AyCalib = new std_msgs.msg.Float64();
+        this.AyCalib = 0.0;
       }
       if (initObj.hasOwnProperty('AzCalib')) {
         this.AzCalib = initObj.AzCalib
       }
       else {
-        this.AzCalib = new std_msgs.msg.Float64();
+        this.AzCalib = 0.0;
       }
       if (initObj.hasOwnProperty('Ax')) {
         this.Ax = initObj.Ax
       }
       else {
-        this.Ax = new std_msgs.msg.Float64();
+        this.Ax = 0.0;
       }
       if (initObj.hasOwnProperty('Ay')) {
         this.Ay = initObj.Ay
       }
       else {
-        this.Ay = new std_msgs.msg.Float64();
+        this.Ay = 0.0;
       }
       if (initObj.hasOwnProperty('Az')) {
         this.Az = initObj.Az
       }
       else {
-        this.Az = new std_msgs.msg.Float64();
+        this.Az = 0.0;
       }
       if (initObj.hasOwnProperty('AxRaw')) {
         this.AxRaw = initObj.AxRaw
       }
       else {
-        this.AxRaw = new std_msgs.msg.Float64();
+        this.AxRaw = 0.0;
       }
       if (initObj.hasOwnProperty('AyRaw')) {
         this.AyRaw = initObj.AyRaw
       }
       else {
-        this.AyRaw = new std_msgs.msg.Float64();
+        this.AyRaw = 0.0;
       }
       if (initObj.hasOwnProperty('AzRaw')) {
         this.AzRaw = initObj.AzRaw
       }
       else {
-        this.AzRaw = new std_msgs.msg.Float64();
+        this.AzRaw = 0.0;
       }
       if (initObj.hasOwnProperty('Vx')) {
         this.Vx = initObj.Vx
       }
       else {
-        this.Vx = new std_msgs.msg.Float64();
+        this.Vx = 0.0;
       }
       if (initObj.hasOwnProperty('Vy')) {
         this.Vy = initObj.Vy
       }
       else {
-        this.Vy = new std_msgs.msg.Float64();
+        this.Vy = 0.0;
       }
       if (initObj.hasOwnProperty('Vz')) {
         this.Vz = initObj.Vz
       }
       else {
-        this.Vz = new std_msgs.msg.Float64();
+        this.Vz = 0.0;
       }
       if (initObj.hasOwnProperty('Gx')) {
         this.Gx = initObj.Gx
       }
       else {
-        this.Gx = new std_msgs.msg.Float64();
+        this.Gx = 0.0;
       }
       if (initObj.hasOwnProperty('Gy')) {
         this.Gy = initObj.Gy
       }
       else {
-        this.Gy = new std_msgs.msg.Float64();
+        this.Gy = 0.0;
       }
       if (initObj.hasOwnProperty('Gz')) {
         this.Gz = initObj.Gz
       }
       else {
-        this.Gz = new std_msgs.msg.Float64();
+        this.Gz = 0.0;
       }
       if (initObj.hasOwnProperty('currTime')) {
         this.currTime = initObj.currTime
       }
       else {
-        this.currTime = new std_msgs.msg.Float64();
+        this.currTime = 0.0;
       }
     }
   }
@@ -139,37 +138,37 @@ class IMUData {
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type IMUData
     // Serialize message field [AxCalib]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AxCalib, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AxCalib, buffer, bufferOffset);
     // Serialize message field [AyCalib]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AyCalib, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AyCalib, buffer, bufferOffset);
     // Serialize message field [AzCalib]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AzCalib, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AzCalib, buffer, bufferOffset);
     // Serialize message field [Ax]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Ax, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Ax, buffer, bufferOffset);
     // Serialize message field [Ay]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Ay, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Ay, buffer, bufferOffset);
     // Serialize message field [Az]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Az, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Az, buffer, bufferOffset);
     // Serialize message field [AxRaw]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AxRaw, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AxRaw, buffer, bufferOffset);
     // Serialize message field [AyRaw]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AyRaw, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AyRaw, buffer, bufferOffset);
     // Serialize message field [AzRaw]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.AzRaw, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.AzRaw, buffer, bufferOffset);
     // Serialize message field [Vx]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Vx, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Vx, buffer, bufferOffset);
     // Serialize message field [Vy]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Vy, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Vy, buffer, bufferOffset);
     // Serialize message field [Vz]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Vz, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Vz, buffer, bufferOffset);
     // Serialize message field [Gx]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Gx, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Gx, buffer, bufferOffset);
     // Serialize message field [Gy]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Gy, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Gy, buffer, bufferOffset);
     // Serialize message field [Gz]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.Gz, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.Gz, buffer, bufferOffset);
     // Serialize message field [currTime]
-    bufferOffset = std_msgs.msg.Float64.serialize(obj.currTime, buffer, bufferOffset);
+    bufferOffset = _serializer.float64(obj.currTime, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -178,37 +177,37 @@ class IMUData {
     let len;
     let data = new IMUData(null);
     // Deserialize message field [AxCalib]
-    data.AxCalib = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AxCalib = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [AyCalib]
-    data.AyCalib = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AyCalib = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [AzCalib]
-    data.AzCalib = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AzCalib = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Ax]
-    data.Ax = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Ax = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Ay]
-    data.Ay = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Ay = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Az]
-    data.Az = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Az = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [AxRaw]
-    data.AxRaw = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AxRaw = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [AyRaw]
-    data.AyRaw = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AyRaw = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [AzRaw]
-    data.AzRaw = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.AzRaw = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Vx]
-    data.Vx = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Vx = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Vy]
-    data.Vy = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Vy = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Vz]
-    data.Vz = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Vz = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Gx]
-    data.Gx = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Gx = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Gy]
-    data.Gy = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Gy = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Gz]
-    data.Gz = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.Gz = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [currTime]
-    data.currTime = std_msgs.msg.Float64.deserialize(buffer, bufferOffset);
+    data.currTime = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
@@ -223,32 +222,29 @@ class IMUData {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'e854ee703c7cc2b23f6a5df92872cf41';
+    return '34b732ae811cee8c11c282e3af23a7b1';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    std_msgs/Float64 AxCalib
-    std_msgs/Float64 AyCalib
-    std_msgs/Float64 AzCalib
-    std_msgs/Float64 Ax
-    std_msgs/Float64 Ay
-    std_msgs/Float64 Az
-    std_msgs/Float64 AxRaw
-    std_msgs/Float64 AyRaw
-    std_msgs/Float64 AzRaw
-    std_msgs/Float64 Vx
-    std_msgs/Float64 Vy
-    std_msgs/Float64 Vz
-    std_msgs/Float64 Gx
-    std_msgs/Float64 Gy
-    std_msgs/Float64 Gz
-    std_msgs/Float64 currTime
+    float64 AxCalib
+    float64 AyCalib
+    float64 AzCalib
+    float64 Ax
+    float64 Ay
+    float64 Az
+    float64 AxRaw
+    float64 AyRaw
+    float64 AzRaw
+    float64 Vx
+    float64 Vy
+    float64 Vz
+    float64 Gx
+    float64 Gy
+    float64 Gz
+    float64 currTime
     
-    ================================================================================
-    MSG: std_msgs/Float64
-    float64 data
     `;
   }
 
@@ -259,115 +255,115 @@ class IMUData {
     }
     const resolved = new IMUData(null);
     if (msg.AxCalib !== undefined) {
-      resolved.AxCalib = std_msgs.msg.Float64.Resolve(msg.AxCalib)
+      resolved.AxCalib = msg.AxCalib;
     }
     else {
-      resolved.AxCalib = new std_msgs.msg.Float64()
+      resolved.AxCalib = 0.0
     }
 
     if (msg.AyCalib !== undefined) {
-      resolved.AyCalib = std_msgs.msg.Float64.Resolve(msg.AyCalib)
+      resolved.AyCalib = msg.AyCalib;
     }
     else {
-      resolved.AyCalib = new std_msgs.msg.Float64()
+      resolved.AyCalib = 0.0
     }
 
     if (msg.AzCalib !== undefined) {
-      resolved.AzCalib = std_msgs.msg.Float64.Resolve(msg.AzCalib)
+      resolved.AzCalib = msg.AzCalib;
     }
     else {
-      resolved.AzCalib = new std_msgs.msg.Float64()
+      resolved.AzCalib = 0.0
     }
 
     if (msg.Ax !== undefined) {
-      resolved.Ax = std_msgs.msg.Float64.Resolve(msg.Ax)
+      resolved.Ax = msg.Ax;
     }
     else {
-      resolved.Ax = new std_msgs.msg.Float64()
+      resolved.Ax = 0.0
     }
 
     if (msg.Ay !== undefined) {
-      resolved.Ay = std_msgs.msg.Float64.Resolve(msg.Ay)
+      resolved.Ay = msg.Ay;
     }
     else {
-      resolved.Ay = new std_msgs.msg.Float64()
+      resolved.Ay = 0.0
     }
 
     if (msg.Az !== undefined) {
-      resolved.Az = std_msgs.msg.Float64.Resolve(msg.Az)
+      resolved.Az = msg.Az;
     }
     else {
-      resolved.Az = new std_msgs.msg.Float64()
+      resolved.Az = 0.0
     }
 
     if (msg.AxRaw !== undefined) {
-      resolved.AxRaw = std_msgs.msg.Float64.Resolve(msg.AxRaw)
+      resolved.AxRaw = msg.AxRaw;
     }
     else {
-      resolved.AxRaw = new std_msgs.msg.Float64()
+      resolved.AxRaw = 0.0
     }
 
     if (msg.AyRaw !== undefined) {
-      resolved.AyRaw = std_msgs.msg.Float64.Resolve(msg.AyRaw)
+      resolved.AyRaw = msg.AyRaw;
     }
     else {
-      resolved.AyRaw = new std_msgs.msg.Float64()
+      resolved.AyRaw = 0.0
     }
 
     if (msg.AzRaw !== undefined) {
-      resolved.AzRaw = std_msgs.msg.Float64.Resolve(msg.AzRaw)
+      resolved.AzRaw = msg.AzRaw;
     }
     else {
-      resolved.AzRaw = new std_msgs.msg.Float64()
+      resolved.AzRaw = 0.0
     }
 
     if (msg.Vx !== undefined) {
-      resolved.Vx = std_msgs.msg.Float64.Resolve(msg.Vx)
+      resolved.Vx = msg.Vx;
     }
     else {
-      resolved.Vx = new std_msgs.msg.Float64()
+      resolved.Vx = 0.0
     }
 
     if (msg.Vy !== undefined) {
-      resolved.Vy = std_msgs.msg.Float64.Resolve(msg.Vy)
+      resolved.Vy = msg.Vy;
     }
     else {
-      resolved.Vy = new std_msgs.msg.Float64()
+      resolved.Vy = 0.0
     }
 
     if (msg.Vz !== undefined) {
-      resolved.Vz = std_msgs.msg.Float64.Resolve(msg.Vz)
+      resolved.Vz = msg.Vz;
     }
     else {
-      resolved.Vz = new std_msgs.msg.Float64()
+      resolved.Vz = 0.0
     }
 
     if (msg.Gx !== undefined) {
-      resolved.Gx = std_msgs.msg.Float64.Resolve(msg.Gx)
+      resolved.Gx = msg.Gx;
     }
     else {
-      resolved.Gx = new std_msgs.msg.Float64()
+      resolved.Gx = 0.0
     }
 
     if (msg.Gy !== undefined) {
-      resolved.Gy = std_msgs.msg.Float64.Resolve(msg.Gy)
+      resolved.Gy = msg.Gy;
     }
     else {
-      resolved.Gy = new std_msgs.msg.Float64()
+      resolved.Gy = 0.0
     }
 
     if (msg.Gz !== undefined) {
-      resolved.Gz = std_msgs.msg.Float64.Resolve(msg.Gz)
+      resolved.Gz = msg.Gz;
     }
     else {
-      resolved.Gz = new std_msgs.msg.Float64()
+      resolved.Gz = 0.0
     }
 
     if (msg.currTime !== undefined) {
-      resolved.currTime = std_msgs.msg.Float64.Resolve(msg.currTime)
+      resolved.currTime = msg.currTime;
     }
     else {
-      resolved.currTime = new std_msgs.msg.Float64()
+      resolved.currTime = 0.0
     }
 
     return resolved;

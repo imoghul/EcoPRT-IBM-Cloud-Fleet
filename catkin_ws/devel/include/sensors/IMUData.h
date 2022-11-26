@@ -15,22 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
 
 namespace sensors
 {
@@ -40,91 +24,91 @@ struct IMUData_
   typedef IMUData_<ContainerAllocator> Type;
 
   IMUData_()
-    : AxCalib()
-    , AyCalib()
-    , AzCalib()
-    , Ax()
-    , Ay()
-    , Az()
-    , AxRaw()
-    , AyRaw()
-    , AzRaw()
-    , Vx()
-    , Vy()
-    , Vz()
-    , Gx()
-    , Gy()
-    , Gz()
-    , currTime()  {
+    : AxCalib(0.0)
+    , AyCalib(0.0)
+    , AzCalib(0.0)
+    , Ax(0.0)
+    , Ay(0.0)
+    , Az(0.0)
+    , AxRaw(0.0)
+    , AyRaw(0.0)
+    , AzRaw(0.0)
+    , Vx(0.0)
+    , Vy(0.0)
+    , Vz(0.0)
+    , Gx(0.0)
+    , Gy(0.0)
+    , Gz(0.0)
+    , currTime(0.0)  {
     }
   IMUData_(const ContainerAllocator& _alloc)
-    : AxCalib(_alloc)
-    , AyCalib(_alloc)
-    , AzCalib(_alloc)
-    , Ax(_alloc)
-    , Ay(_alloc)
-    , Az(_alloc)
-    , AxRaw(_alloc)
-    , AyRaw(_alloc)
-    , AzRaw(_alloc)
-    , Vx(_alloc)
-    , Vy(_alloc)
-    , Vz(_alloc)
-    , Gx(_alloc)
-    , Gy(_alloc)
-    , Gz(_alloc)
-    , currTime(_alloc)  {
+    : AxCalib(0.0)
+    , AyCalib(0.0)
+    , AzCalib(0.0)
+    , Ax(0.0)
+    , Ay(0.0)
+    , Az(0.0)
+    , AxRaw(0.0)
+    , AyRaw(0.0)
+    , AzRaw(0.0)
+    , Vx(0.0)
+    , Vy(0.0)
+    , Vz(0.0)
+    , Gx(0.0)
+    , Gy(0.0)
+    , Gz(0.0)
+    , currTime(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AxCalib_type;
+   typedef double _AxCalib_type;
   _AxCalib_type AxCalib;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AyCalib_type;
+   typedef double _AyCalib_type;
   _AyCalib_type AyCalib;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AzCalib_type;
+   typedef double _AzCalib_type;
   _AzCalib_type AzCalib;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Ax_type;
+   typedef double _Ax_type;
   _Ax_type Ax;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Ay_type;
+   typedef double _Ay_type;
   _Ay_type Ay;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Az_type;
+   typedef double _Az_type;
   _Az_type Az;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AxRaw_type;
+   typedef double _AxRaw_type;
   _AxRaw_type AxRaw;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AyRaw_type;
+   typedef double _AyRaw_type;
   _AyRaw_type AyRaw;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _AzRaw_type;
+   typedef double _AzRaw_type;
   _AzRaw_type AzRaw;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Vx_type;
+   typedef double _Vx_type;
   _Vx_type Vx;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Vy_type;
+   typedef double _Vy_type;
   _Vy_type Vy;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Vz_type;
+   typedef double _Vz_type;
   _Vz_type Vz;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Gx_type;
+   typedef double _Gx_type;
   _Gx_type Gx;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Gy_type;
+   typedef double _Gy_type;
   _Gy_type Gy;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _Gz_type;
+   typedef double _Gz_type;
   _Gz_type Gz;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _currTime_type;
+   typedef double _currTime_type;
   _currTime_type currTime;
 
 
@@ -228,12 +212,12 @@ struct MD5Sum< ::sensors::IMUData_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "e854ee703c7cc2b23f6a5df92872cf41";
+    return "34b732ae811cee8c11c282e3af23a7b1";
   }
 
   static const char* value(const ::sensors::IMUData_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xe854ee703c7cc2b2ULL;
-  static const uint64_t static_value2 = 0x3f6a5df92872cf41ULL;
+  static const uint64_t static_value1 = 0x34b732ae811cee8cULL;
+  static const uint64_t static_value2 = 0x11c282e3af23a7b1ULL;
 };
 
 template<class ContainerAllocator>
@@ -252,26 +236,22 @@ struct Definition< ::sensors::IMUData_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "std_msgs/Float64 AxCalib\n"
-"std_msgs/Float64 AyCalib\n"
-"std_msgs/Float64 AzCalib\n"
-"std_msgs/Float64 Ax\n"
-"std_msgs/Float64 Ay\n"
-"std_msgs/Float64 Az\n"
-"std_msgs/Float64 AxRaw\n"
-"std_msgs/Float64 AyRaw\n"
-"std_msgs/Float64 AzRaw\n"
-"std_msgs/Float64 Vx\n"
-"std_msgs/Float64 Vy\n"
-"std_msgs/Float64 Vz\n"
-"std_msgs/Float64 Gx\n"
-"std_msgs/Float64 Gy\n"
-"std_msgs/Float64 Gz\n"
-"std_msgs/Float64 currTime\n"
-"\n"
-"================================================================================\n"
-"MSG: std_msgs/Float64\n"
-"float64 data\n"
+    return "float64 AxCalib\n"
+"float64 AyCalib\n"
+"float64 AzCalib\n"
+"float64 Ax\n"
+"float64 Ay\n"
+"float64 Az\n"
+"float64 AxRaw\n"
+"float64 AyRaw\n"
+"float64 AzRaw\n"
+"float64 Vx\n"
+"float64 Vy\n"
+"float64 Vz\n"
+"float64 Gx\n"
+"float64 Gy\n"
+"float64 Gz\n"
+"float64 currTime\n"
 ;
   }
 
@@ -325,53 +305,37 @@ struct Printer< ::sensors::IMUData_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::sensors::IMUData_<ContainerAllocator>& v)
   {
     s << indent << "AxCalib: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AxCalib);
+    Printer<double>::stream(s, indent + "  ", v.AxCalib);
     s << indent << "AyCalib: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AyCalib);
+    Printer<double>::stream(s, indent + "  ", v.AyCalib);
     s << indent << "AzCalib: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AzCalib);
+    Printer<double>::stream(s, indent + "  ", v.AzCalib);
     s << indent << "Ax: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Ax);
+    Printer<double>::stream(s, indent + "  ", v.Ax);
     s << indent << "Ay: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Ay);
+    Printer<double>::stream(s, indent + "  ", v.Ay);
     s << indent << "Az: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Az);
+    Printer<double>::stream(s, indent + "  ", v.Az);
     s << indent << "AxRaw: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AxRaw);
+    Printer<double>::stream(s, indent + "  ", v.AxRaw);
     s << indent << "AyRaw: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AyRaw);
+    Printer<double>::stream(s, indent + "  ", v.AyRaw);
     s << indent << "AzRaw: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.AzRaw);
+    Printer<double>::stream(s, indent + "  ", v.AzRaw);
     s << indent << "Vx: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Vx);
+    Printer<double>::stream(s, indent + "  ", v.Vx);
     s << indent << "Vy: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Vy);
+    Printer<double>::stream(s, indent + "  ", v.Vy);
     s << indent << "Vz: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Vz);
+    Printer<double>::stream(s, indent + "  ", v.Vz);
     s << indent << "Gx: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Gx);
+    Printer<double>::stream(s, indent + "  ", v.Gx);
     s << indent << "Gy: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Gy);
+    Printer<double>::stream(s, indent + "  ", v.Gy);
     s << indent << "Gz: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.Gz);
+    Printer<double>::stream(s, indent + "  ", v.Gz);
     s << indent << "currTime: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.currTime);
+    Printer<double>::stream(s, indent + "  ", v.currTime);
   }
 };
 

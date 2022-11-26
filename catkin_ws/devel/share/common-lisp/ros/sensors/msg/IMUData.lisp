@@ -10,83 +10,83 @@
   ((AxCalib
     :reader AxCalib
     :initarg :AxCalib
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (AyCalib
     :reader AyCalib
     :initarg :AyCalib
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (AzCalib
     :reader AzCalib
     :initarg :AzCalib
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Ax
     :reader Ax
     :initarg :Ax
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Ay
     :reader Ay
     :initarg :Ay
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Az
     :reader Az
     :initarg :Az
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (AxRaw
     :reader AxRaw
     :initarg :AxRaw
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (AyRaw
     :reader AyRaw
     :initarg :AyRaw
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (AzRaw
     :reader AzRaw
     :initarg :AzRaw
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Vx
     :reader Vx
     :initarg :Vx
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Vy
     :reader Vy
     :initarg :Vy
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Vz
     :reader Vz
     :initarg :Vz
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Gx
     :reader Gx
     :initarg :Gx
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Gy
     :reader Gy
     :initarg :Gy
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (Gz
     :reader Gz
     :initarg :Gz
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64))
+    :type cl:float
+    :initform 0.0)
    (currTime
     :reader currTime
     :initarg :currTime
-    :type std_msgs-msg:Float64
-    :initform (cl:make-instance 'std_msgs-msg:Float64)))
+    :type cl:float
+    :initform 0.0))
 )
 
 (cl:defclass IMUData (<IMUData>)
@@ -178,41 +178,313 @@
   (currTime m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <IMUData>) ostream)
   "Serializes a message object of type '<IMUData>"
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AxCalib) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AyCalib) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AzCalib) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Ax) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Ay) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Az) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AxRaw) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AyRaw) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'AzRaw) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Vx) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Vy) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Vz) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Gx) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Gy) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'Gz) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'currTime) ostream)
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AxCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AyCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AzCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Ax))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Ay))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Az))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AxRaw))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AyRaw))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'AzRaw))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Vx))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Vy))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Vz))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Gx))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Gy))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Gz))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'currTime))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <IMUData>) istream)
   "Deserializes a message object of type '<IMUData>"
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AxCalib) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AyCalib) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AzCalib) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Ax) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Ay) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Az) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AxRaw) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AyRaw) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'AzRaw) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Vx) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Vy) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Vz) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Gx) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Gy) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'Gz) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'currTime) istream)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AxCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AyCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AzCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Ax) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Ay) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Az) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AxRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AyRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'AzRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Vx) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Vy) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Vz) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Gx) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Gy) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'Gz) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'currTime) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<IMUData>)))
@@ -223,34 +495,34 @@
   "sensors/IMUData")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<IMUData>)))
   "Returns md5sum for a message object of type '<IMUData>"
-  "e854ee703c7cc2b23f6a5df92872cf41")
+  "34b732ae811cee8c11c282e3af23a7b1")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'IMUData)))
   "Returns md5sum for a message object of type 'IMUData"
-  "e854ee703c7cc2b23f6a5df92872cf41")
+  "34b732ae811cee8c11c282e3af23a7b1")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<IMUData>)))
   "Returns full string definition for message of type '<IMUData>"
-  (cl:format cl:nil "std_msgs/Float64 AxCalib~%std_msgs/Float64 AyCalib~%std_msgs/Float64 AzCalib~%std_msgs/Float64 Ax~%std_msgs/Float64 Ay~%std_msgs/Float64 Az~%std_msgs/Float64 AxRaw~%std_msgs/Float64 AyRaw~%std_msgs/Float64 AzRaw~%std_msgs/Float64 Vx~%std_msgs/Float64 Vy~%std_msgs/Float64 Vz~%std_msgs/Float64 Gx~%std_msgs/Float64 Gy~%std_msgs/Float64 Gz~%std_msgs/Float64 currTime~%~%================================================================================~%MSG: std_msgs/Float64~%float64 data~%~%"))
+  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 currTime~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'IMUData)))
   "Returns full string definition for message of type 'IMUData"
-  (cl:format cl:nil "std_msgs/Float64 AxCalib~%std_msgs/Float64 AyCalib~%std_msgs/Float64 AzCalib~%std_msgs/Float64 Ax~%std_msgs/Float64 Ay~%std_msgs/Float64 Az~%std_msgs/Float64 AxRaw~%std_msgs/Float64 AyRaw~%std_msgs/Float64 AzRaw~%std_msgs/Float64 Vx~%std_msgs/Float64 Vy~%std_msgs/Float64 Vz~%std_msgs/Float64 Gx~%std_msgs/Float64 Gy~%std_msgs/Float64 Gz~%std_msgs/Float64 currTime~%~%================================================================================~%MSG: std_msgs/Float64~%float64 data~%~%"))
+  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 currTime~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <IMUData>))
   (cl:+ 0
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AxCalib))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AyCalib))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AzCalib))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Ax))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Ay))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Az))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AxRaw))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AyRaw))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'AzRaw))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Vx))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Vy))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Vz))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Gx))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Gy))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'Gz))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'currTime))
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
+     8
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <IMUData>))
   "Converts a ROS message object to a list"

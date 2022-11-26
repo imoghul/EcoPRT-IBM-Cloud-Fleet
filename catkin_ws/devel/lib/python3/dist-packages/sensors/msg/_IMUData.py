@@ -6,34 +6,30 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
-import std_msgs.msg
 
 class IMUData(genpy.Message):
-  _md5sum = "e854ee703c7cc2b23f6a5df92872cf41"
+  _md5sum = "34b732ae811cee8c11c282e3af23a7b1"
   _type = "sensors/IMUData"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """std_msgs/Float64 AxCalib
-std_msgs/Float64 AyCalib
-std_msgs/Float64 AzCalib
-std_msgs/Float64 Ax
-std_msgs/Float64 Ay
-std_msgs/Float64 Az
-std_msgs/Float64 AxRaw
-std_msgs/Float64 AyRaw
-std_msgs/Float64 AzRaw
-std_msgs/Float64 Vx
-std_msgs/Float64 Vy
-std_msgs/Float64 Vz
-std_msgs/Float64 Gx
-std_msgs/Float64 Gy
-std_msgs/Float64 Gz
-std_msgs/Float64 currTime
-
-================================================================================
-MSG: std_msgs/Float64
-float64 data"""
+  _full_text = """float64 AxCalib
+float64 AyCalib
+float64 AzCalib
+float64 Ax
+float64 Ay
+float64 Az
+float64 AxRaw
+float64 AyRaw
+float64 AzRaw
+float64 Vx
+float64 Vy
+float64 Vz
+float64 Gx
+float64 Gy
+float64 Gz
+float64 currTime
+"""
   __slots__ = ['AxCalib','AyCalib','AzCalib','Ax','Ay','Az','AxRaw','AyRaw','AzRaw','Vx','Vy','Vz','Gx','Gy','Gz','currTime']
-  _slot_types = ['std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64','std_msgs/Float64']
+  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -53,54 +49,54 @@ float64 data"""
       super(IMUData, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
       if self.AxCalib is None:
-        self.AxCalib = std_msgs.msg.Float64()
+        self.AxCalib = 0.
       if self.AyCalib is None:
-        self.AyCalib = std_msgs.msg.Float64()
+        self.AyCalib = 0.
       if self.AzCalib is None:
-        self.AzCalib = std_msgs.msg.Float64()
+        self.AzCalib = 0.
       if self.Ax is None:
-        self.Ax = std_msgs.msg.Float64()
+        self.Ax = 0.
       if self.Ay is None:
-        self.Ay = std_msgs.msg.Float64()
+        self.Ay = 0.
       if self.Az is None:
-        self.Az = std_msgs.msg.Float64()
+        self.Az = 0.
       if self.AxRaw is None:
-        self.AxRaw = std_msgs.msg.Float64()
+        self.AxRaw = 0.
       if self.AyRaw is None:
-        self.AyRaw = std_msgs.msg.Float64()
+        self.AyRaw = 0.
       if self.AzRaw is None:
-        self.AzRaw = std_msgs.msg.Float64()
+        self.AzRaw = 0.
       if self.Vx is None:
-        self.Vx = std_msgs.msg.Float64()
+        self.Vx = 0.
       if self.Vy is None:
-        self.Vy = std_msgs.msg.Float64()
+        self.Vy = 0.
       if self.Vz is None:
-        self.Vz = std_msgs.msg.Float64()
+        self.Vz = 0.
       if self.Gx is None:
-        self.Gx = std_msgs.msg.Float64()
+        self.Gx = 0.
       if self.Gy is None:
-        self.Gy = std_msgs.msg.Float64()
+        self.Gy = 0.
       if self.Gz is None:
-        self.Gz = std_msgs.msg.Float64()
+        self.Gz = 0.
       if self.currTime is None:
-        self.currTime = std_msgs.msg.Float64()
+        self.currTime = 0.
     else:
-      self.AxCalib = std_msgs.msg.Float64()
-      self.AyCalib = std_msgs.msg.Float64()
-      self.AzCalib = std_msgs.msg.Float64()
-      self.Ax = std_msgs.msg.Float64()
-      self.Ay = std_msgs.msg.Float64()
-      self.Az = std_msgs.msg.Float64()
-      self.AxRaw = std_msgs.msg.Float64()
-      self.AyRaw = std_msgs.msg.Float64()
-      self.AzRaw = std_msgs.msg.Float64()
-      self.Vx = std_msgs.msg.Float64()
-      self.Vy = std_msgs.msg.Float64()
-      self.Vz = std_msgs.msg.Float64()
-      self.Gx = std_msgs.msg.Float64()
-      self.Gy = std_msgs.msg.Float64()
-      self.Gz = std_msgs.msg.Float64()
-      self.currTime = std_msgs.msg.Float64()
+      self.AxCalib = 0.
+      self.AyCalib = 0.
+      self.AzCalib = 0.
+      self.Ax = 0.
+      self.Ay = 0.
+      self.Az = 0.
+      self.AxRaw = 0.
+      self.AyRaw = 0.
+      self.AzRaw = 0.
+      self.Vx = 0.
+      self.Vy = 0.
+      self.Vz = 0.
+      self.Gx = 0.
+      self.Gy = 0.
+      self.Gz = 0.
+      self.currTime = 0.
 
   def _get_types(self):
     """
@@ -115,7 +111,7 @@ float64 data"""
     """
     try:
       _x = self
-      buff.write(_get_struct_16d().pack(_x.AxCalib.data, _x.AyCalib.data, _x.AzCalib.data, _x.Ax.data, _x.Ay.data, _x.Az.data, _x.AxRaw.data, _x.AyRaw.data, _x.AzRaw.data, _x.Vx.data, _x.Vy.data, _x.Vz.data, _x.Gx.data, _x.Gy.data, _x.Gz.data, _x.currTime.data))
+      buff.write(_get_struct_16d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -127,43 +123,11 @@ float64 data"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.AxCalib is None:
-        self.AxCalib = std_msgs.msg.Float64()
-      if self.AyCalib is None:
-        self.AyCalib = std_msgs.msg.Float64()
-      if self.AzCalib is None:
-        self.AzCalib = std_msgs.msg.Float64()
-      if self.Ax is None:
-        self.Ax = std_msgs.msg.Float64()
-      if self.Ay is None:
-        self.Ay = std_msgs.msg.Float64()
-      if self.Az is None:
-        self.Az = std_msgs.msg.Float64()
-      if self.AxRaw is None:
-        self.AxRaw = std_msgs.msg.Float64()
-      if self.AyRaw is None:
-        self.AyRaw = std_msgs.msg.Float64()
-      if self.AzRaw is None:
-        self.AzRaw = std_msgs.msg.Float64()
-      if self.Vx is None:
-        self.Vx = std_msgs.msg.Float64()
-      if self.Vy is None:
-        self.Vy = std_msgs.msg.Float64()
-      if self.Vz is None:
-        self.Vz = std_msgs.msg.Float64()
-      if self.Gx is None:
-        self.Gx = std_msgs.msg.Float64()
-      if self.Gy is None:
-        self.Gy = std_msgs.msg.Float64()
-      if self.Gz is None:
-        self.Gz = std_msgs.msg.Float64()
-      if self.currTime is None:
-        self.currTime = std_msgs.msg.Float64()
       end = 0
       _x = self
       start = end
       end += 128
-      (_x.AxCalib.data, _x.AyCalib.data, _x.AzCalib.data, _x.Ax.data, _x.Ay.data, _x.Az.data, _x.AxRaw.data, _x.AyRaw.data, _x.AzRaw.data, _x.Vx.data, _x.Vy.data, _x.Vz.data, _x.Gx.data, _x.Gy.data, _x.Gz.data, _x.currTime.data,) = _get_struct_16d().unpack(str[start:end])
+      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime,) = _get_struct_16d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -177,7 +141,7 @@ float64 data"""
     """
     try:
       _x = self
-      buff.write(_get_struct_16d().pack(_x.AxCalib.data, _x.AyCalib.data, _x.AzCalib.data, _x.Ax.data, _x.Ay.data, _x.Az.data, _x.AxRaw.data, _x.AyRaw.data, _x.AzRaw.data, _x.Vx.data, _x.Vy.data, _x.Vz.data, _x.Gx.data, _x.Gy.data, _x.Gz.data, _x.currTime.data))
+      buff.write(_get_struct_16d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -190,43 +154,11 @@ float64 data"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.AxCalib is None:
-        self.AxCalib = std_msgs.msg.Float64()
-      if self.AyCalib is None:
-        self.AyCalib = std_msgs.msg.Float64()
-      if self.AzCalib is None:
-        self.AzCalib = std_msgs.msg.Float64()
-      if self.Ax is None:
-        self.Ax = std_msgs.msg.Float64()
-      if self.Ay is None:
-        self.Ay = std_msgs.msg.Float64()
-      if self.Az is None:
-        self.Az = std_msgs.msg.Float64()
-      if self.AxRaw is None:
-        self.AxRaw = std_msgs.msg.Float64()
-      if self.AyRaw is None:
-        self.AyRaw = std_msgs.msg.Float64()
-      if self.AzRaw is None:
-        self.AzRaw = std_msgs.msg.Float64()
-      if self.Vx is None:
-        self.Vx = std_msgs.msg.Float64()
-      if self.Vy is None:
-        self.Vy = std_msgs.msg.Float64()
-      if self.Vz is None:
-        self.Vz = std_msgs.msg.Float64()
-      if self.Gx is None:
-        self.Gx = std_msgs.msg.Float64()
-      if self.Gy is None:
-        self.Gy = std_msgs.msg.Float64()
-      if self.Gz is None:
-        self.Gz = std_msgs.msg.Float64()
-      if self.currTime is None:
-        self.currTime = std_msgs.msg.Float64()
       end = 0
       _x = self
       start = end
       end += 128
-      (_x.AxCalib.data, _x.AyCalib.data, _x.AzCalib.data, _x.Ax.data, _x.Ay.data, _x.Az.data, _x.AxRaw.data, _x.AyRaw.data, _x.AzRaw.data, _x.Vx.data, _x.Vy.data, _x.Vz.data, _x.Gx.data, _x.Gy.data, _x.Gz.data, _x.currTime.data,) = _get_struct_16d().unpack(str[start:end])
+      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime,) = _get_struct_16d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

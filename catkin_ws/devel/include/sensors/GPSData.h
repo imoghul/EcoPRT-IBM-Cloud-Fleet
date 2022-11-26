@@ -15,9 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <std_msgs/String.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Float64.h>
 
 namespace sensors
 {
@@ -28,25 +25,25 @@ struct GPSData_
 
   GPSData_()
     : time()
-    , lat()
-    , long()  {
+    , lat(0.0)
+    , long(0.0)  {
     }
   GPSData_(const ContainerAllocator& _alloc)
     : time(_alloc)
-    , lat(_alloc)
-    , long(_alloc)  {
+    , lat(0.0)
+    , long(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef  ::std_msgs::String_<ContainerAllocator>  _time_type;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _time_type;
   _time_type time;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _lat_type;
+   typedef double _lat_type;
   _lat_type lat;
 
-   typedef  ::std_msgs::Float64_<ContainerAllocator>  _long_type;
+   typedef double _long_type;
   _long_type long;
 
 
@@ -137,12 +134,12 @@ struct MD5Sum< ::sensors::GPSData_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "127d8146da420293b29d277551a452ba";
+    return "6be0f4d623467dbac7ec64212189b37c";
   }
 
   static const char* value(const ::sensors::GPSData_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x127d8146da420293ULL;
-  static const uint64_t static_value2 = 0xb29d277551a452baULL;
+  static const uint64_t static_value1 = 0x6be0f4d623467dbaULL;
+  static const uint64_t static_value2 = 0xc7ec64212189b37cULL;
 };
 
 template<class ContainerAllocator>
@@ -161,17 +158,9 @@ struct Definition< ::sensors::GPSData_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "std_msgs/String time\n"
-"std_msgs/Float64 lat\n"
-"std_msgs/Float64 long\n"
-"\n"
-"================================================================================\n"
-"MSG: std_msgs/String\n"
-"string data\n"
-"\n"
-"================================================================================\n"
-"MSG: std_msgs/Float64\n"
-"float64 data\n"
+    return "string time\n"
+"float64 lat\n"
+"float64 long\n"
 ;
   }
 
@@ -212,14 +201,11 @@ struct Printer< ::sensors::GPSData_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::sensors::GPSData_<ContainerAllocator>& v)
   {
     s << indent << "time: ";
-    s << std::endl;
-    Printer< ::std_msgs::String_<ContainerAllocator> >::stream(s, indent + "  ", v.time);
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.time);
     s << indent << "lat: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.lat);
+    Printer<double>::stream(s, indent + "  ", v.lat);
     s << indent << "long: ";
-    s << std::endl;
-    Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.long);
+    Printer<double>::stream(s, indent + "  ", v.long);
   }
 };
 

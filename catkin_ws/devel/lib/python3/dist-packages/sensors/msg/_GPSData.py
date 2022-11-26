@@ -6,25 +6,17 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
-import std_msgs.msg
 
 class GPSData(genpy.Message):
-  _md5sum = "127d8146da420293b29d277551a452ba"
+  _md5sum = "6be0f4d623467dbac7ec64212189b37c"
   _type = "sensors/GPSData"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """std_msgs/String time
-std_msgs/Float64 lat
-std_msgs/Float64 long
-
-================================================================================
-MSG: std_msgs/String
-string data
-
-================================================================================
-MSG: std_msgs/Float64
-float64 data"""
+  _full_text = """string time
+float64 lat
+float64 long
+"""
   __slots__ = ['time','lat','long']
-  _slot_types = ['std_msgs/String','std_msgs/Float64','std_msgs/Float64']
+  _slot_types = ['string','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -44,15 +36,15 @@ float64 data"""
       super(GPSData, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
       if self.time is None:
-        self.time = std_msgs.msg.String()
+        self.time = ''
       if self.lat is None:
-        self.lat = std_msgs.msg.Float64()
+        self.lat = 0.
       if self.long is None:
-        self.long = std_msgs.msg.Float64()
+        self.long = 0.
     else:
-      self.time = std_msgs.msg.String()
-      self.lat = std_msgs.msg.Float64()
-      self.long = std_msgs.msg.Float64()
+      self.time = ''
+      self.lat = 0.
+      self.long = 0.
 
   def _get_types(self):
     """
@@ -66,14 +58,14 @@ float64 data"""
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.time.data
+      _x = self.time
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_2d().pack(_x.lat.data, _x.long.data))
+      buff.write(_get_struct_2d().pack(_x.lat, _x.long))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -85,12 +77,6 @@ float64 data"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.time is None:
-        self.time = std_msgs.msg.String()
-      if self.lat is None:
-        self.lat = std_msgs.msg.Float64()
-      if self.long is None:
-        self.long = std_msgs.msg.Float64()
       end = 0
       start = end
       end += 4
@@ -98,13 +84,13 @@ float64 data"""
       start = end
       end += length
       if python3:
-        self.time.data = str[start:end].decode('utf-8', 'rosmsg')
+        self.time = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.time.data = str[start:end]
+        self.time = str[start:end]
       _x = self
       start = end
       end += 16
-      (_x.lat.data, _x.long.data,) = _get_struct_2d().unpack(str[start:end])
+      (_x.lat, _x.long,) = _get_struct_2d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -117,14 +103,14 @@ float64 data"""
     :param numpy: numpy python module
     """
     try:
-      _x = self.time.data
+      _x = self.time
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_2d().pack(_x.lat.data, _x.long.data))
+      buff.write(_get_struct_2d().pack(_x.lat, _x.long))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -137,12 +123,6 @@ float64 data"""
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
-      if self.time is None:
-        self.time = std_msgs.msg.String()
-      if self.lat is None:
-        self.lat = std_msgs.msg.Float64()
-      if self.long is None:
-        self.long = std_msgs.msg.Float64()
       end = 0
       start = end
       end += 4
@@ -150,13 +130,13 @@ float64 data"""
       start = end
       end += length
       if python3:
-        self.time.data = str[start:end].decode('utf-8', 'rosmsg')
+        self.time = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.time.data = str[start:end]
+        self.time = str[start:end]
       _x = self
       start = end
       end += 16
-      (_x.lat.data, _x.long.data,) = _get_struct_2d().unpack(str[start:end])
+      (_x.lat, _x.long,) = _get_struct_2d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

@@ -1,3 +1,3 @@
-std_msgs/String time
-std_msgs/Float64 lat
-std_msgs/Float64 long
+string time
+float64 lat
+float64 long
