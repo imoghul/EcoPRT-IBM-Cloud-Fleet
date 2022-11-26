@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
+from sensors.gpsController import *
+from sensors.imuController import *
 
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
-    
+def gpsCallback(data):
+    rospy.loginfo(rospy.get_caller_id() + "GPS: %s", str(data))
+def imuCallback(data):
+    rospy.loginfo(rospy.get_caller_id() + "IMU: %s", str(data))
+
 def listener():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -14,7 +18,8 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber("Sensor_Node", String, callback)
+    rospy.Subscriber("gps_data", GPSData, gpsCallback)
+    rospy.Subscriber("imu_data", IMUData, imuCallback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

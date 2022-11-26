@@ -5,10 +5,12 @@ import time
 import sys
 import os
 
-
-ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
-sio = io.TextIOWrapper(io.BufferedRWPair(ser,ser))
-
+try:
+    ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
+    sio = io.TextIOWrapper(io.BufferedRWPair(ser,ser))
+except:
+    ser = None
+    sio = None
 
 
 def getGPSData():
@@ -34,4 +36,6 @@ def getGPSData():
         print(str(e))#raise e
     except UnicodeDecodeError as e:
         print(str(e))#raise e
-    return (0,0,0)
+    except:
+        pass
+    return (None,None,None)

@@ -479,6 +479,175 @@ std_msgs_generate_messages_eus/fast:
 	$(MAKE) -f localization/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make localization/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
+#=============================================================================
+# Target rules for targets named sensors_generate_messages_eus
+
+# Build rule for target.
+sensors_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages_eus
+.PHONY : sensors_generate_messages_eus
+
+# fast build rule for target.
+sensors_generate_messages_eus/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages_eus.dir/build.make sensors/CMakeFiles/sensors_generate_messages_eus.dir/build
+.PHONY : sensors_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named sensors_generate_messages
+
+# Build rule for target.
+sensors_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages
+.PHONY : sensors_generate_messages
+
+# fast build rule for target.
+sensors_generate_messages/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages.dir/build.make sensors/CMakeFiles/sensors_generate_messages.dir/build
+.PHONY : sensors_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named _sensors_generate_messages_check_deps_IMUData
+
+# Build rule for target.
+_sensors_generate_messages_check_deps_IMUData: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _sensors_generate_messages_check_deps_IMUData
+.PHONY : _sensors_generate_messages_check_deps_IMUData
+
+# fast build rule for target.
+_sensors_generate_messages_check_deps_IMUData/fast:
+	$(MAKE) -f sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData.dir/build.make sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData.dir/build
+.PHONY : _sensors_generate_messages_check_deps_IMUData/fast
+
+#=============================================================================
+# Target rules for targets named sensors_gennodejs
+
+# Build rule for target.
+sensors_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_gennodejs
+.PHONY : sensors_gennodejs
+
+# fast build rule for target.
+sensors_gennodejs/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_gennodejs.dir/build.make sensors/CMakeFiles/sensors_gennodejs.dir/build
+.PHONY : sensors_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named _sensors_generate_messages_check_deps_GPSData
+
+# Build rule for target.
+_sensors_generate_messages_check_deps_GPSData: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _sensors_generate_messages_check_deps_GPSData
+.PHONY : _sensors_generate_messages_check_deps_GPSData
+
+# fast build rule for target.
+_sensors_generate_messages_check_deps_GPSData/fast:
+	$(MAKE) -f sensors/CMakeFiles/_sensors_generate_messages_check_deps_GPSData.dir/build.make sensors/CMakeFiles/_sensors_generate_messages_check_deps_GPSData.dir/build
+.PHONY : _sensors_generate_messages_check_deps_GPSData/fast
+
+#=============================================================================
+# Target rules for targets named sensors_generate_messages_lisp
+
+# Build rule for target.
+sensors_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages_lisp
+.PHONY : sensors_generate_messages_lisp
+
+# fast build rule for target.
+sensors_generate_messages_lisp/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages_lisp.dir/build.make sensors/CMakeFiles/sensors_generate_messages_lisp.dir/build
+.PHONY : sensors_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named sensors_generate_messages_py
+
+# Build rule for target.
+sensors_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages_py
+.PHONY : sensors_generate_messages_py
+
+# fast build rule for target.
+sensors_generate_messages_py/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages_py.dir/build.make sensors/CMakeFiles/sensors_generate_messages_py.dir/build
+.PHONY : sensors_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named sensors_geneus
+
+# Build rule for target.
+sensors_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_geneus
+.PHONY : sensors_geneus
+
+# fast build rule for target.
+sensors_geneus/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_geneus.dir/build.make sensors/CMakeFiles/sensors_geneus.dir/build
+.PHONY : sensors_geneus/fast
+
+#=============================================================================
+# Target rules for targets named sensors_generate_messages_cpp
+
+# Build rule for target.
+sensors_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages_cpp
+.PHONY : sensors_generate_messages_cpp
+
+# fast build rule for target.
+sensors_generate_messages_cpp/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages_cpp.dir/build.make sensors/CMakeFiles/sensors_generate_messages_cpp.dir/build
+.PHONY : sensors_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named sensors_genlisp
+
+# Build rule for target.
+sensors_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_genlisp
+.PHONY : sensors_genlisp
+
+# fast build rule for target.
+sensors_genlisp/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_genlisp.dir/build.make sensors/CMakeFiles/sensors_genlisp.dir/build
+.PHONY : sensors_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named sensors_genpy
+
+# Build rule for target.
+sensors_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_genpy
+.PHONY : sensors_genpy
+
+# fast build rule for target.
+sensors_genpy/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_genpy.dir/build.make sensors/CMakeFiles/sensors_genpy.dir/build
+.PHONY : sensors_genpy/fast
+
+#=============================================================================
+# Target rules for targets named sensors_generate_messages_nodejs
+
+# Build rule for target.
+sensors_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_generate_messages_nodejs
+.PHONY : sensors_generate_messages_nodejs
+
+# fast build rule for target.
+sensors_generate_messages_nodejs/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_generate_messages_nodejs.dir/build.make sensors/CMakeFiles/sensors_generate_messages_nodejs.dir/build
+.PHONY : sensors_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named sensors_gencpp
+
+# Build rule for target.
+sensors_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensors_gencpp
+.PHONY : sensors_gencpp
+
+# fast build rule for target.
+sensors_gencpp/fast:
+	$(MAKE) -f sensors/CMakeFiles/sensors_gencpp.dir/build.make sensors/CMakeFiles/sensors_gencpp.dir/build
+.PHONY : sensors_gencpp/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -516,6 +685,19 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_eus"
+	@echo "... sensors_generate_messages_eus"
+	@echo "... sensors_generate_messages"
+	@echo "... _sensors_generate_messages_check_deps_IMUData"
+	@echo "... sensors_gennodejs"
+	@echo "... _sensors_generate_messages_check_deps_GPSData"
+	@echo "... sensors_generate_messages_lisp"
+	@echo "... sensors_generate_messages_py"
+	@echo "... sensors_geneus"
+	@echo "... sensors_generate_messages_cpp"
+	@echo "... sensors_genlisp"
+	@echo "... sensors_genpy"
+	@echo "... sensors_generate_messages_nodejs"
+	@echo "... sensors_gencpp"
 .PHONY : help
 
 
