@@ -60,14 +60,11 @@ sensors/CMakeFiles/sensors_generate_messages_eus: /home/pi/EcoPRT-IBM-Cloud-Flee
 
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/GPSData.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/GPSData.l: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg
-/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/GPSData.l: /opt/ros/noetic/share/std_msgs/msg/String.msg
-/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/GPSData.l: /opt/ros/noetic/share/std_msgs/msg/Float64.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from sensors/GPSData.msg"
 	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/sensors && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg -Isensors:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p sensors -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg
 
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/IMUData.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/IMUData.l: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg
-/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg/IMUData.l: /opt/ros/noetic/share/std_msgs/msg/Float64.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from sensors/IMUData.msg"
 	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/sensors && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg -Isensors:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p sensors -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/sensors/msg
 

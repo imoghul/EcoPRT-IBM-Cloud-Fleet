@@ -19,12 +19,12 @@ add_custom_target(sensors_generate_messages ALL)
 
 get_filename_component(_filename "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg" NAME_WE)
 add_custom_target(_sensors_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "sensors" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg" "std_msgs/String:std_msgs/Float64"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "sensors" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg" ""
 )
 
 get_filename_component(_filename "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg" NAME_WE)
 add_custom_target(_sensors_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "sensors" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg" "std_msgs/Float64"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "sensors" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg" ""
 )
 
 #
@@ -36,13 +36,13 @@ add_custom_target(_sensors_generate_messages_check_deps_${_filename}
 _generate_msg_cpp(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/sensors
 )
 _generate_msg_cpp(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/sensors
 )
 
@@ -77,13 +77,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sensors_generate_messages_cpp)
 _generate_msg_eus(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/sensors
 )
 _generate_msg_eus(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/sensors
 )
 
@@ -118,13 +118,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sensors_generate_messages_eus)
 _generate_msg_lisp(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/sensors
 )
 _generate_msg_lisp(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/sensors
 )
 
@@ -159,13 +159,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sensors_generate_messages_lisp)
 _generate_msg_nodejs(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/sensors
 )
 _generate_msg_nodejs(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/sensors
 )
 
@@ -200,13 +200,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS sensors_generate_messages_nodejs)
 _generate_msg_py(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/String.msg;/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/sensors
 )
 _generate_msg_py(sensors
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
   "${MSG_I_FLAGS}"
-  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Float64.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/sensors
 )
 

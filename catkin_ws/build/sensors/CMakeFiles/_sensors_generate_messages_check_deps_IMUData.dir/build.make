@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build
 include sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData.dir/progress.make
 
 sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData:
-	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/sensors && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py sensors /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg std_msgs/Float64
+	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/sensors && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py sensors /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg 
 
 _sensors_generate_messages_check_deps_IMUData: sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData
 _sensors_generate_messages_check_deps_IMUData: sensors/CMakeFiles/_sensors_generate_messages_check_deps_IMUData.dir/build.make

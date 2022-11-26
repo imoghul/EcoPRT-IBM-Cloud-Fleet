@@ -5,9 +5,9 @@ from sensors.gpsController import *
 from sensors.imuController import *
 
 def gpsCallback(data):
-    rospy.loginfo(rospy.get_caller_id() + "GPS: %s", str(data))
+    rospy.loginfo(rospy.get_caller_id() + "\nGPS:\n%s", str(data))
 def imuCallback(data):
-    rospy.loginfo(rospy.get_caller_id() + "IMU: %s", str(data))
+    rospy.loginfo(rospy.get_caller_id() + "\nIMU:\n%s", str(data))
 
 def listener():
 
