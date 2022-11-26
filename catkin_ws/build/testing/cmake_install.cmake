@@ -38,6 +38,10 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/safe_execute_install.cmake")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/testing.pc")
 endif()
 
@@ -53,14 +57,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/testing" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/talker.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/testing" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/localization.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/testing" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/listener.py")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/testing" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/test.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/testing" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/catkin_generated/installspace/localizer.py")
 endif()
 

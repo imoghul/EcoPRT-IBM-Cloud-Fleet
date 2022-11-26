@@ -16,11 +16,11 @@ def talker():
     gps = GPSController()
     imu = IMUController()
 
-    #gps.start()
-    #imu.start()
+    gps.start()
+    imu.start()
     while not rospy.is_shutdown():
-        gps.refreshGPSData()
-        imu.calc()
+        #gps.refreshGPSData()
+        #imu.calc()
         rate.sleep()
 
 if __name__ == '__main__':

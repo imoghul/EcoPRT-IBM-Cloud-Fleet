@@ -452,17 +452,17 @@ gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 //Path to a library.
 lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 
-//Value Computed by CMake
-localization_BINARY_DIR:STATIC=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/localization
-
-//Value Computed by CMake
-localization_SOURCE_DIR:STATIC=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/localization
-
 //The directory containing a CMake configuration file for message_generation.
 message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
+
+//Value Computed by CMake
+positioning_BINARY_DIR:STATIC=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning
+
+//Value Computed by CMake
+positioning_SOURCE_DIR:STATIC=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning
 
 //Value Computed by CMake
 roadquality_BINARY_DIR:STATIC=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/roadquality

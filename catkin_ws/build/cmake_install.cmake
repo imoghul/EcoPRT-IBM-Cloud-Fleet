@@ -131,7 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/localization/cmake_install.cmake")
+  include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning/cmake_install.cmake")
   include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/roadquality/cmake_install.cmake")
   include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/sensors/cmake_install.cmake")
   include("/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/testing/cmake_install.cmake")
