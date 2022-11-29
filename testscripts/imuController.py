@@ -14,9 +14,6 @@ class Buffer():
         return sum(self.vals)/len(self.vals)
 
 class IMUController():
-    #AxCalib = 0
-    #AyCalib = 0
-    #AzCalib = 0
     def __init__(self):
         MPU_Init()
 
@@ -25,6 +22,9 @@ class IMUController():
         self.AxCalib = 0
         self.AyCalib = 0
         self.AzCalib = 0
+        self.GxCalib = 0
+        self.GyCalib = 0
+        self.GzCalib = 0
         self.Vx = 0
         self.Vy = 0
         self.Vz = 0
@@ -32,11 +32,12 @@ class IMUController():
         self.AxBuffer = None
         self.AyBuffer = None
         self.AzBuffer = None
+        self.GxBuffer = None
+        self.GyBuffer = None
+        self.GzBuffer = None
 
         self.calibrate()
         self.refereshIMUData()
-
-
 
         self.thread = threading.Thread(target = self.run)
 
@@ -45,41 +46,60 @@ class IMUController():
         sumAx = []
         sumAy = []
         sumAz = []
+        sumGx = []
+        sumGy = []
+        sumGz = []
+
         for i in range(samples):
-            Ax, Ay,Az,Gx,Gy,Gz = getIMUData()
+            Ax,Ay,Az,Gx,Gy,Gz = getIMUData()
             sumAx.append(Ax)
             sumAy.append(Ay)
             sumAz.append(Az)
+            sumGx.append(Gx)
+            sumGy.append(Gy)
+            sumGz.append(Gz)
+
         self.AxCalib = sum(sumAx)/len(sumAx)
         self.AyCalib = sum(sumAy)/len(sumAy)
         self.AzCalib = sum(sumAz)/len(sumAz)
+        self.GxCalib = sum(sumGx)/len(sumGx)
+        self.GyCalib = sum(sumGy)/len(sumGy)
+        self.GzCalib = sum(sumGz)/len(sumGz)
 
         self.AxBuffer = Buffer(self.BUFFER_LEN,sumAx[-self.BUFFER_LEN:])
         self.AyBuffer = Buffer(self.BUFFER_LEN,sumAy[-self.BUFFER_LEN:])
         self.AzBuffer = Buffer(self.BUFFER_LEN,sumAz[-self.BUFFER_LEN:])
-
+        self.GxBuffer = Buffer(self.BUFFER_LEN,sumGx[-self.BUFFER_LEN:])
+        self.GyBuffer = Buffer(self.BUFFER_LEN,sumGy[-self.BUFFER_LEN:])
+        self.GzBuffer = Buffer(self.BUFFER_LEN,sumGz[-self.BUFFER_LEN:])
 
         print("X: %f\tY: %f\tZ: %f"%(self.AxCalib,self.AyCalib, self.AzCalib))
+
     def refereshIMUData(self):
         Ax,Ay,Az,Gx,Gy,Gz = getIMUData()
-
 
         self.currTime = time.time()
 
         self.AxRaw = Ax-self.AxCalib
         self.AyRaw = Ay-self.AyCalib
         self.AzRaw = Az-self.AzCalib
+        self.GxRaw = Gx-self.GxCalib
+        self.GyRaw = Gy-self.GyCalib
+        self.GzRaw = Gz-self.GzCalib
 
         self.AxBuffer.push(self.AxRaw)
         self.AyBuffer.push(self.AyRaw)
         self.AzBuffer.push(self.AzRaw)
+        self.GxBuffer.push(self.GxRaw)
+        self.GyBuffer.push(self.GyRaw)
+        self.GzBuffer.push(self.GzRaw)
 
-        self.Ax = self.AxBuffer.average()#Ax-self.AxCalib
-        self.Ay = self.AyBuffer.average()#Ay-self.AyCalib
-        self.Az = self.AzBuffer.average()#Az-self.AzCalib
-        self.Gx = Gx
-        self.Gy = Gy
-        self.Gz = Gz
+        self.Ax = self.AxBuffer.average()
+        self.Ay = self.AyBuffer.average()
+        self.Az = self.AzBuffer.average()
+        self.Gx = self.GxBuffer.average()
+        self.Gy = self.GyBuffer.average()
+        self.Gz = self.GzBuffer.average()
 
     def calc(self):
         origAx,origAy,origAz,origGx,origGy,origGz,origTime = self.Ax,self.Ay,self.Az,self.Gx,self.Gy,self.Gz,self.currTime

@@ -39,6 +39,12 @@ struct IMUData_
     , Gx(0.0)
     , Gy(0.0)
     , Gz(0.0)
+    , GxCalib(0.0)
+    , GyCalib(0.0)
+    , GzCalib(0.0)
+    , GxRaw(0.0)
+    , GyRaw(0.0)
+    , GzRaw(0.0)
     , currTime(0.0)  {
     }
   IMUData_(const ContainerAllocator& _alloc)
@@ -57,6 +63,12 @@ struct IMUData_
     , Gx(0.0)
     , Gy(0.0)
     , Gz(0.0)
+    , GxCalib(0.0)
+    , GyCalib(0.0)
+    , GzCalib(0.0)
+    , GxRaw(0.0)
+    , GyRaw(0.0)
+    , GzRaw(0.0)
     , currTime(0.0)  {
   (void)_alloc;
     }
@@ -108,6 +120,24 @@ struct IMUData_
    typedef double _Gz_type;
   _Gz_type Gz;
 
+   typedef double _GxCalib_type;
+  _GxCalib_type GxCalib;
+
+   typedef double _GyCalib_type;
+  _GyCalib_type GyCalib;
+
+   typedef double _GzCalib_type;
+  _GzCalib_type GzCalib;
+
+   typedef double _GxRaw_type;
+  _GxRaw_type GxRaw;
+
+   typedef double _GyRaw_type;
+  _GyRaw_type GyRaw;
+
+   typedef double _GzRaw_type;
+  _GzRaw_type GzRaw;
+
    typedef double _currTime_type;
   _currTime_type currTime;
 
@@ -155,6 +185,12 @@ bool operator==(const ::sensors::IMUData_<ContainerAllocator1> & lhs, const ::se
     lhs.Gx == rhs.Gx &&
     lhs.Gy == rhs.Gy &&
     lhs.Gz == rhs.Gz &&
+    lhs.GxCalib == rhs.GxCalib &&
+    lhs.GyCalib == rhs.GyCalib &&
+    lhs.GzCalib == rhs.GzCalib &&
+    lhs.GxRaw == rhs.GxRaw &&
+    lhs.GyRaw == rhs.GyRaw &&
+    lhs.GzRaw == rhs.GzRaw &&
     lhs.currTime == rhs.currTime;
 }
 
@@ -212,12 +248,12 @@ struct MD5Sum< ::sensors::IMUData_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "34b732ae811cee8c11c282e3af23a7b1";
+    return "6bda55b7f9e6f3956c206b862be8ffbe";
   }
 
   static const char* value(const ::sensors::IMUData_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x34b732ae811cee8cULL;
-  static const uint64_t static_value2 = 0x11c282e3af23a7b1ULL;
+  static const uint64_t static_value1 = 0x6bda55b7f9e6f395ULL;
+  static const uint64_t static_value2 = 0x6c206b862be8ffbeULL;
 };
 
 template<class ContainerAllocator>
@@ -251,6 +287,12 @@ struct Definition< ::sensors::IMUData_<ContainerAllocator> >
 "float64 Gx\n"
 "float64 Gy\n"
 "float64 Gz\n"
+"float64 GxCalib\n"
+"float64 GyCalib\n"
+"float64 GzCalib\n"
+"float64 GxRaw\n"
+"float64 GyRaw\n"
+"float64 GzRaw\n"
 "float64 currTime\n"
 ;
   }
@@ -285,6 +327,12 @@ namespace serialization
       stream.next(m.Gx);
       stream.next(m.Gy);
       stream.next(m.Gz);
+      stream.next(m.GxCalib);
+      stream.next(m.GyCalib);
+      stream.next(m.GzCalib);
+      stream.next(m.GxRaw);
+      stream.next(m.GyRaw);
+      stream.next(m.GzRaw);
       stream.next(m.currTime);
     }
 
@@ -334,6 +382,18 @@ struct Printer< ::sensors::IMUData_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.Gy);
     s << indent << "Gz: ";
     Printer<double>::stream(s, indent + "  ", v.Gz);
+    s << indent << "GxCalib: ";
+    Printer<double>::stream(s, indent + "  ", v.GxCalib);
+    s << indent << "GyCalib: ";
+    Printer<double>::stream(s, indent + "  ", v.GyCalib);
+    s << indent << "GzCalib: ";
+    Printer<double>::stream(s, indent + "  ", v.GzCalib);
+    s << indent << "GxRaw: ";
+    Printer<double>::stream(s, indent + "  ", v.GxRaw);
+    s << indent << "GyRaw: ";
+    Printer<double>::stream(s, indent + "  ", v.GyRaw);
+    s << indent << "GzRaw: ";
+    Printer<double>::stream(s, indent + "  ", v.GzRaw);
     s << indent << "currTime: ";
     Printer<double>::stream(s, indent + "  ", v.currTime);
   }

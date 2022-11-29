@@ -8,7 +8,7 @@ import struct
 
 
 class IMUData(genpy.Message):
-  _md5sum = "34b732ae811cee8c11c282e3af23a7b1"
+  _md5sum = "6bda55b7f9e6f3956c206b862be8ffbe"
   _type = "sensors/IMUData"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 AxCalib
@@ -26,10 +26,16 @@ float64 Vz
 float64 Gx
 float64 Gy
 float64 Gz
+float64 GxCalib
+float64 GyCalib
+float64 GzCalib
+float64 GxRaw
+float64 GyRaw
+float64 GzRaw
 float64 currTime
 """
-  __slots__ = ['AxCalib','AyCalib','AzCalib','Ax','Ay','Az','AxRaw','AyRaw','AzRaw','Vx','Vy','Vz','Gx','Gy','Gz','currTime']
-  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['AxCalib','AyCalib','AzCalib','Ax','Ay','Az','AxRaw','AyRaw','AzRaw','Vx','Vy','Vz','Gx','Gy','Gz','GxCalib','GyCalib','GzCalib','GxRaw','GyRaw','GzRaw','currTime']
+  _slot_types = ['float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -39,7 +45,7 @@ float64 currTime
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       AxCalib,AyCalib,AzCalib,Ax,Ay,Az,AxRaw,AyRaw,AzRaw,Vx,Vy,Vz,Gx,Gy,Gz,currTime
+       AxCalib,AyCalib,AzCalib,Ax,Ay,Az,AxRaw,AyRaw,AzRaw,Vx,Vy,Vz,Gx,Gy,Gz,GxCalib,GyCalib,GzCalib,GxRaw,GyRaw,GzRaw,currTime
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -78,6 +84,18 @@ float64 currTime
         self.Gy = 0.
       if self.Gz is None:
         self.Gz = 0.
+      if self.GxCalib is None:
+        self.GxCalib = 0.
+      if self.GyCalib is None:
+        self.GyCalib = 0.
+      if self.GzCalib is None:
+        self.GzCalib = 0.
+      if self.GxRaw is None:
+        self.GxRaw = 0.
+      if self.GyRaw is None:
+        self.GyRaw = 0.
+      if self.GzRaw is None:
+        self.GzRaw = 0.
       if self.currTime is None:
         self.currTime = 0.
     else:
@@ -96,6 +114,12 @@ float64 currTime
       self.Gx = 0.
       self.Gy = 0.
       self.Gz = 0.
+      self.GxCalib = 0.
+      self.GyCalib = 0.
+      self.GzCalib = 0.
+      self.GxRaw = 0.
+      self.GyRaw = 0.
+      self.GzRaw = 0.
       self.currTime = 0.
 
   def _get_types(self):
@@ -111,7 +135,7 @@ float64 currTime
     """
     try:
       _x = self
-      buff.write(_get_struct_16d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime))
+      buff.write(_get_struct_22d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.GxCalib, _x.GyCalib, _x.GzCalib, _x.GxRaw, _x.GyRaw, _x.GzRaw, _x.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -126,8 +150,8 @@ float64 currTime
       end = 0
       _x = self
       start = end
-      end += 128
-      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime,) = _get_struct_16d().unpack(str[start:end])
+      end += 176
+      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.GxCalib, _x.GyCalib, _x.GzCalib, _x.GxRaw, _x.GyRaw, _x.GzRaw, _x.currTime,) = _get_struct_22d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -141,7 +165,7 @@ float64 currTime
     """
     try:
       _x = self
-      buff.write(_get_struct_16d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime))
+      buff.write(_get_struct_22d().pack(_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.GxCalib, _x.GyCalib, _x.GzCalib, _x.GxRaw, _x.GyRaw, _x.GzRaw, _x.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -157,8 +181,8 @@ float64 currTime
       end = 0
       _x = self
       start = end
-      end += 128
-      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.currTime,) = _get_struct_16d().unpack(str[start:end])
+      end += 176
+      (_x.AxCalib, _x.AyCalib, _x.AzCalib, _x.Ax, _x.Ay, _x.Az, _x.AxRaw, _x.AyRaw, _x.AzRaw, _x.Vx, _x.Vy, _x.Vz, _x.Gx, _x.Gy, _x.Gz, _x.GxCalib, _x.GyCalib, _x.GzCalib, _x.GxRaw, _x.GyRaw, _x.GzRaw, _x.currTime,) = _get_struct_22d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -167,9 +191,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_16d = None
-def _get_struct_16d():
-    global _struct_16d
-    if _struct_16d is None:
-        _struct_16d = struct.Struct("<16d")
-    return _struct_16d
+_struct_22d = None
+def _get_struct_22d():
+    global _struct_22d
+    if _struct_22d is None:
+        _struct_22d = struct.Struct("<22d")
+    return _struct_22d

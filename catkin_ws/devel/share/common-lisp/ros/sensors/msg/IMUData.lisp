@@ -82,6 +82,36 @@
     :initarg :Gz
     :type cl:float
     :initform 0.0)
+   (GxCalib
+    :reader GxCalib
+    :initarg :GxCalib
+    :type cl:float
+    :initform 0.0)
+   (GyCalib
+    :reader GyCalib
+    :initarg :GyCalib
+    :type cl:float
+    :initform 0.0)
+   (GzCalib
+    :reader GzCalib
+    :initarg :GzCalib
+    :type cl:float
+    :initform 0.0)
+   (GxRaw
+    :reader GxRaw
+    :initarg :GxRaw
+    :type cl:float
+    :initform 0.0)
+   (GyRaw
+    :reader GyRaw
+    :initarg :GyRaw
+    :type cl:float
+    :initform 0.0)
+   (GzRaw
+    :reader GzRaw
+    :initarg :GzRaw
+    :type cl:float
+    :initform 0.0)
    (currTime
     :reader currTime
     :initarg :currTime
@@ -171,6 +201,36 @@
 (cl:defmethod Gz-val ((m <IMUData>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:Gz-val is deprecated.  Use sensors-msg:Gz instead.")
   (Gz m))
+
+(cl:ensure-generic-function 'GxCalib-val :lambda-list '(m))
+(cl:defmethod GxCalib-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GxCalib-val is deprecated.  Use sensors-msg:GxCalib instead.")
+  (GxCalib m))
+
+(cl:ensure-generic-function 'GyCalib-val :lambda-list '(m))
+(cl:defmethod GyCalib-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GyCalib-val is deprecated.  Use sensors-msg:GyCalib instead.")
+  (GyCalib m))
+
+(cl:ensure-generic-function 'GzCalib-val :lambda-list '(m))
+(cl:defmethod GzCalib-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GzCalib-val is deprecated.  Use sensors-msg:GzCalib instead.")
+  (GzCalib m))
+
+(cl:ensure-generic-function 'GxRaw-val :lambda-list '(m))
+(cl:defmethod GxRaw-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GxRaw-val is deprecated.  Use sensors-msg:GxRaw instead.")
+  (GxRaw m))
+
+(cl:ensure-generic-function 'GyRaw-val :lambda-list '(m))
+(cl:defmethod GyRaw-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GyRaw-val is deprecated.  Use sensors-msg:GyRaw instead.")
+  (GyRaw m))
+
+(cl:ensure-generic-function 'GzRaw-val :lambda-list '(m))
+(cl:defmethod GzRaw-val ((m <IMUData>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader sensors-msg:GzRaw-val is deprecated.  Use sensors-msg:GzRaw instead.")
+  (GzRaw m))
 
 (cl:ensure-generic-function 'currTime-val :lambda-list '(m))
 (cl:defmethod currTime-val ((m <IMUData>))
@@ -305,6 +365,60 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'Gz))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GxCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GyCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GzCalib))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GxRaw))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GyRaw))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'GzRaw))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -484,6 +598,66 @@
       (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GxCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GyCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GzCalib) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GxRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GyRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'GzRaw) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'currTime) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
@@ -495,18 +669,24 @@
   "sensors/IMUData")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<IMUData>)))
   "Returns md5sum for a message object of type '<IMUData>"
-  "34b732ae811cee8c11c282e3af23a7b1")
+  "6bda55b7f9e6f3956c206b862be8ffbe")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'IMUData)))
   "Returns md5sum for a message object of type 'IMUData"
-  "34b732ae811cee8c11c282e3af23a7b1")
+  "6bda55b7f9e6f3956c206b862be8ffbe")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<IMUData>)))
   "Returns full string definition for message of type '<IMUData>"
-  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 currTime~%~%~%"))
+  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 GxCalib~%float64 GyCalib~%float64 GzCalib~%float64 GxRaw~%float64 GyRaw~%float64 GzRaw~%float64 currTime~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'IMUData)))
   "Returns full string definition for message of type 'IMUData"
-  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 currTime~%~%~%"))
+  (cl:format cl:nil "float64 AxCalib~%float64 AyCalib~%float64 AzCalib~%float64 Ax~%float64 Ay~%float64 Az~%float64 AxRaw~%float64 AyRaw~%float64 AzRaw~%float64 Vx~%float64 Vy~%float64 Vz~%float64 Gx~%float64 Gy~%float64 Gz~%float64 GxCalib~%float64 GyCalib~%float64 GzCalib~%float64 GxRaw~%float64 GyRaw~%float64 GzRaw~%float64 currTime~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <IMUData>))
   (cl:+ 0
+     8
+     8
+     8
+     8
+     8
+     8
      8
      8
      8
@@ -542,5 +722,11 @@
     (cl:cons ':Gx (Gx msg))
     (cl:cons ':Gy (Gy msg))
     (cl:cons ':Gz (Gz msg))
+    (cl:cons ':GxCalib (GxCalib msg))
+    (cl:cons ':GyCalib (GyCalib msg))
+    (cl:cons ':GzCalib (GzCalib msg))
+    (cl:cons ':GxRaw (GxRaw msg))
+    (cl:cons ':GyRaw (GyRaw msg))
+    (cl:cons ':GzRaw (GzRaw msg))
     (cl:cons ':currTime (currTime msg))
 ))

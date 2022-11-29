@@ -104,3 +104,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/positioning" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning/catkin_generated/installspace/localizer.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/positioning" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning/catkin_generated/installspace/listener.py")
+endif()
+

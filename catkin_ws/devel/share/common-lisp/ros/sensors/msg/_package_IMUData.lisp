@@ -29,6 +29,18 @@
           GY
           GZ-VAL
           GZ
+          GXCALIB-VAL
+          GXCALIB
+          GYCALIB-VAL
+          GYCALIB
+          GZCALIB-VAL
+          GZCALIB
+          GXRAW-VAL
+          GXRAW
+          GYRAW-VAL
+          GYRAW
+          GZRAW-VAL
+          GZRAW
           CURRTIME-VAL
           CURRTIME
 ))

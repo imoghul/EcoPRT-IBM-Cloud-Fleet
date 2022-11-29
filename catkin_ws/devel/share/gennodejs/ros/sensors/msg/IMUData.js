@@ -33,6 +33,12 @@ class IMUData {
       this.Gx = null;
       this.Gy = null;
       this.Gz = null;
+      this.GxCalib = null;
+      this.GyCalib = null;
+      this.GzCalib = null;
+      this.GxRaw = null;
+      this.GyRaw = null;
+      this.GzRaw = null;
       this.currTime = null;
     }
     else {
@@ -126,6 +132,42 @@ class IMUData {
       else {
         this.Gz = 0.0;
       }
+      if (initObj.hasOwnProperty('GxCalib')) {
+        this.GxCalib = initObj.GxCalib
+      }
+      else {
+        this.GxCalib = 0.0;
+      }
+      if (initObj.hasOwnProperty('GyCalib')) {
+        this.GyCalib = initObj.GyCalib
+      }
+      else {
+        this.GyCalib = 0.0;
+      }
+      if (initObj.hasOwnProperty('GzCalib')) {
+        this.GzCalib = initObj.GzCalib
+      }
+      else {
+        this.GzCalib = 0.0;
+      }
+      if (initObj.hasOwnProperty('GxRaw')) {
+        this.GxRaw = initObj.GxRaw
+      }
+      else {
+        this.GxRaw = 0.0;
+      }
+      if (initObj.hasOwnProperty('GyRaw')) {
+        this.GyRaw = initObj.GyRaw
+      }
+      else {
+        this.GyRaw = 0.0;
+      }
+      if (initObj.hasOwnProperty('GzRaw')) {
+        this.GzRaw = initObj.GzRaw
+      }
+      else {
+        this.GzRaw = 0.0;
+      }
       if (initObj.hasOwnProperty('currTime')) {
         this.currTime = initObj.currTime
       }
@@ -167,6 +209,18 @@ class IMUData {
     bufferOffset = _serializer.float64(obj.Gy, buffer, bufferOffset);
     // Serialize message field [Gz]
     bufferOffset = _serializer.float64(obj.Gz, buffer, bufferOffset);
+    // Serialize message field [GxCalib]
+    bufferOffset = _serializer.float64(obj.GxCalib, buffer, bufferOffset);
+    // Serialize message field [GyCalib]
+    bufferOffset = _serializer.float64(obj.GyCalib, buffer, bufferOffset);
+    // Serialize message field [GzCalib]
+    bufferOffset = _serializer.float64(obj.GzCalib, buffer, bufferOffset);
+    // Serialize message field [GxRaw]
+    bufferOffset = _serializer.float64(obj.GxRaw, buffer, bufferOffset);
+    // Serialize message field [GyRaw]
+    bufferOffset = _serializer.float64(obj.GyRaw, buffer, bufferOffset);
+    // Serialize message field [GzRaw]
+    bufferOffset = _serializer.float64(obj.GzRaw, buffer, bufferOffset);
     // Serialize message field [currTime]
     bufferOffset = _serializer.float64(obj.currTime, buffer, bufferOffset);
     return bufferOffset;
@@ -206,13 +260,25 @@ class IMUData {
     data.Gy = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [Gz]
     data.Gz = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GxCalib]
+    data.GxCalib = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GyCalib]
+    data.GyCalib = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GzCalib]
+    data.GzCalib = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GxRaw]
+    data.GxRaw = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GyRaw]
+    data.GyRaw = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [GzRaw]
+    data.GzRaw = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [currTime]
     data.currTime = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 128;
+    return 176;
   }
 
   static datatype() {
@@ -222,7 +288,7 @@ class IMUData {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '34b732ae811cee8c11c282e3af23a7b1';
+    return '6bda55b7f9e6f3956c206b862be8ffbe';
   }
 
   static messageDefinition() {
@@ -243,6 +309,12 @@ class IMUData {
     float64 Gx
     float64 Gy
     float64 Gz
+    float64 GxCalib
+    float64 GyCalib
+    float64 GzCalib
+    float64 GxRaw
+    float64 GyRaw
+    float64 GzRaw
     float64 currTime
     
     `;
@@ -357,6 +429,48 @@ class IMUData {
     }
     else {
       resolved.Gz = 0.0
+    }
+
+    if (msg.GxCalib !== undefined) {
+      resolved.GxCalib = msg.GxCalib;
+    }
+    else {
+      resolved.GxCalib = 0.0
+    }
+
+    if (msg.GyCalib !== undefined) {
+      resolved.GyCalib = msg.GyCalib;
+    }
+    else {
+      resolved.GyCalib = 0.0
+    }
+
+    if (msg.GzCalib !== undefined) {
+      resolved.GzCalib = msg.GzCalib;
+    }
+    else {
+      resolved.GzCalib = 0.0
+    }
+
+    if (msg.GxRaw !== undefined) {
+      resolved.GxRaw = msg.GxRaw;
+    }
+    else {
+      resolved.GxRaw = 0.0
+    }
+
+    if (msg.GyRaw !== undefined) {
+      resolved.GyRaw = msg.GyRaw;
+    }
+    else {
+      resolved.GyRaw = 0.0
+    }
+
+    if (msg.GzRaw !== undefined) {
+      resolved.GzRaw = msg.GzRaw;
+    }
+    else {
+      resolved.GzRaw = 0.0
     }
 
     if (msg.currTime !== undefined) {

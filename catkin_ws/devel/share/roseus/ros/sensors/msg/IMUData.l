@@ -14,7 +14,7 @@
 
 (defclass sensors::IMUData
   :super ros::object
-  :slots (_AxCalib _AyCalib _AzCalib _Ax _Ay _Az _AxRaw _AyRaw _AzRaw _Vx _Vy _Vz _Gx _Gy _Gz _currTime ))
+  :slots (_AxCalib _AyCalib _AzCalib _Ax _Ay _Az _AxRaw _AyRaw _AzRaw _Vx _Vy _Vz _Gx _Gy _Gz _GxCalib _GyCalib _GzCalib _GxRaw _GyRaw _GzRaw _currTime ))
 
 (defmethod sensors::IMUData
   (:init
@@ -34,6 +34,12 @@
     ((:Gx __Gx) 0.0)
     ((:Gy __Gy) 0.0)
     ((:Gz __Gz) 0.0)
+    ((:GxCalib __GxCalib) 0.0)
+    ((:GyCalib __GyCalib) 0.0)
+    ((:GzCalib __GzCalib) 0.0)
+    ((:GxRaw __GxRaw) 0.0)
+    ((:GyRaw __GyRaw) 0.0)
+    ((:GzRaw __GzRaw) 0.0)
     ((:currTime __currTime) 0.0)
     )
    (send-super :init)
@@ -52,6 +58,12 @@
    (setq _Gx (float __Gx))
    (setq _Gy (float __Gy))
    (setq _Gz (float __Gz))
+   (setq _GxCalib (float __GxCalib))
+   (setq _GyCalib (float __GyCalib))
+   (setq _GzCalib (float __GzCalib))
+   (setq _GxRaw (float __GxRaw))
+   (setq _GyRaw (float __GyRaw))
+   (setq _GzRaw (float __GzRaw))
    (setq _currTime (float __currTime))
    self)
   (:AxCalib
@@ -99,6 +111,24 @@
   (:Gz
    (&optional __Gz)
    (if __Gz (setq _Gz __Gz)) _Gz)
+  (:GxCalib
+   (&optional __GxCalib)
+   (if __GxCalib (setq _GxCalib __GxCalib)) _GxCalib)
+  (:GyCalib
+   (&optional __GyCalib)
+   (if __GyCalib (setq _GyCalib __GyCalib)) _GyCalib)
+  (:GzCalib
+   (&optional __GzCalib)
+   (if __GzCalib (setq _GzCalib __GzCalib)) _GzCalib)
+  (:GxRaw
+   (&optional __GxRaw)
+   (if __GxRaw (setq _GxRaw __GxRaw)) _GxRaw)
+  (:GyRaw
+   (&optional __GyRaw)
+   (if __GyRaw (setq _GyRaw __GyRaw)) _GyRaw)
+  (:GzRaw
+   (&optional __GzRaw)
+   (if __GzRaw (setq _GzRaw __GzRaw)) _GzRaw)
   (:currTime
    (&optional __currTime)
    (if __currTime (setq _currTime __currTime)) _currTime)
@@ -134,6 +164,18 @@
     ;; float64 _Gy
     8
     ;; float64 _Gz
+    8
+    ;; float64 _GxCalib
+    8
+    ;; float64 _GyCalib
+    8
+    ;; float64 _GzCalib
+    8
+    ;; float64 _GxRaw
+    8
+    ;; float64 _GyRaw
+    8
+    ;; float64 _GzRaw
     8
     ;; float64 _currTime
     8
@@ -172,6 +214,18 @@
        (sys::poke _Gy (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _Gz
        (sys::poke _Gz (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GxCalib
+       (sys::poke _GxCalib (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GyCalib
+       (sys::poke _GyCalib (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GzCalib
+       (sys::poke _GzCalib (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GxRaw
+       (sys::poke _GxRaw (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GyRaw
+       (sys::poke _GyRaw (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _GzRaw
+       (sys::poke _GzRaw (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _currTime
        (sys::poke _currTime (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
@@ -208,13 +262,25 @@
      (setq _Gy (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _Gz
      (setq _Gz (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GxCalib
+     (setq _GxCalib (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GyCalib
+     (setq _GyCalib (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GzCalib
+     (setq _GzCalib (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GxRaw
+     (setq _GxRaw (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GyRaw
+     (setq _GyRaw (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _GzRaw
+     (setq _GzRaw (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _currTime
      (setq _currTime (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get sensors::IMUData :md5sum-) "34b732ae811cee8c11c282e3af23a7b1")
+(setf (get sensors::IMUData :md5sum-) "6bda55b7f9e6f3956c206b862be8ffbe")
 (setf (get sensors::IMUData :datatype-) "sensors/IMUData")
 (setf (get sensors::IMUData :definition-)
       "float64 AxCalib
@@ -232,12 +298,18 @@ float64 Vz
 float64 Gx
 float64 Gy
 float64 Gz
+float64 GxCalib
+float64 GyCalib
+float64 GzCalib
+float64 GxRaw
+float64 GyRaw
+float64 GzRaw
 float64 currTime
 
 ")
 
 
 
-(provide :sensors/IMUData "34b732ae811cee8c11c282e3af23a7b1")
+(provide :sensors/IMUData "6bda55b7f9e6f3956c206b862be8ffbe")
 
 

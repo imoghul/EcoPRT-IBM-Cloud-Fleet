@@ -52,3 +52,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roadquality" TYPE FILE FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/roadquality/package.xml")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/roadquality" TYPE PROGRAM FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/roadquality/catkin_generated/installspace/imuRQProcess.py")
+endif()
+

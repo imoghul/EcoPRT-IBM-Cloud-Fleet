@@ -340,6 +340,9 @@ NOSETESTS:FILEPATH=/usr/bin/nosetests3
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3
 
+//No help, variable specified on the command line.
+PYTHON_INCLUDE_DIR:UNINITIALIZED=/usr/include/python3.7m
+
 //Specify specific Python version to use ('major.minor' or 'major')
 PYTHON_VERSION:STRING=3
 
