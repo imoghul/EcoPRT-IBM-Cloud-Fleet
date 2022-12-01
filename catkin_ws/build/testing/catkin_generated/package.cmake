@@ -1,6 +1,6 @@
 set(_CATKIN_CURRENT_PACKAGE "testing")
 set(testing_VERSION "0.0.0")
-set(testing_MAINTAINER "ibrahim <moghul02@gmail.com>")
+set(testing_MAINTAINER "pi <pi@todo.todo>")
 set(testing_PACKAGE_FORMAT "2")
 set(testing_BUILD_DEPENDS "roscpp" "rospy" "std_msgs")
 set(testing_BUILD_EXPORT_DEPENDS "roscpp" "rospy" "std_msgs")

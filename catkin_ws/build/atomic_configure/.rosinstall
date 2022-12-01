@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/setup.sh
+    local-name: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/setup.sh

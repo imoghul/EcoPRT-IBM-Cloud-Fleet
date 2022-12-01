@@ -1,4 +1,4 @@
-prefix=/home/ibrahim/Programming/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel
+prefix=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel
 
 Name: testing
 Description: Description of testing
