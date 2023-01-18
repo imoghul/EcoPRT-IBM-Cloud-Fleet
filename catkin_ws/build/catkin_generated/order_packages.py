@@ -2,4 +2,4 @@
 source_root_dir = '/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/opt/ros/noetic'.split(';') if '/opt/ros/noetic' != '' else []
+underlay_workspaces = '/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel;/opt/ros/noetic' != '' else []
