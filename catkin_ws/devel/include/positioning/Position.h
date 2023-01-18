@@ -15,6 +15,7 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
+#include <sensors/IMUData.h>
 
 namespace positioning
 {
@@ -26,12 +27,14 @@ struct Position_
   Position_()
     : latitude(0.0)
     , longitude(0.0)
-    , altitude(0.0)  {
+    , altitude(0.0)
+    , imu()  {
     }
   Position_(const ContainerAllocator& _alloc)
     : latitude(0.0)
     , longitude(0.0)
-    , altitude(0.0)  {
+    , altitude(0.0)
+    , imu(_alloc)  {
   (void)_alloc;
     }
 
@@ -45,6 +48,9 @@ struct Position_
 
    typedef double _altitude_type;
   _altitude_type altitude;
+
+   typedef  ::sensors::IMUData_<ContainerAllocator>  _imu_type;
+  _imu_type imu;
 
 
 
@@ -77,7 +83,8 @@ bool operator==(const ::positioning::Position_<ContainerAllocator1> & lhs, const
 {
   return lhs.latitude == rhs.latitude &&
     lhs.longitude == rhs.longitude &&
-    lhs.altitude == rhs.altitude;
+    lhs.altitude == rhs.altitude &&
+    lhs.imu == rhs.imu;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -134,12 +141,12 @@ struct MD5Sum< ::positioning::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "c48027a852aeff972be80478ff38e81a";
+    return "26972fc25ce21b0631b32a2b006a1bf4";
   }
 
   static const char* value(const ::positioning::Position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xc48027a852aeff97ULL;
-  static const uint64_t static_value2 = 0x2be80478ff38e81aULL;
+  static const uint64_t static_value1 = 0x26972fc25ce21b06ULL;
+  static const uint64_t static_value2 = 0x31b32a2b006a1bf4ULL;
 };
 
 template<class ContainerAllocator>
@@ -161,6 +168,32 @@ struct Definition< ::positioning::Position_<ContainerAllocator> >
     return "float64 latitude\n"
 "float64 longitude\n"
 "float64 altitude\n"
+"sensors/IMUData imu\n"
+"\n"
+"================================================================================\n"
+"MSG: sensors/IMUData\n"
+"float64 AxCalib\n"
+"float64 AyCalib\n"
+"float64 AzCalib\n"
+"float64 Ax\n"
+"float64 Ay\n"
+"float64 Az\n"
+"float64 AxRaw\n"
+"float64 AyRaw\n"
+"float64 AzRaw\n"
+"float64 Vx\n"
+"float64 Vy\n"
+"float64 Vz\n"
+"float64 Gx\n"
+"float64 Gy\n"
+"float64 Gz\n"
+"float64 GxCalib\n"
+"float64 GyCalib\n"
+"float64 GzCalib\n"
+"float64 GxRaw\n"
+"float64 GyRaw\n"
+"float64 GzRaw\n"
+"float64 currTime\n"
 ;
   }
 
@@ -182,6 +215,7 @@ namespace serialization
       stream.next(m.latitude);
       stream.next(m.longitude);
       stream.next(m.altitude);
+      stream.next(m.imu);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -206,6 +240,9 @@ struct Printer< ::positioning::Position_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.longitude);
     s << indent << "altitude: ";
     Printer<double>::stream(s, indent + "  ", v.altitude);
+    s << indent << "imu: ";
+    s << std::endl;
+    Printer< ::sensors::IMUData_<ContainerAllocator> >::stream(s, indent + "  ", v.imu);
   }
 };
 

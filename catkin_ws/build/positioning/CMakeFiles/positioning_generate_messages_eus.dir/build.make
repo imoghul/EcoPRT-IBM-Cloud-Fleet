@@ -59,12 +59,13 @@ positioning/CMakeFiles/positioning_generate_messages_eus: /home/pi/EcoPRT-IBM-Cl
 
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg/Position.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg/Position.l: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg
+/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg/Position.l: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from positioning/Position.msg"
-	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg -Ipositioning:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p positioning -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg
+	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg -Ipositioning:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Isensors:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg -p positioning -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg
 
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for positioning"
-	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning positioning std_msgs
+	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning positioning std_msgs sensors
 
 positioning_generate_messages_eus: positioning/CMakeFiles/positioning_generate_messages_eus
 positioning_generate_messages_eus: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/roseus/ros/positioning/msg/Position.l

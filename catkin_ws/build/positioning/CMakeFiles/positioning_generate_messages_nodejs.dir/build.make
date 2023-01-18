@@ -58,8 +58,9 @@ positioning/CMakeFiles/positioning_generate_messages_nodejs: /home/pi/EcoPRT-IBM
 
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg/Position.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg/Position.js: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg
+/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg/Position.js: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from positioning/Position.msg"
-	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg -Ipositioning:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p positioning -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg
+	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg -Ipositioning:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Isensors:/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg -p positioning -o /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg
 
 positioning_generate_messages_nodejs: positioning/CMakeFiles/positioning_generate_messages_nodejs
 positioning_generate_messages_nodejs: /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel/share/gennodejs/ros/positioning/msg/Position.js

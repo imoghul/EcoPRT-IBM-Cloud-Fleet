@@ -14,4 +14,5 @@ class Localizer():
     def run(self):
         self.position.longitude = self.gpsData.long
         self.position.latitude = self.gpsData.lat
+        self.position.imu = self.imuData
         self.pub.publish(self.position)

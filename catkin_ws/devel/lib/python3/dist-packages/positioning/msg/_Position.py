@@ -6,17 +6,44 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
+import sensors.msg
 
 class Position(genpy.Message):
-  _md5sum = "c48027a852aeff972be80478ff38e81a"
+  _md5sum = "26972fc25ce21b0631b32a2b006a1bf4"
   _type = "positioning/Position"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 latitude
 float64 longitude
 float64 altitude
+sensors/IMUData imu
+
+================================================================================
+MSG: sensors/IMUData
+float64 AxCalib
+float64 AyCalib
+float64 AzCalib
+float64 Ax
+float64 Ay
+float64 Az
+float64 AxRaw
+float64 AyRaw
+float64 AzRaw
+float64 Vx
+float64 Vy
+float64 Vz
+float64 Gx
+float64 Gy
+float64 Gz
+float64 GxCalib
+float64 GyCalib
+float64 GzCalib
+float64 GxRaw
+float64 GyRaw
+float64 GzRaw
+float64 currTime
 """
-  __slots__ = ['latitude','longitude','altitude']
-  _slot_types = ['float64','float64','float64']
+  __slots__ = ['latitude','longitude','altitude','imu']
+  _slot_types = ['float64','float64','float64','sensors/IMUData']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +53,7 @@ float64 altitude
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       latitude,longitude,altitude
+       latitude,longitude,altitude,imu
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -41,10 +68,13 @@ float64 altitude
         self.longitude = 0.
       if self.altitude is None:
         self.altitude = 0.
+      if self.imu is None:
+        self.imu = sensors.msg.IMUData()
     else:
       self.latitude = 0.
       self.longitude = 0.
       self.altitude = 0.
+      self.imu = sensors.msg.IMUData()
 
   def _get_types(self):
     """
@@ -59,7 +89,7 @@ float64 altitude
     """
     try:
       _x = self
-      buff.write(_get_struct_3d().pack(_x.latitude, _x.longitude, _x.altitude))
+      buff.write(_get_struct_25d().pack(_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -71,11 +101,13 @@ float64 altitude
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
+      if self.imu is None:
+        self.imu = sensors.msg.IMUData()
       end = 0
       _x = self
       start = end
-      end += 24
-      (_x.latitude, _x.longitude, _x.altitude,) = _get_struct_3d().unpack(str[start:end])
+      end += 200
+      (_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_25d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -89,7 +121,7 @@ float64 altitude
     """
     try:
       _x = self
-      buff.write(_get_struct_3d().pack(_x.latitude, _x.longitude, _x.altitude))
+      buff.write(_get_struct_25d().pack(_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -102,11 +134,13 @@ float64 altitude
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
+      if self.imu is None:
+        self.imu = sensors.msg.IMUData()
       end = 0
       _x = self
       start = end
-      end += 24
-      (_x.latitude, _x.longitude, _x.altitude,) = _get_struct_3d().unpack(str[start:end])
+      end += 200
+      (_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_25d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -115,9 +149,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3d = None
-def _get_struct_3d():
-    global _struct_3d
-    if _struct_3d is None:
-        _struct_3d = struct.Struct("<3d")
-    return _struct_3d
+_struct_25d = None
+def _get_struct_25d():
+    global _struct_25d
+    if _struct_25d is None:
+        _struct_25d = struct.Struct("<25d")
+    return _struct_25d
