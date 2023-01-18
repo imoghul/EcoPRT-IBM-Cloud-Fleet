@@ -20,4 +20,4 @@ def runIMURQ():
     rospy.spin()
 
 if __name__ == '__main__':
-    runLocalizer()
+    runIMURQ()

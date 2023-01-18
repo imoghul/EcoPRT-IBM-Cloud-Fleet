@@ -99,12 +99,12 @@ class IMUController():
 
         self.data.currTime = time.time()
 
-        self.data.AxRaw = Ax-self.data.AxCalib
-        self.data.AyRaw = Ay-self.data.AyCalib
-        self.data.AzRaw = Az-self.data.AzCalib
-        self.data.GxRaw = Gx-self.data.GxCalib
-        self.data.GyRaw = Gy-self.data.GyCalib
-        self.data.GzRaw = Gz-self.data.GzCalib
+        self.data.AxRaw = (Ax-self.data.AxCalib)/9.81
+        self.data.AyRaw = (Ay-self.data.AyCalib)/9.81
+        self.data.AzRaw = (Az-self.data.AzCalib)/9.81
+        self.data.GxRaw = (Gx-self.data.GxCalib)/9.81
+        self.data.GyRaw = (Gy-self.data.GyCalib)/9.81
+        self.data.GzRaw = (Gz-self.data.GzCalib)/9.81
 
         self.AxBuffer.push(self.data.AxRaw)
         self.AyBuffer.push(self.data.AyRaw)

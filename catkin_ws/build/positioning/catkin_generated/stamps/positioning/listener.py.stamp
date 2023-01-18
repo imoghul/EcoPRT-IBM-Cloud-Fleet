@@ -4,7 +4,7 @@ from std_msgs.msg import String
 from positioning.msg import Position
 from positioning.localizer import Localizer
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nPosition:\n%s", str(data))
+    rospy.loginfo(rospy.get_caller_id() + "\nPosition:\n%s\n", str(data))
 
 def runLocalizer():
     # In ROS, nodes are uniquely named. If two nodes with the same

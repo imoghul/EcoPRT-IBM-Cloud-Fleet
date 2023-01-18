@@ -7,14 +7,6 @@ from positioning.localizer import *
 
 localizer = Localizer()
 
-def gpsCallback(data):
-    global localizer
-    rospy.loginfo(rospy.get_caller_id() + "\nGPS:\n%s", str(data))
-    localizer.updateGPS(data)
-def imuCallback(data):
-    global localizer
-    rospy.loginfo(rospy.get_caller_id() + "\nIMU:\n%s", str(data))
-    localizer.updateIMU(data)
 
 def runLocalizer():
     global localizer
@@ -25,8 +17,8 @@ def runLocalizer():
     # run simultaneously.
     rospy.init_node('localization', anonymous=True)
 
-    rospy.Subscriber("gps_data", GPSData, gpsCallback)
-    rospy.Subscriber("imu_data", IMUData, imuCallback)
+    rospy.Subscriber("gps_data", GPSData, localizer.updateGPS)#gpsCallback)
+    rospy.Subscriber("imu_data", IMUData, localizer.updateIMU)#imuCallback)
 
     while not rospy.is_shutdown():
         localizer.run()
