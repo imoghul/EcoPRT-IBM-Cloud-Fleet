@@ -11,6 +11,7 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
+let sensors = _finder('sensors');
 
 //-----------------------------------------------------------
 
@@ -21,6 +22,7 @@ class Position {
       this.latitude = null;
       this.longitude = null;
       this.altitude = null;
+      this.imu = null;
     }
     else {
       if (initObj.hasOwnProperty('latitude')) {
@@ -41,6 +43,12 @@ class Position {
       else {
         this.altitude = 0.0;
       }
+      if (initObj.hasOwnProperty('imu')) {
+        this.imu = initObj.imu
+      }
+      else {
+        this.imu = new sensors.msg.IMUData();
+      }
     }
   }
 
@@ -52,6 +60,8 @@ class Position {
     bufferOffset = _serializer.float64(obj.longitude, buffer, bufferOffset);
     // Serialize message field [altitude]
     bufferOffset = _serializer.float64(obj.altitude, buffer, bufferOffset);
+    // Serialize message field [imu]
+    bufferOffset = sensors.msg.IMUData.serialize(obj.imu, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -65,11 +75,13 @@ class Position {
     data.longitude = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [altitude]
     data.altitude = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [imu]
+    data.imu = sensors.msg.IMUData.deserialize(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 24;
+    return 200;
   }
 
   static datatype() {
@@ -79,7 +91,7 @@ class Position {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'c48027a852aeff972be80478ff38e81a';
+    return '26972fc25ce21b0631b32a2b006a1bf4';
   }
 
   static messageDefinition() {
@@ -88,6 +100,32 @@ class Position {
     float64 latitude
     float64 longitude
     float64 altitude
+    sensors/IMUData imu
+    
+    ================================================================================
+    MSG: sensors/IMUData
+    float64 AxCalib
+    float64 AyCalib
+    float64 AzCalib
+    float64 Ax
+    float64 Ay
+    float64 Az
+    float64 AxRaw
+    float64 AyRaw
+    float64 AzRaw
+    float64 Vx
+    float64 Vy
+    float64 Vz
+    float64 Gx
+    float64 Gy
+    float64 Gz
+    float64 GxCalib
+    float64 GyCalib
+    float64 GzCalib
+    float64 GxRaw
+    float64 GyRaw
+    float64 GzRaw
+    float64 currTime
     
     `;
   }
@@ -117,6 +155,13 @@ class Position {
     }
     else {
       resolved.altitude = 0.0
+    }
+
+    if (msg.imu !== undefined) {
+      resolved.imu = sensors.msg.IMUData.Resolve(msg.imu)
+    }
+    else {
+      resolved.imu = new sensors.msg.IMUData()
     }
 
     return resolved;

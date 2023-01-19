@@ -5,4 +5,6 @@
           LONGITUDE
           ALTITUDE-VAL
           ALTITUDE
+          IMU-VAL
+          IMU
 ))

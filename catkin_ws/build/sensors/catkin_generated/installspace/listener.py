@@ -1,10 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from std_msgs.msg import String
-from roadquality.msg import RoadQuality
-
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\n", str(data))
+from sensors.msg import IMUData
+from sensors.msg import GPSData
+def imu_callback(data):
+    rospy.loginfo(rospy.get_caller_id() + "\nIMU:\n%s\n", str(data))
+def gps_callback(data):
+    rospy.loginfo(rospy.get_caller_id() + "\nGPS:\n%s\n", str(data))
 
 def runLocalizer():
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -12,10 +14,10 @@ def runLocalizer():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-    rospy.init_node('localization_listener', anonymous=True)
+    rospy.init_node('sensors_listener', anonymous=True)
 
-    rospy.Subscriber("position", Position, callback)
-
+    rospy.Subscriber("imu_data", IMUData, imu_callback)
+    rospy.Subscriber("gps_data", GPSData, gps_callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
