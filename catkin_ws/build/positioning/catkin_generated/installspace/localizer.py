@@ -15,4 +15,5 @@ class Localizer():
         self.position.longitude = self.gpsData.long
         self.position.latitude = self.gpsData.lat
         self.position.imu = self.imuData
+        if(self.gpsData.long==self.position.longitude and self.gpsData.lat == latitude and self.imuData == self.position.imu): return
         self.pub.publish(self.position)
