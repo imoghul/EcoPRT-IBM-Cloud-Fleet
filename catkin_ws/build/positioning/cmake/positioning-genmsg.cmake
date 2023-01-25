@@ -19,7 +19,7 @@ add_custom_target(positioning_generate_messages ALL)
 
 get_filename_component(_filename "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg" NAME_WE)
 add_custom_target(_positioning_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "positioning" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg" "sensors/IMUData"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "positioning" "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg" "sensors/IMUData:sensors/GPSData"
 )
 
 #
@@ -31,7 +31,7 @@ add_custom_target(_positioning_generate_messages_check_deps_${_filename}
 _generate_msg_cpp(positioning
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg"
   "${MSG_I_FLAGS}"
-  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
+  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg;/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/positioning
 )
 
@@ -64,7 +64,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS positioning_generate_messages_cpp)
 _generate_msg_eus(positioning
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg"
   "${MSG_I_FLAGS}"
-  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
+  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg;/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/positioning
 )
 
@@ -97,7 +97,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS positioning_generate_messages_eus)
 _generate_msg_lisp(positioning
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg"
   "${MSG_I_FLAGS}"
-  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
+  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg;/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/positioning
 )
 
@@ -130,7 +130,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS positioning_generate_messages_lisp)
 _generate_msg_nodejs(positioning
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg"
   "${MSG_I_FLAGS}"
-  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
+  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg;/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/positioning
 )
 
@@ -163,7 +163,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS positioning_generate_messages_nodej
 _generate_msg_py(positioning
   "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg"
   "${MSG_I_FLAGS}"
-  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg"
+  "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/IMUData.msg;/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/sensors/msg/GPSData.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/positioning
 )
 

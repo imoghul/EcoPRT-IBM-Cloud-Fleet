@@ -9,13 +9,17 @@ import struct
 import sensors.msg
 
 class Position(genpy.Message):
-  _md5sum = "26972fc25ce21b0631b32a2b006a1bf4"
+  _md5sum = "6fb7f457c11907847ca6763dd0bb7aad"
   _type = "positioning/Position"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """float64 latitude
-float64 longitude
-float64 altitude
+  _full_text = """sensors/GPSData gps
 sensors/IMUData imu
+
+================================================================================
+MSG: sensors/GPSData
+string time
+float64 lat
+float64 long
 
 ================================================================================
 MSG: sensors/IMUData
@@ -42,8 +46,8 @@ float64 GyRaw
 float64 GzRaw
 float64 currTime
 """
-  __slots__ = ['latitude','longitude','altitude','imu']
-  _slot_types = ['float64','float64','float64','sensors/IMUData']
+  __slots__ = ['gps','imu']
+  _slot_types = ['sensors/GPSData','sensors/IMUData']
 
   def __init__(self, *args, **kwds):
     """
@@ -53,7 +57,7 @@ float64 currTime
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       latitude,longitude,altitude,imu
+       gps,imu
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -62,18 +66,12 @@ float64 currTime
     if args or kwds:
       super(Position, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.latitude is None:
-        self.latitude = 0.
-      if self.longitude is None:
-        self.longitude = 0.
-      if self.altitude is None:
-        self.altitude = 0.
+      if self.gps is None:
+        self.gps = sensors.msg.GPSData()
       if self.imu is None:
         self.imu = sensors.msg.IMUData()
     else:
-      self.latitude = 0.
-      self.longitude = 0.
-      self.altitude = 0.
+      self.gps = sensors.msg.GPSData()
       self.imu = sensors.msg.IMUData()
 
   def _get_types(self):
@@ -88,8 +86,14 @@ float64 currTime
     :param buff: buffer, ``StringIO``
     """
     try:
+      _x = self.gps.time
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_25d().pack(_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
+      buff.write(_get_struct_24d().pack(_x.gps.lat, _x.gps.long, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -101,13 +105,24 @@ float64 currTime
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
+      if self.gps is None:
+        self.gps = sensors.msg.GPSData()
       if self.imu is None:
         self.imu = sensors.msg.IMUData()
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.gps.time = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.gps.time = str[start:end]
       _x = self
       start = end
-      end += 200
-      (_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_25d().unpack(str[start:end])
+      end += 192
+      (_x.gps.lat, _x.gps.long, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_24d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -120,8 +135,14 @@ float64 currTime
     :param numpy: numpy python module
     """
     try:
+      _x = self.gps.time
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_25d().pack(_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
+      buff.write(_get_struct_24d().pack(_x.gps.lat, _x.gps.long, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -134,13 +155,24 @@ float64 currTime
     if python3:
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
+      if self.gps is None:
+        self.gps = sensors.msg.GPSData()
       if self.imu is None:
         self.imu = sensors.msg.IMUData()
       end = 0
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.gps.time = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.gps.time = str[start:end]
       _x = self
       start = end
-      end += 200
-      (_x.latitude, _x.longitude, _x.altitude, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_25d().unpack(str[start:end])
+      end += 192
+      (_x.gps.lat, _x.gps.long, _x.imu.AxCalib, _x.imu.AyCalib, _x.imu.AzCalib, _x.imu.Ax, _x.imu.Ay, _x.imu.Az, _x.imu.AxRaw, _x.imu.AyRaw, _x.imu.AzRaw, _x.imu.Vx, _x.imu.Vy, _x.imu.Vz, _x.imu.Gx, _x.imu.Gy, _x.imu.Gz, _x.imu.GxCalib, _x.imu.GyCalib, _x.imu.GzCalib, _x.imu.GxRaw, _x.imu.GyRaw, _x.imu.GzRaw, _x.imu.currTime,) = _get_struct_24d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -149,9 +181,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_25d = None
-def _get_struct_25d():
-    global _struct_25d
-    if _struct_25d is None:
-        _struct_25d = struct.Struct("<25d")
-    return _struct_25d
+_struct_24d = None
+def _get_struct_24d():
+    global _struct_24d
+    if _struct_24d is None:
+        _struct_24d = struct.Struct("<24d")
+    return _struct_24d

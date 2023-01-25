@@ -19,29 +19,15 @@ class Position {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.latitude = null;
-      this.longitude = null;
-      this.altitude = null;
+      this.gps = null;
       this.imu = null;
     }
     else {
-      if (initObj.hasOwnProperty('latitude')) {
-        this.latitude = initObj.latitude
+      if (initObj.hasOwnProperty('gps')) {
+        this.gps = initObj.gps
       }
       else {
-        this.latitude = 0.0;
-      }
-      if (initObj.hasOwnProperty('longitude')) {
-        this.longitude = initObj.longitude
-      }
-      else {
-        this.longitude = 0.0;
-      }
-      if (initObj.hasOwnProperty('altitude')) {
-        this.altitude = initObj.altitude
-      }
-      else {
-        this.altitude = 0.0;
+        this.gps = new sensors.msg.GPSData();
       }
       if (initObj.hasOwnProperty('imu')) {
         this.imu = initObj.imu
@@ -54,12 +40,8 @@ class Position {
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Position
-    // Serialize message field [latitude]
-    bufferOffset = _serializer.float64(obj.latitude, buffer, bufferOffset);
-    // Serialize message field [longitude]
-    bufferOffset = _serializer.float64(obj.longitude, buffer, bufferOffset);
-    // Serialize message field [altitude]
-    bufferOffset = _serializer.float64(obj.altitude, buffer, bufferOffset);
+    // Serialize message field [gps]
+    bufferOffset = sensors.msg.GPSData.serialize(obj.gps, buffer, bufferOffset);
     // Serialize message field [imu]
     bufferOffset = sensors.msg.IMUData.serialize(obj.imu, buffer, bufferOffset);
     return bufferOffset;
@@ -69,19 +51,17 @@ class Position {
     //deserializes a message object of type Position
     let len;
     let data = new Position(null);
-    // Deserialize message field [latitude]
-    data.latitude = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [longitude]
-    data.longitude = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [altitude]
-    data.altitude = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [gps]
+    data.gps = sensors.msg.GPSData.deserialize(buffer, bufferOffset);
     // Deserialize message field [imu]
     data.imu = sensors.msg.IMUData.deserialize(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 200;
+    let length = 0;
+    length += sensors.msg.GPSData.getMessageSize(object.gps);
+    return length + 176;
   }
 
   static datatype() {
@@ -91,16 +71,20 @@ class Position {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '26972fc25ce21b0631b32a2b006a1bf4';
+    return '6fb7f457c11907847ca6763dd0bb7aad';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    float64 latitude
-    float64 longitude
-    float64 altitude
+    sensors/GPSData gps
     sensors/IMUData imu
+    
+    ================================================================================
+    MSG: sensors/GPSData
+    string time
+    float64 lat
+    float64 long
     
     ================================================================================
     MSG: sensors/IMUData
@@ -136,25 +120,11 @@ class Position {
       msg = {};
     }
     const resolved = new Position(null);
-    if (msg.latitude !== undefined) {
-      resolved.latitude = msg.latitude;
+    if (msg.gps !== undefined) {
+      resolved.gps = sensors.msg.GPSData.Resolve(msg.gps)
     }
     else {
-      resolved.latitude = 0.0
-    }
-
-    if (msg.longitude !== undefined) {
-      resolved.longitude = msg.longitude;
-    }
-    else {
-      resolved.longitude = 0.0
-    }
-
-    if (msg.altitude !== undefined) {
-      resolved.altitude = msg.altitude;
-    }
-    else {
-      resolved.altitude = 0.0
+      resolved.gps = new sensors.msg.GPSData()
     }
 
     if (msg.imu !== undefined) {

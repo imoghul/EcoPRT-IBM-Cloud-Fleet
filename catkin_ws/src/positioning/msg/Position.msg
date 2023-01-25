@@ -1,4 +1,2 @@
-float64 latitude
-float64 longitude
-float64 altitude
+sensors/GPSData gps
 sensors/IMUData imu

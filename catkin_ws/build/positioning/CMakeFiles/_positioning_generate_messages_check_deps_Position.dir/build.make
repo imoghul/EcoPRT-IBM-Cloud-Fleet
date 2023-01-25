@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build
 include positioning/CMakeFiles/_positioning_generate_messages_check_deps_Position.dir/progress.make
 
 positioning/CMakeFiles/_positioning_generate_messages_check_deps_Position:
-	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py positioning /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg sensors/IMUData
+	cd /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/build/positioning && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py positioning /home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/positioning/msg/Position.msg sensors/IMUData:sensors/GPSData
 
 _positioning_generate_messages_check_deps_Position: positioning/CMakeFiles/_positioning_generate_messages_check_deps_Position
 _positioning_generate_messages_check_deps_Position: positioning/CMakeFiles/_positioning_generate_messages_check_deps_Position.dir/build.make

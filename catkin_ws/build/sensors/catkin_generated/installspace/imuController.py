@@ -125,6 +125,7 @@ class IMUController():
 
         self.refereshIMUData()
         if(self.data.Ax==origAx and self.data.Ay==origAy and self.data.Az==origAz and self.data.Gx == origGx and self.data.Gy==origGy and self.data.origGz==origGz): return
+        
         timeDiff = self.data.currTime-origTime
         self.data.Vx = self.data.Vx+timeDiff*(origAx+self.data.Ax)/2
         self.data.Vy = self.data.Vy+timeDiff*(origAy+self.data.Ay)/2

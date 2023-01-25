@@ -15,6 +15,7 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
+#include <sensors/GPSData.h>
 #include <sensors/IMUData.h>
 
 namespace positioning
@@ -25,29 +26,19 @@ struct Position_
   typedef Position_<ContainerAllocator> Type;
 
   Position_()
-    : latitude(0.0)
-    , longitude(0.0)
-    , altitude(0.0)
+    : gps()
     , imu()  {
     }
   Position_(const ContainerAllocator& _alloc)
-    : latitude(0.0)
-    , longitude(0.0)
-    , altitude(0.0)
+    : gps(_alloc)
     , imu(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef double _latitude_type;
-  _latitude_type latitude;
-
-   typedef double _longitude_type;
-  _longitude_type longitude;
-
-   typedef double _altitude_type;
-  _altitude_type altitude;
+   typedef  ::sensors::GPSData_<ContainerAllocator>  _gps_type;
+  _gps_type gps;
 
    typedef  ::sensors::IMUData_<ContainerAllocator>  _imu_type;
   _imu_type imu;
@@ -81,9 +72,7 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::positioning::Position_<ContainerAllocator1> & lhs, const ::positioning::Position_<ContainerAllocator2> & rhs)
 {
-  return lhs.latitude == rhs.latitude &&
-    lhs.longitude == rhs.longitude &&
-    lhs.altitude == rhs.altitude &&
+  return lhs.gps == rhs.gps &&
     lhs.imu == rhs.imu;
 }
 
@@ -117,12 +106,12 @@ struct IsMessage< ::positioning::Position_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::positioning::Position_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::positioning::Position_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -141,12 +130,12 @@ struct MD5Sum< ::positioning::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "26972fc25ce21b0631b32a2b006a1bf4";
+    return "6fb7f457c11907847ca6763dd0bb7aad";
   }
 
   static const char* value(const ::positioning::Position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x26972fc25ce21b06ULL;
-  static const uint64_t static_value2 = 0x31b32a2b006a1bf4ULL;
+  static const uint64_t static_value1 = 0x6fb7f457c1190784ULL;
+  static const uint64_t static_value2 = 0x7ca6763dd0bb7aadULL;
 };
 
 template<class ContainerAllocator>
@@ -165,10 +154,14 @@ struct Definition< ::positioning::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float64 latitude\n"
-"float64 longitude\n"
-"float64 altitude\n"
+    return "sensors/GPSData gps\n"
 "sensors/IMUData imu\n"
+"\n"
+"================================================================================\n"
+"MSG: sensors/GPSData\n"
+"string time\n"
+"float64 lat\n"
+"float64 long\n"
 "\n"
 "================================================================================\n"
 "MSG: sensors/IMUData\n"
@@ -212,9 +205,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.latitude);
-      stream.next(m.longitude);
-      stream.next(m.altitude);
+      stream.next(m.gps);
       stream.next(m.imu);
     }
 
@@ -234,12 +225,9 @@ struct Printer< ::positioning::Position_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::positioning::Position_<ContainerAllocator>& v)
   {
-    s << indent << "latitude: ";
-    Printer<double>::stream(s, indent + "  ", v.latitude);
-    s << indent << "longitude: ";
-    Printer<double>::stream(s, indent + "  ", v.longitude);
-    s << indent << "altitude: ";
-    Printer<double>::stream(s, indent + "  ", v.altitude);
+    s << indent << "gps: ";
+    s << std::endl;
+    Printer< ::sensors::GPSData_<ContainerAllocator> >::stream(s, indent + "  ", v.gps);
     s << indent << "imu: ";
     s << std::endl;
     Printer< ::sensors::IMUData_<ContainerAllocator> >::stream(s, indent + "  ", v.imu);

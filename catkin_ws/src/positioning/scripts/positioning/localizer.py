@@ -12,9 +12,8 @@ class Localizer():
     def updateGPS(self,gpsData):
         self.gpsData = gpsData
     def run(self):
-        origPos = Position(self.position.longitude, self.position.latitude, self.position.altitude, self.position.imu)
-        self.position.longitude = self.gpsData.long
-        self.position.latitude = self.gpsData.lat
+        origPos = Position(self.position.gps, self.position.imu)
+        self.position.gps = self.gpsData
         self.position.imu = self.imuData
         if(origPos == self.position):
             return
