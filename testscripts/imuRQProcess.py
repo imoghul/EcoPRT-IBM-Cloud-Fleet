@@ -9,15 +9,48 @@ import collections, itertools
 #~~~~~~~~~
 # CHECK UNITS ON VELOCITY FROM IMU DATA!!!~~~!!!
 #~~~~~~~~~
-def queueScaling(speed):
-	if speed * 2.23694 < 5:    # send the full 3 seconds of data
-		return 1500
-	elif speed * 2.23694 < 10: # send 2.25 seconds of data
-		return 1125
-	elif speed * 2.23694 < 15: # send 1.5 seconds of data
-		return 750
-	else:			   # send 1 second of data
-		return 500
+
+# This function will compare current and previous speed to determine how the queue needs to scale
+# it returns a value by which to delete entries from the queue
+def queueScaling(prevSpeed, speed, deleting, dataQueue):
+	speed *= 2.23694 # convert speed from m/s to mph
+	oldLength = len(dataQueue)
+	newLength = 0
+	
+	#sets the speed value for comparison with the previous speed
+	if speed < 5:
+		speed = 0
+		newLength = 150 # this should be 3 full seconds of data
+	elif speed < 10:
+		speed = 1
+		newLength = 117 # this should be 2.33 seconds of data
+	elif speed < 15: 
+		speed = 2
+		newLength = 83 # this should be 1.67 seconds of data
+	else:
+		speed = 3
+		newLength = 50 # this should be 1 full second of data
+	
+	# If the vehicle is going slower we need more data points
+	if speed < prevSpeed:
+		delete = 0 # stop deleting entries in order to send more data
+		return delete
+	# if the vehicle is going faster, we need less data points
+	elif speed > prevSpeed:
+		delete = (speed - prevSpeed) * 2 # delete 2 times the entries per speed level over the previous speed
+		return delete
+	# if the vehicle is going the same speed as before, check here
+	else:
+		# if the queue's are the same size, then we just need to maintain it, pop an old point, add a new one
+		# the first if statement should catch the array length so it doesn't miss the fact that if we were adding ones
+		# and got to an odd number, if we start going back an even amount we won't miss the correct comparison
+		if newLength > oldLength - delete && newLength =< oldLength + delete:
+			delete = 1
+			return delete
+		# if the lengths are different, maintain whatever previous course the program was on until the lengths match
+		else:
+			return delete
+
 
 def processIMU(thresh,accelData):
 	duration = 0
@@ -32,31 +65,32 @@ def processIMU(thresh,accelData):
 			magnitude += abs(accelData[point])
 			if abs(accelData[point]) > max:
 				max = abs(accelData[point])
+		#code might be missing here for the else statement
+		####insert code
 	severity = magnitude / duration
 
 	# Determine quality score based on threshold values
 	if thresh == "high":
-		qualityScore = (1000 * severity + 500 * duration + 100 * max)/1600
+		qualityScore = (1000 * severity + 400 * duration + 100 * max)/1500
 	elif thres == "low for time":
-		qualityScore = (500 * severity + 1000 * duration + 100 * max)/1600
+		qualityScore = (400 * severity + 1000 * duration + 100 * max)/1500
 
 	# more testing will need to be done here to know how best to
 	# normalize the road score data
-	qualityScore = round(qualityScore / 0.01,0)
+	qualityScore = round(qualityScore * 100,0)
 
 	return qualityScore
 
 controller = IMUController()
 controller.start()
 print("controller started")
-run = True
 drift = [[0.0000060728,0.0013608],[0.0000031578,-0.00030711],[-0.000012169,0.00021297]]
-Az = collections.deque()
-Gx = collections.deque()
-Gy = collections.deque()
-absAz = collections.deque()
-absGx = collections.deque()
-absGy = collections.deque()
+Az = []
+Gx = []
+Gy = []
+absAz = []
+absGx = []
+absGy = []
 duration = 0.0
 pointSend = 0
 pointCounter = 0
@@ -64,22 +98,24 @@ roadScore = 0
 sumAz = 0
 sumGx = 0
 sumGy = 0
+perviousSpeed = 0
 logging = False
 sendData = False
 checkDuration = False
 threshold = None
 
-while run:
+while True:
 	# populate the queue
-	if len(Az) < 3000:
+	# need to check how frequently the ros nod is publishing data
+	if len(Az) < 300:
 		Az.append(controller.Az)
 		Gx.append(controller.Gx)
 		Gy.append(controller.Gy)
 		absAz.append(abs(controller.Az))
 		absGx.append(abs(controller.Gx))
 		absGy.append(abs(controller.Gy))
-		print("queue smaller than 3000")
-		print(len(Az))
+		#print("queue smaller than 300") # debug line
+		#print(len(Az))			 # debug line
 	else:
 		Az.popleft()
 		Gx.popleft()
