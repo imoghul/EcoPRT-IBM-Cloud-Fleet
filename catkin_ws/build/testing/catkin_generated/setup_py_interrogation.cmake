@@ -1,7 +1,0 @@
-set(testing_SETUP_PY_SETUP_MODULE "distutils.core")
-set(testing_SETUP_PY_VERSION "0.0.0")
-set(testing_SETUP_PY_SCRIPTS "")
-set(testing_SETUP_PY_PACKAGES "testing")
-set(testing_SETUP_PY_PACKAGE_DIRS "scripts/testing")
-set(testing_SETUP_PY_MODULES "")
-set(testing_SETUP_PY_MODULE_DIRS "")

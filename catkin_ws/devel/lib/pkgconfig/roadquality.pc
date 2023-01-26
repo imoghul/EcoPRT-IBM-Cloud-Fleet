@@ -1,8 +1,0 @@
-prefix=/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/devel
-
-Name: roadquality
-Description: Description of roadquality
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

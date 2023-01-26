@@ -1,7 +1,0 @@
-set(positioning_SETUP_PY_SETUP_MODULE "distutils.core")
-set(positioning_SETUP_PY_VERSION "0.0.0")
-set(positioning_SETUP_PY_SCRIPTS "")
-set(positioning_SETUP_PY_PACKAGES "positioning")
-set(positioning_SETUP_PY_PACKAGE_DIRS "scripts/positioning")
-set(positioning_SETUP_PY_MODULES "")
-set(positioning_SETUP_PY_MODULE_DIRS "")
