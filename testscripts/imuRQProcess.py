@@ -12,7 +12,7 @@ import collections, itertools
 
 # This function will compare current and previous speed to determine how the queue needs to scale
 # it returns a value by which to delete entries from the queue
-def queueScaling(prevSpeed, speed, deleting, dataQueue):
+def queueScaling(prevSpeed, speed, delete, dataQueue):
 	speed *= 2.23694 # convert speed from m/s to mph
 	oldLength = len(dataQueue)
 	newLength = 0
@@ -34,151 +34,113 @@ def queueScaling(prevSpeed, speed, deleting, dataQueue):
 	# If the vehicle is going slower we need more data points
 	if speed < prevSpeed:
 		delete = 0 # stop deleting entries in order to send more data
-		return delete
+		return delete, speed
 	# if the vehicle is going faster, we need less data points
 	elif speed > prevSpeed:
 		delete = (speed - prevSpeed) * 2 # delete 2 times the entries per speed level over the previous speed
-		return delete
+		return delete, speed
 	# if the vehicle is going the same speed as before, check here
 	else:
 		# if the queue's are the same size, then we just need to maintain it, pop an old point, add a new one
 		# the first if statement should catch the array length so it doesn't miss the fact that if we were adding ones
 		# and got to an odd number, if we start going back an even amount we won't miss the correct comparison
-		if newLength > oldLength - delete && newLength =< oldLength + delete:
+		if newLength > oldLength - delete and newLength <= oldLength + delete:
 			delete = 1
-			return delete
+			return delete, speed
 		# if the lengths are different, maintain whatever previous course the program was on until the lengths match
 		else:
-			return delete
+			return delete, speed
 
+def roadQualityScore(accelData, gyroData1, gyroData2):
+	# compute the average acceleration and rotation for the given period
+	averageAccel = sum(accelData) / len(accelData)
+	averageGyro1 = sum(gyroData1) / len(gyroData1)
+	averageGyro2 = sum(gyroData2) / len(gyroData2)
 
-def processIMU(thresh,accelData):
-	duration = 0
-	magnitude = 0.0
-	max = 0.0
-	qualityScore = 0
-
-	# Determine the severity, duration, and max values
-	for point in accelData:
-		if point > 0.01:
-			duration += 1
-			magnitude += abs(accelData[point])
-			if abs(accelData[point]) > max:
-				max = abs(accelData[point])
-		#code might be missing here for the else statement
-		####insert code
-	severity = magnitude / duration
-
-	# Determine quality score based on threshold values
-	if thresh == "high":
-		qualityScore = (1000 * severity + 400 * duration + 100 * max)/1500
-	elif thres == "low for time":
-		qualityScore = (400 * severity + 1000 * duration + 100 * max)/1500
-
-	# more testing will need to be done here to know how best to
-	# normalize the road score data
-	qualityScore = round(qualityScore * 100,0)
-
-	return qualityScore
+	# road quality score
+	roadScore = (0.8 * averageAccel + 0.1 * averageGyro1 + 0.1 * averageGyro2) * 100
+	return roadScore
 
 controller = IMUController()
 controller.start()
 print("controller started")
 drift = [[0.0000060728,0.0013608],[0.0000031578,-0.00030711],[-0.000012169,0.00021297]]
-Az = []
-Gx = []
-Gy = []
+# Az = []
+# Gx = []
+# Gy = []
 absAz = []
 absGx = []
 absGy = []
-duration = 0.0
-pointSend = 0
 pointCounter = 0
 roadScore = 0
-sumAz = 0
-sumGx = 0
-sumGy = 0
-perviousSpeed = 0
-logging = False
-sendData = False
-checkDuration = False
-threshold = None
+# sumAz = 0
+# sumGx = 0
+# sumGy = 0
+previousSpeed = 0
+del_value = 0
+startingUp = True
 
 while True:
 	# populate the queue
-	# need to check how frequently the ros nod is publishing data
-	if len(Az) < 300:
-		Az.append(controller.Az)
-		Gx.append(controller.Gx)
-		Gy.append(controller.Gy)
+	# need to check how frequently the ros node is publishing data
+
+	#determine how to dynamically scale the queue
+	del_value, previousSpeed = queueScaling(previousSpeed, controller.Vx, del_value, absAz)
+
+	# just get the first 300 data points at start up, then dynamically scale the queue
+	if startingUp:
+		# populate the acceleration and rotation arrays
+		# Az.append(controller.Az)
+		# Gx.append(controller.Gx)
+		# Gy.append(controller.Gy)
+
+		# populate the acceleration and rotation magnitude arrays
 		absAz.append(abs(controller.Az))
 		absGx.append(abs(controller.Gx))
 		absGy.append(abs(controller.Gy))
+
+		#track the cumulative acceleration and rotation data
+		# sumAz += abs(controller.Az)
+		# sumGx += abs(controller.Gx)
+		# sumGy += abs(controller.Gy)
+
 		#print("queue smaller than 300") # debug line
 		#print(len(Az))			 # debug line
+		if len(absAz) >= 300:
+			startingUp = False
 	else:
-		Az.popleft()
-		Gx.popleft()
-		Gy.popleft()
-		absAz.popleft()
-		absGx.popleft()
-		absGy.popleft()
-		Az.append(controller.Az)
-		Gx.append(controller.Gx)
-		Gy.append(controller.Gy)
+		# # moving cummulative sum based on scaled queue
+		# sumAz = sumAz + abs(controller.Az) - sum(absAz[0:del_value])
+		# sumGx = sumGx + abs(controller.Gx) - sum(absAz[0:del_value])
+		# sumGy = sumGy + abs(controller.Gy) - sum(absAz[0:del_value])
+
+		# delete values in the arrays according to scaled queue 
+		# del Az[0:del_value]
+		# del Gx[0:del_value]
+		# del Gy[0:del_value]
+		del absAz[0:del_value]
+		del absGx[0:del_value]
+		del absGy[0:del_value]
+
+		# add new acceleration and rotation data points
+		# Az.append(controller.Az)
+		# Gx.append(controller.Gx)
+		# Gy.append(controller.Gy)
+
 		absAz.append(controller.Az)
 		absGx.append(controller.Gx)
 		absGy.append(controller.Gy)
-		print("queue at 3000")
+		# print("queue at 300")
 
-	# determine the sum of the magnitude of imu data
-	if len(absAz)< 500:
-		sumAz += abs(controller.Az)
-		sumGx += abs(controller.Gx)
-		sumGy += abs(controller.Gy)
-	else:
-		index = len(absAz) - 500
-		sumAz = sumAz + abs(controller.Az) - absAz[index]
-		sumGx = sumGx + abs(controller.Gx) - absGx[index]
-		sumGy = sumGy + abs(controller.Gy) - absGy[index]
-	print(sumAz)
-
-	# count down the number of instances
+	# count down to next transmission
 	if pointCounter != 0:
 		pointCounter -= 1
-	# if the number of data points is done being logged,
-	# set the flag to send the data
-	elif pointCounter == 0 and logging:
-		sendData = True
-		logging = False
-
-	# Check for rough road
-	# Need to account for gyroscope measurements in the if statements.
-	if abs(controller.Az) > 0.03 and pointCounter == 0:
-		threshold = "high"
-		pointCounter = queueScaling(controller.Vx)
-		pointSend = 2 * pointCounter
-		logging = True
-		print("big bump")
-	elif abs(controller.Az) > 0.01 and duration >= 0.5 and pointCounter == 0:
-		threshold = "low for time"
-		pointCounter = queueScaling(controller.Vx)
-		pointSend = 2 * pointCounter
-		logging = True
-		print("rough road")
-	elif sumAz/500 > 0.008 and len(Az) > 500:
-		durration += 0.001
-		print("counting")
+	# half a second has gone by send the data
 	else:
-		durration = 0
-		print("not counting")
-
-	# Check if data needs to be sent
-	if sendData:
-		roadScore = processIMU(threshold,Az[-pointSend:])
-#		putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
-# uncomment the above line when ready to send data to the cloud
-		sendData = False
+		pointCounter = 50
+		roadScore = roadQualityScore(absAz, absGx, absGy)
+		# putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
+		# uncomment the above line when ready to send data to the cloud
 		run = False
 		print("Fake sent the data!")
 
