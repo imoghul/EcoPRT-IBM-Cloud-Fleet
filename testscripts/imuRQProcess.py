@@ -138,7 +138,7 @@ while True:
 	# half a second has gone by send the data
 	else:
 		pointCounter = 50
-		roadScore = roadQualityScore(absAz, absGx, absGy)
+		roadScore = roadQualityScore(absAz[-1:50], absGx[-1:50], absGy[-1:50])
 		# putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
 		# uncomment the above line when ready to send data to the cloud
 		run = False
