@@ -15,8 +15,11 @@ def run():
     # run simultaneously.
     rospy.init_node('cloud_communication', anonymous=True)
 
-    rospy.Subscriber("road_quality_score", RoadQualityScore, CloudQueue.addToQueue)
-    thread = threading.Thread(target = CloudQueue.main)
+    eventIMU = CloudQueue()
+    
+    rospy.Subscriber("road_quality_score", RoadQualityScore, eventIMU.addToQueue)
+    
+    thread = threading.Thread(target = eventIMU.main)
     thread.start()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

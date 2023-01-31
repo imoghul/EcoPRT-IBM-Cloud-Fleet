@@ -1,32 +1,33 @@
 import requests
 import time
 import rospy
-
+from cloud.confidential import *
 class CloudQueue:
     queue = []
-    timeDiff = 1
-    def addToQueue(data):
-        CloudQueue.queue.append(data)
+    timeDiff = .5
+    def addToQueue(self,data):
+        self.queue.append(data)
 
-    def main():
+    def main(self):
         lastTime = time.time()
         counter=0
 
         while not rospy.is_shutdown():
             counter+=1
             if (time.time() >= lastTime):
-                if (len(CloudQueue.queue) > 0):
-                    CloudQueue.putDataToCloud(CloudQueue.queue.pop(0))
-                    lastTime = time.time() + CloudQueue.timeDiff
+                if (len(self.queue) > 0):
+                    self.putDataToCloud(self.queue.pop(0))
+                    lastTime = time.time() + self.timeDiff
     
-    def rqScoreToJson(data):
+    def rqScoreToJson(self,data):
         return {
+                    "__passcode__": passcode,
                     "Latitude" : data.pos.gps.lat,
                     "Longitude" : data.pos.gps.long,
                     "road_quality_score": data.score
         }
 
-    def putDataToCloud(data):
+    def putDataToCloud(self,data):
         print("Sent") 
-        return requests.post("https://us-east.functions.appdomain.cloud/api/v1/web/535cf9b8-a592-4110-989b-2c01dc321176/default/Put-Data",json=CloudQueue.rqScoreToJson(data)) 
+        return requests.post(url,json=self.rqScoreToJson(data)) 
 
