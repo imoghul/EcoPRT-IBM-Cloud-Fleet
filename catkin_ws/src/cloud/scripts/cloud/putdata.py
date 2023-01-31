@@ -14,7 +14,7 @@ def runLocalizer():
     # run simultaneously.
     rospy.init_node('cloud_communication', anonymous=True)
 
-    rospy.Subscriber("road_quality", RoadDefect, callback)
+    rospy.Subscriber("road_quality_score", RoadDefect, callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

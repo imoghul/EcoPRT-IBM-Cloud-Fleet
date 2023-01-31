@@ -4,12 +4,13 @@ import numpy as np
 import collections, itertools
 from positioning.msg import Position
 from sensors.msg import *
+from roadquality.msg import RoadQualityScore 
 # this function will determine the number of additional elements needed before
 # sending the data to the cloud after processing
 #~~~~~~~~~
 # CHECK UNITS ON VELOCITY FROM IMU DATA!!!~~~!!!
 #~~~~~~~~~
-
+publisher = rospy.Publisher("road_quality_score",RoadQualityScore,queue_size=10)
 # This function will compare current and previous speed to determine how the queue needs to scale
 # it returns a value by which to delete entries from the queue
 def queueScaling(prevSpeed, _speed, delete, dataQueue):
@@ -18,7 +19,7 @@ def queueScaling(prevSpeed, _speed, delete, dataQueue):
     newLength = 0
 
     # for debugging
-    print("Speed of IMU: " + str(speed))
+    # print("Speed of IMU: " + str(speed))
     max_speed = 0.018
 
     #sets the speed value for comparison with the previous speed
@@ -57,33 +58,36 @@ def queueScaling(prevSpeed, _speed, delete, dataQueue):
 
 def roadQualityScore(accelData, gyroData1, gyroData2):
     if len(accelData) != 0:
+        # normalize the data
+        accelData = [i/0.3 for i in accelData]
+        gyroData1 = [i/0.3 for i in gyroData1]
+        gyroData2 = [i/0.3 for i in gyroData2]
+        #print(accelData[:10])
         # compute the average acceleration and rotation for the given period
         averageAccel = sum(accelData) / len(accelData)
         averageGyro1 = sum(gyroData1) / len(gyroData1)
         averageGyro2 = sum(gyroData2) / len(gyroData2)
-
+        #print("Accel score: " + str(averageAccel))
+        #print("Gyro1 score: " + str(averageGyro1))
+        #print("Gyro2 score: " + str(averageGyro2))
         # road quality score
-        roadScore = (0.8 * averageAccel + 0.1 * averageGyro1 + 0.1 * averageGyro2) * 100
+        roadScore = (0.8 * averageAccel + 0.1 * averageGyro1 + 0.1 * averageGyro2)
         return roadScore
-    else: return 3
+    else:
+        #print("accel array has no entries")
+        return 0
 
-print("controller started")
+#print("controller started")
 drift = [[0.0000060728,0.0013608],[0.0000031578,-0.00030711],[-0.000012169,0.00021297]]
-# Az = []
-# Gx = []
-# Gy = []
 absAz = []
 absGx = []
 absGy = []
 pointCounter = 50
 roadScore = 0
-# sumAz = 0
-# sumGx = 0
-# sumGy = 0
 previousSpeed = 0
 del_value = 0
 startingUp = True
-data = None#Position(GPSData(0,0,0),IMUData(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
+data = None #Position(GPSData(0,0,0),IMUData(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
 
 def getData(d):
     global data
@@ -91,66 +95,39 @@ def getData(d):
 
 
 def process():
-    while True:runProcess()
+    while not rospy.is_shutdown():runProcess()
 def runProcess():
     global imuData,absAz,absGx,absGy, pointCounter, roadScore, previousSpeed,del_value,startingUp,data,drift
     # populate the queue
-    # need to check how frequently the ros node is publishing data
     if(data==None):
-        print("waiting")
+        #print("waiting")
         return
     #determine how to dynamically scale the queue
     del_value, previousSpeed = queueScaling(previousSpeed, data.imu.Vx, del_value, absAz)
-
-    print("Current rate of management: " + str(del_value)) # debug line
+    # print("Current rate of management: " + str(del_value)) # debug line
 
     # just get the first 300 data points at start up, then dynamically scale the queue
     if startingUp:
-        # populate the acceleration and rotation arrays
-        # Az.append(controller.Az)
-        # Gx.append(controller.Gx)
-        # Gy.append(controller.Gy)
-
         # populate the acceleration and rotation magnitude arrays
         absAz.append(abs(data.imu.Az))
         absGx.append(abs(data.imu.Gx))
         absGy.append(abs(data.imu.Gy))
-        print("Current length of Arrays: " + str(len(absAz)))
+        # print("Current length of Arrays: " + str(len(absAz)))
 
-        #track the cumulative acceleration and rotation data
-        # sumAz += abs(controller.Az)
-        # sumGx += abs(controller.Gx)
-        # sumGy += abs(controller.Gy)
-
-        #print("queue smaller than 300") # debug line
-        #print(len(Az))                  # debug line
         if len(absAz) >= 300:
             startingUp = False
-            print("Done starting up: " + str(not startingUp)) # debug line
+            #print("Done starting up: " + str(not startingUp)) # debug line
     else:
-        # # moving cummulative sum based on scaled queue
-        # sumAz = sumAz + abs(controller.Az) - sum(absAz[0:del_value])
-        # sumGx = sumGx + abs(controller.Gx) - sum(absAz[0:del_value])
-        # sumGy = sumGy + abs(controller.Gy) - sum(absAz[0:del_value])
-
         # delete values in the arrays according to scaled queue
-        # del Az[0:del_value]
-        # del Gx[0:del_value]
-        # del Gy[0:del_value]
         del absAz[0:del_value]
         del absGx[0:del_value]
         del absGy[0:del_value]
 
         # add new acceleration and rotation data points
-        # Az.append(controller.Az)
-        # Gx.append(controller.Gx)
-        # Gy.append(controller.Gy)
-
-        absAz.append(data.imu.Az)
-        absGx.append(data.imu.Gx)
-        absGy.append(data.imu.Gy)
-        print("Current length of Arrays: " + str(len(absAz)))
-        # print("queue at 300")
+        absAz.append(abs(data.imu.Az))
+        absGx.append(abs(data.imu.Gx))
+        absGy.append(abs(data.imu.Gy))
+        # print("Current length of Arrays: " + str(len(absAz)))
 
     # count down to next transmission
     if pointCounter != 0:
@@ -158,8 +135,8 @@ def runProcess():
     # half a second has gone by send the data
     else:
         pointCounter = 50
-        roadScore = roadQualityScore(absAz[-1:50], absGx[-1:50], absGy[-1:50])
+        roadScore = roadQualityScore(absAz[-50:], absGx[-50:], absGy[-50:])
         # putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
         # uncomment the above line when ready to send data to the cloud
-        # run = False
-        print("Fake sent the data!")
+        #print("Fake sent the data!\nRoad quality score: " + str(roadScore))
+        if roadScore>=1:publisher.publish(RoadQualityScore(data,roadScore))

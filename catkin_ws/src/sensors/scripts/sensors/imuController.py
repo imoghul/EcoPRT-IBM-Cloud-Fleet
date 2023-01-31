@@ -56,7 +56,10 @@ class IMUController():
 
         self.calibrate()
         self.refereshIMUData()
+        self.calc()
+    
 
+        self.running = True
         self.thread = threading.Thread(target = self.run)
 
     def calibrate(self,samples=100):
@@ -133,11 +136,13 @@ class IMUController():
 
         self.pub.publish(self.data)
     def run(self):
-        while True:
+        while self.running and not rospy.is_shutdown():
             self.calc()
 
     def start(self):
+        self.running = True
         self.thread.start()
 
     def end(self):
-        self.thread.terminate()
+        self.running = False
+        self.thread.join()
