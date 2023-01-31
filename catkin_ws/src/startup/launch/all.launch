@@ -1,0 +1,6 @@
+<launch>
+	<node name="Sensor_Node" pkg="sensors" type="sensorController.py"/>
+	<node name="localization" pkg="positioning" type="localization.py"/>
+	<node name="rq_calculation" pkg="roadquality" type="runProcess.py"/>
+	<node name="cloud_communication" pkg="cloud" type="putdata.py"/>
+</launch>

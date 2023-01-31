@@ -63,7 +63,7 @@ class IMUController():
         self.thread = threading.Thread(target = self.run)
 
     def calibrate(self,samples=100):
-        print("CALIBRATNG...")
+        rospy.loginfo("CALIBRATNG...")
         sumAx = []
         sumAy = []
         sumAz = []
@@ -95,7 +95,7 @@ class IMUController():
         self.GzBuffer = Buffer(self.BUFFER_LEN,sumGz[-self.BUFFER_LEN:])
 
 
-        print("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
+        rospy.loginfo("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
         
     def refereshIMUData(self):
         Ax,Ay,Az,Gx,Gy,Gz = getIMUData()

@@ -1,0 +1,4 @@
+<launch>
+	<node name="rq_calculation" pkg="roadquality" type="runProcess.py"/>
+
+</launch>

@@ -1,0 +1,3 @@
+<launch>
+	<node name="Sensor_Node" pkg="sensors" type="sensorController.py"/>
+</launch>
