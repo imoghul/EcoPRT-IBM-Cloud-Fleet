@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
-from roadquality.msg import RoadDefect 
+from roadquality.msg import RoadQualityScore
 from cloud.cloudQueue import *
+import threading
 def callback(data):
     rospy.loginfo(rospy.get_caller_id() + "\nRoad Defect:\n%s\n", str(data))
 
@@ -14,8 +15,9 @@ def run():
     # run simultaneously.
     rospy.init_node('cloud_communication', anonymous=True)
 
-    rospy.Subscriber("road_quality_score", RoadDefect, CloudQueue.addToQueue)
-
+    rospy.Subscriber("road_quality_score", RoadQualityScore, CloudQueue.addToQueue)
+    thread = threading.Thread(target = CloudQueue.main)
+    thread.start()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
