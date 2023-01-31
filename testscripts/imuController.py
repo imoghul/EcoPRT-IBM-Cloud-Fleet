@@ -120,3 +120,9 @@ class IMUController():
 
     def end(self):
         self.thread.terminate()
+
+#if(__name__=="__main__"):
+#    controller = IMUController()
+#    controller.start()
+#    while(True):
+#        print(controller.Ax)

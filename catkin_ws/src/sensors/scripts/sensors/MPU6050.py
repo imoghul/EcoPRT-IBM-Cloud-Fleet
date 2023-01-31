@@ -76,9 +76,6 @@ def getIMUData():
     Gz = gyro_z/131.0
 
     return (Ax,Ay,Az,Gx,Gy,Gz)
-
-#bus = MPU_Init()
-
-#while True:
-#        (Ax,Ay,Az,Gx,Gy,Gz) = getIMUData(bus)
-#        print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az)
+if __name__ == "__main__":
+    MPU_Init()
+    while(True):print(getIMUData())

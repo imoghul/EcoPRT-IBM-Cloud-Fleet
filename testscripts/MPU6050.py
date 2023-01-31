@@ -65,7 +65,6 @@ def getIMUData():
     gyro_x = read_raw_data(bus,GYRO_XOUT_H)
     gyro_y = read_raw_data(bus,GYRO_YOUT_H)
     gyro_z = read_raw_data(bus,GYRO_ZOUT_H)
-
     #Full scale range +/- 250 degree/C as per sensitivity scale factor
     Ax = acc_x/16384.0
     Ay = acc_y/16384.0
@@ -78,7 +77,9 @@ def getIMUData():
     return (Ax,Ay,Az,Gx,Gy,Gz)
 
 #bus = MPU_Init()
-
+if __name__ == "__main__":
+    MPU_Init();
+    while(True):print(getIMUData())
 #while True:
 #        (Ax,Ay,Az,Gx,Gy,Gz) = getIMUData(bus)
 #        print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az)

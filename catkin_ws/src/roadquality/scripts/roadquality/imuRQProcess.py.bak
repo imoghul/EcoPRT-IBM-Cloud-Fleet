@@ -1,8 +1,10 @@
+import rospy
 from imuController import *
 import time
 import numpy as np
 from invoke import *
 import collections, itertools
+from positioning.msg import Position
 
 # this function will determine the number of additional elements needed before
 # sending the data to the cloud after processing
@@ -67,8 +69,6 @@ def roadQualityScore(accelData, gyroData1, gyroData2):
 		return roadScore
 	else: return 3
 
-controller = IMUController()
-controller.start()
 print("controller started")
 drift = [[0.0000060728,0.0013608],[0.0000031578,-0.00030711],[-0.000012169,0.00021297]]
 # Az = []
@@ -85,13 +85,19 @@ roadScore = 0
 previousSpeed = 0
 del_value = 0
 startingUp = True
+data = None
 
-while True:
+def getData(d):
+    global data
+    data = d
+
+def process():
+        global imuData
 	# populate the queue
 	# need to check how frequently the ros node is publishing data
 
 	#determine how to dynamically scale the queue
-	del_value, previousSpeed = queueScaling(previousSpeed, controller.Vx, del_value, absAz)
+	del_value, previousSpeed = queueScaling(previousSpeed, data.imuData.Vx, del_value, absAz)
 
 	print("Current rate of management: " + str(del_value)) # debug line
 
@@ -103,9 +109,9 @@ while True:
 		# Gy.append(controller.Gy)
 
 		# populate the acceleration and rotation magnitude arrays
-		absAz.append(abs(controller.Az))
-		absGx.append(abs(controller.Gx))
-		absGy.append(abs(controller.Gy))
+		absAz.append(abs(data.imuData.Az))
+		absGx.append(abs(data.imuData.Gx))
+		absGy.append(abs(data.imuData.Gy))
 		print("Current length of Arrays: " + str(len(absAz)))
 		
 		#track the cumulative acceleration and rotation data
@@ -137,9 +143,9 @@ while True:
 		# Gx.append(controller.Gx)
 		# Gy.append(controller.Gy)
 
-		absAz.append(controller.Az)
-		absGx.append(controller.Gx)
-		absGy.append(controller.Gy)
+		absAz.append(data.imuData.Az)
+		absGx.append(data.imuData.Gx)
+		absGy.append(data.imUData.Gy)
 		print("Current length of Arrays: " + str(len(absAz)))
 		# print("queue at 300")
 
@@ -155,5 +161,3 @@ while True:
 		# run = False
 		print("Fake sent the data!")
 
-print("Completed task.")
-controller.end()

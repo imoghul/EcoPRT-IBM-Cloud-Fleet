@@ -22,7 +22,6 @@ def getData():
             status = msg.status
 
             if status == 'A':
-                logger.debug('Got Fix')
 
                 zeit = msg.datetime
                 latitude = msg.latitude
@@ -36,3 +35,6 @@ def getData():
         raise e
     except UnicodeDecodeError as e:
         raise e
+
+if __name__=="__main__":
+    while(True):print(getData())
