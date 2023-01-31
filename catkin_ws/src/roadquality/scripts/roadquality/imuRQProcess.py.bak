@@ -4,7 +4,7 @@ import numpy as np
 import collections, itertools
 from positioning.msg import Position
 from sensors.msg import *
-from roadquality.msg import RoadQualityScore
+from roadquality.msg import RoadQualityScore 
 # this function will determine the number of additional elements needed before
 # sending the data to the cloud after processing
 #~~~~~~~~~
@@ -87,9 +87,9 @@ roadScore = 0
 previousSpeed = 0
 del_value = 0
 startingUp = True
-rqScoreThresh = .95
+rqScoreThresh = 1
 data = None #Position(GPSData(0,0,0),IMUData(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
-roadDefectsQueue = []
+
 def getData(d):
     global data
     data = d
@@ -98,7 +98,7 @@ def getData(d):
 def process():
     while not rospy.is_shutdown():runProcess()
 def runProcess():
-    global roadDefectsQueue, rqScoreThresh, imuData,absAz,absGx,absGy, pointCounter, roadScore, previousSpeed,del_value,startingUp,data,drift
+    global rqScoreThresh, imuData,absAz,absGx,absGy, pointCounter, roadScore, previousSpeed,del_value,startingUp,data,drift
     # populate the queue
     if(data==None):
         #print("waiting")
@@ -133,20 +133,13 @@ def runProcess():
     # count down to next transmission
     if pointCounter != 0:
         pointCounter -= 1
+	print("counting down")
     # half a second has gone by send the data
     else:
         pointCounter = len(absAz)#50
-        prevScore = roadScore+0
-        roadScore = roadQualityScore(absAz,absGx,absGy)#(absAz[-50:], absGx[-50:], absGy[-50:])
+        roadScore = roadQualityScore(absAz[-50:], absGx[-50:], absGy[-50:])
         # putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
         # uncomment the above line when ready to send data to the cloud
         #print("Fake sent the data!\nRoad quality score: " + str(roadScore))
-        if roadScore>=rqScoreThresh:roadDefectsQueue.append(RoadQualityScore(data,roadScore))#publisher.publish(RoadQualityScore(data,roadScore))
-        elif prevScore>=rqScoreThresh: # stop putting in queue, "average queue", publish "average", reset queue
-                #lats = [i.pos.gps.lat for i in roadDefectsQueue]
-                #longs = [i.pos.gps.long for i in roadDefectsQueue]
-                positions = [i.pos for i in roadDefectsQueue] 
-                scores = [i.score for i in roadDefectsQueue]
-                publisher.publish(RoadQualityScore(positions[len(positions)//2],sum(scores)/len(scores)))
-                roadDefectsQueue = []
-
+        if roadScore>=rqScoreThresh:publisher.publish(RoadQualityScore(data,roadScore))
+        #else: # stop putting in queue, "average queue", publish "average", reset queue

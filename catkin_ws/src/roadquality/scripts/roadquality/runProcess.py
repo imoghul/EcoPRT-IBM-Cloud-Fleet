@@ -17,7 +17,7 @@ def runRQ():
 
     rospy.Subscriber("position", Position, getData)
 
-    thread = threading.Thread(process());
+    thread = threading.Thread(target = process);
     thread.start()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
