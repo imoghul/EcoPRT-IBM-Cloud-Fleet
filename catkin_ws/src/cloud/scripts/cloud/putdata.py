@@ -4,6 +4,7 @@ from std_msgs.msg import String
 from roadquality.msg import RoadQualityScore
 from cloud.cloudQueue import *
 import threading
+from cloud.confidential import *
 def callback(data):
     rospy.loginfo(rospy.get_caller_id() + "\nRoad Defect:\n%s\n", str(data))
 
@@ -15,7 +16,7 @@ def run():
     # run simultaneously.
     rospy.init_node('cloud_communication', anonymous=True)
 
-    eventIMU = CloudQueue()
+    eventIMU = CloudQueue("eventIMU",.5,url)
     
     rospy.Subscriber("road_quality_score", RoadQualityScore, eventIMU.addToQueue)
     
