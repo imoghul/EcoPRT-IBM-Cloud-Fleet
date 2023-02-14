@@ -1,2 +1,0 @@
-set(cloud_MESSAGE_FILES "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/msg/Heartbeat.msg")
-set(cloud_SERVICE_FILES "")

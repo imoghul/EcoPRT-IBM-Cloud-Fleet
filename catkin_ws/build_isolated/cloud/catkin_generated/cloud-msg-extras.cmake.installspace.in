@@ -1,2 +1,0 @@
-set(cloud_MESSAGE_FILES "msg/Heartbeat.msg")
-set(cloud_SERVICE_FILES "")
