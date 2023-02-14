@@ -21,16 +21,6 @@ class GPSController():
         self.running = True
         self.thread = threading.Thread(target = self.run)
 
-    def dist(one,two):
-        R = 6.3781e6
-        pi = math.pi
-        long1 = one.long*180/pi
-        long2 = two.long*180/pi
-        lat1 = one.lat*180/pi
-        lat2 = two.lat*180/pi
-        x = (long2-long1)*cos((lat2+lat1)/2.0)
-        y = lat2-lat1
-        return R*math.sqrt((x*x)+(y*y))
 
     def refreshGPSData(self):
         self.prevData.time = self.data.time+"" if self.data.time!=None else None

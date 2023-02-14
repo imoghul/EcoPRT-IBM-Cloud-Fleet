@@ -8,41 +8,39 @@ import cloud.confidential
 from datetime import datetime
 import roadquality.msg
 
-queueFile = (
-    "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/scripts/cloud/queue.json"
+queuePath = (
+    "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/scripts/cloud/queues/"
 )
 
 
-def rqScoreToJson(data: roadquality.msg.RoadQualityScore):
-    return {
-        "latitude": data.pos.gps.lat,
-        "longitude": data.pos.gps.long,
-        "road_quality_score": data.score,
-        "time": str(datetime.now()),
-    }
-
-
 class CloudQueue:
-    def __init__(self, name, tDiff=0.5, url=cloud.confidential.url):
+    def __init__(self, name, requiresFile, msgToJson,url, tDiff=0.5, callback=None):
         self.name = name
         self.timeDiff = tDiff
         self.url = url
-        self.queue = self.getFileQueue()[self.name]
+        self.requiresFile = requiresFile
+        self.callback = callback
+        self.msgToJson = msgToJson
+        if(self.requiresFile):
+            self.queueFile = queuePath+"/"+self.name+".json"
+            f = self.getFileQueue()
+            self.queue = f[self.name] if self.name in f else []
+            self.__del__ = self.updateFile
+            atexit.register(self.updateFile)
+        else: self.queue = []
         self.thread = threading.Thread(target=self.main)
-        self.__del__ = self.updateFile
-        atexit.register(self.updateFile)
 
     def getFileQueue(self):
         try:
-            open(queueFile,"r").close()
-        except: open(queueFile,"w").close()
-        with open(queueFile, "r") as rfile:
+            open(self.queueFile,"r").close()
+        except: open(self.queueFile,"w").close()
+        with open(self.queueFile, "r") as rfile:
             try:
                 return json.load(rfile)
             except Exception as e:
                 try:
                     rfile.read()
-                    return {self.name: []}
+                    return {}
                 except Exception as e:
                     raise Exception(
                         "corrupt queue file"
@@ -50,18 +48,17 @@ class CloudQueue:
 
     def updateFile(self):
         f = self.getFileQueue()
-        with open(queueFile, "w") as ofile:
+        with open(self.queueFile, "w") as ofile:
             f[self.name] = self.queue.copy()
             json.dump(f, ofile, indent=4)
 
     def addToQueue(self, data: roadquality.msg.RoadQualityScore):
-        self.queue.append(rqScoreToJson(data))
-        self.updateFile()
-        print("Added")
+        self.queue.append(self.msgToJson(data))
+        if(self.requiresFile):self.updateFile()
 
     def popFromQueue(self):
         ret = self.queue.pop(0)
-        self.updateFile()
+        if(self.requiresFile):self.updateFile()
         return ret
 
     def main(self):
@@ -76,4 +73,4 @@ class CloudQueue:
     def putDataToCloud(self, data: dict):
         rospy.loginfo("Sent to cloud")
         data["__passcode__"] = cloud.confidential.passcode
-        return requests.post(self.url, json=data)
+        return requests.post(self.url, json=data) if self.callback==None else self.callback(requests.post(self.url,json=data))
