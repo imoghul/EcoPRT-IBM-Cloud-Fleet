@@ -71,6 +71,6 @@ class CloudQueue:
                     targetTime = time.time() + self.timeDiff
 
     def putDataToCloud(self, data: dict):
-        rospy.loginfo("Sent to cloud")
+        rospy.loginfo("Sent to %s cloud"%self.name)
         data["__passcode__"] = cloud.confidential.passcode
         return requests.post(self.url, json=data) if self.callback==None else self.callback(requests.post(self.url,json=data))

@@ -20,8 +20,8 @@ def runLocalizer():
     rospy.Subscriber("gps_data", GPSData, localizer.updateGPS)#gpsCallback)
     rospy.Subscriber("imu_data", IMUData, localizer.updateIMU)#imuCallback)
 
-    while not rospy.is_shutdown():
-        localizer.run()
+    #while not rospy.is_shutdown():
+    #    localizer.run()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 

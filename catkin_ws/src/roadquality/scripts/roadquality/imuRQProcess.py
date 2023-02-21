@@ -147,6 +147,8 @@ def runProcess():
                 #longs = [i.pos.gps.long for i in roadDefectsQueue]
                 positions = [i.pos for i in roadDefectsQueue] 
                 scores = [i.score for i in roadDefectsQueue]
-                publisher.publish(RoadQualityScore(positions[len(positions)//2],sum(scores)/len(scores)))
+                rqScore = RoadQualityScore(positions[len(positions)//2],sum(scores)/len(scores))
+                publisher.publish(rqScore)
+                rospy.loginfo("Just detected rqScore with %f magnitude"%rqScore.score)
                 roadDefectsQueue = []
 

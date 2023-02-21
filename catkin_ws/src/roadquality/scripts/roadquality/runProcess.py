@@ -4,8 +4,6 @@ from std_msgs.msg import String
 from positioning.msg import Position
 from roadquality.imuRQProcess import *
 import threading
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nPosition:\n%s\n", str(data))
 
 def runRQ():
     # In ROS, nodes are uniquely named. If two nodes with the same

@@ -23,15 +23,19 @@ class GPSController():
 
 
     def refreshGPSData(self):
-        self.prevData.time = self.data.time+"" if self.data.time!=None else None
-        self.prevData.lat = self.data.lat+0 if self.data.lat!=None else None
-        self.prevData.long = self.data.long+0 if self.data.long!=None else None
-        self.prevData.currTime = self.data.currTime+0 if self.data.currTime!=None else None
+        try:
+            self.prevData.time = self.data.time+"" if self.data.time!=None else None
+            self.prevData.lat = self.data.lat+0 if self.data.lat!=None else None
+            self.prevData.long = self.data.long+0 if self.data.long!=None else None
+            self.prevData.currTime = self.data.currTime+0 if self.data.currTime!=None else None
+        except: pass
+        
         satTime, lat, long = getGPSData()
-        self.data.currTime = time.time()
-
+        
         if(satTime==None and lat==None and long==None):return
+       
 
+        self.data.currTime = time.time()
         self.data.time = datetime.datetime.strftime(satTime,"%Y-%m-%d %H:%M:%S")
         self.data.lat = lat
         self.data.long = long
