@@ -1,4 +1,7 @@
 from datetime import datetime
+from roadquality.msg import RoadQualityScore
+from positioning.msg import Position
+from sensors.msg import GPSData
 def rqScoreToJson(msg):
     return {
         "latitude":msg.pos.gps.lat,
@@ -6,9 +9,13 @@ def rqScoreToJson(msg):
         "road_quality_score":msg.score,
         "time":str(datetime.now())
     }
+
+def jsonToRqScore(json):
+    return RoadQualityScore(Position(GPSData(json["time"],json["latitude"],json["longitude"],0,0),None),json["road_quality_score"])
 def heartBeatToJson(msg):
     return {
-        "latitude":msg.gps.lat,
-        "longitude":msg.gps.long,
-        "time":str(datetime.now())
+        "latitude":msg.pos.gps.lat,
+        "longitude":msg.pos.gps.long,
+        "time":msg.time,
+        "distance":msg.distance
     }

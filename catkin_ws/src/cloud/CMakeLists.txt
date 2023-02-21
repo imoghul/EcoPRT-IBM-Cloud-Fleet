@@ -163,7 +163,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-  scripts/cloud/putdata.py scripts/cloud/cloudQueue.py scripts/cloud/confidential.py scripts/cloud/toJson.py
+  scripts/cloud/putdata.py scripts/cloud/cloudQueue.py scripts/cloud/confidential.py scripts/cloud/toJson.py scripts/cloud/heartbeat.py scripts/cloud/heartbeat_listener.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

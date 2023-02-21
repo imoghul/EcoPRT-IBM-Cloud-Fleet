@@ -1,1 +1,3 @@
-sensors/GPSData gps
+positioning/Position pos 
+string time
+float64 distance

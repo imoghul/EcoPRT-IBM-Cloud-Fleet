@@ -209,5 +209,6 @@ catkin_install_python(PROGRAMS
 	scripts/positioning/localization.py
 	scripts/positioning/localizer.py
 	scripts/positioning/listener.py
+	scripts/positioning/hbGenerator.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
