@@ -7,10 +7,13 @@ import threading
 import cloud.confidential
 from datetime import datetime
 import roadquality.msg
+import os
 
-queuePath = (
-    "/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/scripts/cloud/queues/"
-)
+
+
+queuePath = os.path.abspath(__file__)#"/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/scripts/cloud/queues/"
+queuePath = '/'.join(queuePath.split("/")[:-1])+"/queues/"
+os.system(f"mkdir -p {queuePath}")
 
 
 class CloudQueue:
@@ -22,7 +25,7 @@ class CloudQueue:
         self.callback = callback
         self.msgToJson = msgToJson
         if(self.requiresFile):
-            self.queueFile = queuePath+"/"+self.name+".json"
+            self.queueFile = queuePath+self.name+".json"
             f = self.getFileQueue()
             self.queue = f[self.name] if self.name in f else []
             self.__del__ = self.updateFile
