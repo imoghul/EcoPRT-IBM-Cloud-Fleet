@@ -7,17 +7,19 @@ from cloud.cloudQueue import *
 import threading
 from cloud.confidential import *
 from cloud.toJson import *
+import json
 
-heartBeatPub = rospy.Publisher("heartbeat_rx",RoadQualityScore,queue_size = 10)
+heartBeatPub = rospy.Publisher("heartbeat_rx",String,queue_size=10)#rospy.Publisher("heartbeat_rx",RoadQualityScore,queue_size = 10)
 
 def callback(data):
     global heartBeatPub
     try:
-        for i in data.json()["Scores In Range"]:
-            heartBeatPub.publish(jsonToRqScore(i))
+        #for i in data.json()["Scores In Range"]:
+            d = json.dumps(data.json()["Scores In Range"])
+            heartBeatPub.publish(d)
         #rqScoresInRange = [jsonToRqScore(i) for i in data.json()["Scores In Range"]
         #heartBeatPub.publish(rqScoresInRange)
-    except : pass
+    except : print("fail")
 def run():
     # In ROS, nodes are uniquely named. If two nodes with the same
     # name are launched, the previous one is kicked off. The
