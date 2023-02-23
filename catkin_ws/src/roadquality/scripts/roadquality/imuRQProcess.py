@@ -63,15 +63,22 @@ def roadQualityScore(accelData, gyroData1, gyroData2):
         gyroData1 = [i/0.3 for i in gyroData1]
         gyroData2 = [i/0.3 for i in gyroData2]
         #print(accelData[:10])
-        # compute the average acceleration and rotation for the given period
-        averageAccel = sum(accelData) / len(accelData)
-        averageGyro1 = sum(gyroData1) / len(gyroData1)
-        averageGyro2 = sum(gyroData2) / len(gyroData2)
+        # compute the average acceleration and rotation for the given period via RMS
+        squaredAccel = np.square(accelData)
+        squaredGyro1 = np.square(gyroData1)
+        squaredGyro2 = np.square(gyroData2)
+        averageAccel = np.average(squaredAccel)
+        averageGyro1 = np.average(squaredGyro1)
+        averageGyro2 = np.average(squaredGyro2)
+        rmsAccel = np.sqrt(averageAccel)
+        rmsGyro1 = np.sqrt(averageGyro1)
+        rmsGyro2 = np.sqrt(averageGyro2)
+
         #print("Accel score: " + str(averageAccel))
         #print("Gyro1 score: " + str(averageGyro1))
         #print("Gyro2 score: " + str(averageGyro2))
         # road quality score
-        roadScore = (0.8 * averageAccel + 0.1 * averageGyro1 + 0.1 * averageGyro2)
+        roadScore = (0.8 * rmsAccel + 0.1 * rmsGyro1 + 0.1 * rmsGyro2)
         return roadScore
     else:
         #print("accel array has no entries")
