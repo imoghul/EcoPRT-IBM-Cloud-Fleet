@@ -15,7 +15,7 @@ def hb_callback(data):
     #data = str(str(data).replace("data: ",""))
     #print(data)
     rospy.loginfo("Scores In Range:")
-    rospy.loginfo([i["road_quality_score"] for i in data])
+    rospy.loginfo([(i["latitude"],i["longitude"],i["road_quality_score"]) for i in data])
     rospy.loginfo("\n")
 def run():
     # In ROS, nodes are uniquely named. If two nodes with the same

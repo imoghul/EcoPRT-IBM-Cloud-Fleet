@@ -6,8 +6,6 @@ from cloud.cloudQueue import *
 import threading
 from cloud.confidential import *
 from cloud.toJson import *
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nRoad Defect:\n%s\n", str(data))
 
 def run():
     # In ROS, nodes are uniquely named. If two nodes with the same
