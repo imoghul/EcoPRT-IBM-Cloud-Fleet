@@ -15,8 +15,8 @@ def talker():
     gps = GPSController()
     imu = IMUController()
 
-    gps.start()
-    imu.start()
+    #gps.start()
+    #imu.start()
     while not rospy.is_shutdown():
         rate.sleep()
 

@@ -4,7 +4,8 @@ import serial
 import time
 import sys
 import os
-
+import sensor_msgs
+import geometry_msgs
 try:
     ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
     sio = io.TextIOWrapper(io.BufferedRWPair(ser,ser))
@@ -28,7 +29,7 @@ def getGPSData():
 
                 latitude = msg.latitude
                 longitude = msg.longitude
-                return(zeit, latitude,longitude)
+                return geometry_msgs.msg.Pose2D(latitude,longitude,0)
 
     except serial.SerialException as e:
         print(str(e))#pass
@@ -38,4 +39,4 @@ def getGPSData():
         print(str(e))#raise e
     except:
         pass
-    return (None,None,None)
+    return geometry_msgs.msg.Pose2D(None,None,None)

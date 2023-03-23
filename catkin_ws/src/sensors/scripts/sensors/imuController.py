@@ -1,8 +1,9 @@
-from sensors.MPU6050 import *
 import time
 import threading
 import rospy
 from sensors.msg import IMUData
+from sensor_msgs.msg import *
+from geometry_msgs.msg import *
 class Buffer():
     vals = []
     def __init__(self, nums, preload):
@@ -18,10 +19,13 @@ class IMUController():
     def __init__(self):
         #rospy.init_node("IMU_Data",anonymous=False)
         self.pub = rospy.Publisher("imu_data",IMUData,queue_size=10)
-        MPU_Init()
-
+        #MPU_Init()
+        self.imuSub = rospy.Subscriber("raw_imu",Imu,self.calc)
+        self.imuRaw = None
+        
+        
         self.data = IMUData()#(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-       
+    
         self.data.AxCalib = 0
         self.data.AyCalib = 0
         self.data.AzCalib = 0
@@ -53,53 +57,75 @@ class IMUController():
         self.GzBuffer = None
 
         self.BUFFER_LEN = 25
+        self.calibrateCounter = 0
 
-        self.calibrate()
-        self.refereshIMUData()
-        self.calc()
+        #self.calibrate()
+        #self.refereshIMUData()
+        #self.calc()
     
 
-        self.running = True
-        self.thread = threading.Thread(target = self.run)
+        #self.running = True
+        #self.thread = threading.Thread(target = self.run)
+        self.sumAx = []
+        self.sumAy = []
+        self.sumAz = []
+        self.sumGx = []
+        self.sumGy = []
+        self.sumGz = []
 
-    def calibrate(self,samples=100):
+
+    def calibrate(self, newRaw,samples):
         rospy.loginfo("CALIBRATNG...")
-        sumAx = []
-        sumAy = []
-        sumAz = []
-        sumGx = []
-        sumGy = []
-        sumGz = []
+        #sumAx = []
+        #sumAy = []
+        #sumAz = []
+        #sumGx = []
+        #sumGy = []
+        #sumGz = []
         
-        for i in range(samples):
-            Ax,Ay,Az,Gx,Gy,Gz = getIMUData()
-            sumAx.append(Ax)
-            sumAy.append(Ay)
-            sumAz.append(Az)
-            sumGx.append(Gx)
-            sumGy.append(Gy)
-            sumGz.append(Gz)
+        #for i in range(samples):
+        Ax,Ay,Az,Gx,Gy,Gz = (newRaw.linear_acceleration.x,newRaw.linear_acceleration.y,newRaw.linear_acceleration.z,newRaw.angular_velocity.x,newRaw.angular_velocity.y,newRaw.angular_velocity.z)
+        self.sumAx.append(Ax)
+        self.sumAy.append(Ay)
+        self.sumAz.append(Az)
+        self.sumGx.append(Gx)
+        self.sumGy.append(Gy)
+        self.sumGz.append(Gz)
             
-        self.data.AxCalib = sum(sumAx)/len(sumAx)
-        self.data.AyCalib = sum(sumAy)/len(sumAy)
-        self.data.AzCalib = sum(sumAz)/len(sumAz)
-        self.data.GxCalib = sum(sumGx)/len(sumGx)
-        self.data.GyCalib = sum(sumGy)/len(sumGy)
-        self.data.GzCalib = sum(sumGz)/len(sumGz)
+        self.data.AxCalib = sum(self.sumAx)/len(self.sumAx)
+        self.data.AyCalib = sum(self.sumAy)/len(self.sumAy)
+        self.data.AzCalib = sum(self.sumAz)/len(self.sumAz)
+        self.data.GxCalib = sum(self.sumGx)/len(self.sumGx)
+        self.data.GyCalib = sum(self.sumGy)/len(self.sumGy)
+        self.data.GzCalib = sum(self.sumGz)/len(self.sumGz)
+        #if(self.calibrateCounter<samples-1): return
+        #print(len(self.sumAx))
+        try:
+            self.AxBuffer = Buffer(self.BUFFER_LEN,self.sumAx[-self.BUFFER_LEN:])
+            self.AyBuffer = Buffer(self.BUFFER_LEN,self.sumAy[-self.BUFFER_LEN:])
+            self.AzBuffer = Buffer(self.BUFFER_LEN,self.sumAz[-self.BUFFER_LEN:])
+            self.GxBuffer = Buffer(self.BUFFER_LEN,self.sumGx[-self.BUFFER_LEN:])
+            self.GyBuffer = Buffer(self.BUFFER_LEN,self.sumGy[-self.BUFFER_LEN:])
+            self.GzBuffer = Buffer(self.BUFFER_LEN,self.sumGz[-self.BUFFER_LEN:])
 
-        self.AxBuffer = Buffer(self.BUFFER_LEN,sumAx[-self.BUFFER_LEN:])
-        self.AyBuffer = Buffer(self.BUFFER_LEN,sumAy[-self.BUFFER_LEN:])
-        self.AzBuffer = Buffer(self.BUFFER_LEN,sumAz[-self.BUFFER_LEN:])
-        self.GxBuffer = Buffer(self.BUFFER_LEN,sumGx[-self.BUFFER_LEN:])
-        self.GyBuffer = Buffer(self.BUFFER_LEN,sumGy[-self.BUFFER_LEN:])
-        self.GzBuffer = Buffer(self.BUFFER_LEN,sumGz[-self.BUFFER_LEN:])
+            rospy.loginfo("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
+        except:pass
 
-
-        rospy.loginfo("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
+    def refereshIMUData(self, newRaw,calibSamples=100):
+        #Ax,Ay,Az,Gx,Gy,Gz = getIMUData()
+        #print(type(self.AxBuffer))
+        if(newRaw==None):return
+        if(self.calibrateCounter<calibSamples):
+            self.calibrateCounter +=1
+            self.calibrate(newRaw,calibSamples)
+            return
+        Ax = newRaw.linear_acceleration.x
+        Ay = newRaw.linear_acceleration.y
+        Az = newRaw.linear_acceleration.z
+        Gx = newRaw.angular_velocity.x
+        Gy = newRaw.angular_velocity.y
+        Gz = newRaw.angular_velocity.z
         
-    def refereshIMUData(self):
-        Ax,Ay,Az,Gx,Gy,Gz = getIMUData()
-
         self.data.currTime = time.time()
 
         self.data.AxRaw = (Ax-self.data.AxCalib)/9.81
@@ -123,10 +149,10 @@ class IMUController():
         self.data.Gy = self.GyBuffer.average()
         self.data.Gz = self.GzBuffer.average()
 
-    def calc(self):
+    def calc(self, newRaw):
         origAx,origAy,origAz,origGx,origGy,origGz,origTime = self.data.Ax,self.data.Ay,self.data.Az,self.data.Gx,self.data.Gy,self.data.Gz,self.data.currTime
 
-        self.refereshIMUData()
+        self.refereshIMUData(newRaw)
         if(self.data.Ax==origAx and self.data.Ay==origAy and self.data.Az==origAz and self.data.Gx == origGx and self.data.Gy==origGy and self.data.Gz==origGz): return
         
         timeDiff = self.data.currTime-origTime
@@ -135,14 +161,14 @@ class IMUController():
         self.data.Vz = self.data.Vz+timeDiff*(origAz+self.data.Az)/2
 
         self.pub.publish(self.data)
-    def run(self):
-        while self.running and not rospy.is_shutdown():
-            self.calc()
+    #def run(self):
+    #    while self.running and not rospy.is_shutdown():
+    #        self.calc(self.imuRaw)
 
-    def start(self):
-        self.running = True
-        self.thread.start()
+    #def start(self):
+    #    self.running = True
+    #    self.thread.start()
 
-    def end(self):
-        self.running = False
-        self.thread.join()
+    #def end(self):
+    #    self.running = False
+    #    self.thread.join()

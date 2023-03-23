@@ -3,7 +3,9 @@
         http://www.electronicwings.com
 '''
 import smbus                    #import SMBus module of I2C
-
+from sensor_msgs.msg import Imu
+from geometry_msgs.msg import Quaternion, Vector3
+from std_msgs.msg import Header
 #some MPU6050 Registers and their Address
 PWR_MGMT_1   = 0x6B
 SMPLRT_DIV   = 0x19
@@ -75,7 +77,11 @@ def getIMUData():
     Gy = gyro_y/131.0
     Gz = gyro_z/131.0
 
-    return (Ax,Ay,Az,Gx,Gy,Gz)
+    imuVal=Imu()
+    imuVal.angular_velocity = Vector3(Gx,Gy,Gz)
+    imuVal.linear_acceleration = Vector3(Ax,Ay,Az)
+
+    return imuVal#(Ax,Ay,Az,Gx,Gy,Gz)
 if __name__ == "__main__":
     MPU_Init()
     while(True):print(getIMUData())
