@@ -75,7 +75,7 @@ class IMUController():
 
 
     def calibrate(self, newRaw,samples):
-        rospy.loginfo("CALIBRATNG...")
+        rospy.loginfo("CALIBRATNG..."+str(100*self.calibrateCounter/samples)+"%")
         #sumAx = []
         #sumAy = []
         #sumAz = []
@@ -108,7 +108,7 @@ class IMUController():
             self.GyBuffer = Buffer(self.BUFFER_LEN,self.sumGy[-self.BUFFER_LEN:])
             self.GzBuffer = Buffer(self.BUFFER_LEN,self.sumGz[-self.BUFFER_LEN:])
 
-            rospy.loginfo("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
+            #rospy.loginfo("Ax: %f\tAy: %f\tAz: %f\tGx: %f\tGy: %f\tGz: %f"%(self.data.AxCalib,self.data.AyCalib, self.data.AzCalib, self.data.GxCalib, self.data.GyCalib, self.data.GzCalib))
         except:pass
 
     def refereshIMUData(self, newRaw,calibSamples=100):
