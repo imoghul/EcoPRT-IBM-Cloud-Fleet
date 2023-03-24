@@ -16,21 +16,15 @@ def talker():
     #rate = rospy.Rate(100) # 10hz
     gpsPub = rospy.Publisher("raw_gps",Pose2D,queue_size=100000)
     imuPub = rospy.Publisher("raw_imu",Imu,queue_size=10000)
-    imuthread = threading.Thread(target=run,args=(imuPub,getIMUData))
-    gpsthread = threading.Thread(target=run,args=(gpsPub,getGPSData))
+    imuthread = threading.Thread(target=run,args=(imuPub,getIMUData,Imu))
+    gpsthread = threading.Thread(target=run,args=(gpsPub,getGPSData,Pose2D))
     imuthread.start()
     gpsthread.start()
-    #while not rospy.is_shutdown():
-        #print(getIMUData())
-        #imuPub.publish(getIMUData())
-        #gpsPub.publish(getGPSData())
-        #rate.sleep()
 
-def run(pub,func):
+def run(pub,func,_type):
     while not rospy.is_shutdown():
         val = func()
-        if(val!=None and val!=Pose2D):
-            #print(val)
+        if(type(val)==_type):
             pub.publish(val)
 
 if __name__ == '__main__':

@@ -75,7 +75,7 @@ class IMUController():
 
 
     def calibrate(self, newRaw,samples):
-        rospy.loginfo("CALIBRATNG..."+str(100*self.calibrateCounter/samples)+"%")
+        rospy.loginfo("CALIBRATNG IMU..."+str(100*self.calibrateCounter/samples)+"%")
         #sumAx = []
         #sumAy = []
         #sumAz = []
@@ -118,7 +118,7 @@ class IMUController():
         if(self.calibrateCounter<calibSamples):
             self.calibrateCounter +=1
             self.calibrate(newRaw,calibSamples)
-            return
+            return False
         Ax = newRaw.linear_acceleration.x
         Ay = newRaw.linear_acceleration.y
         Az = newRaw.linear_acceleration.z
@@ -152,7 +152,7 @@ class IMUController():
     def calc(self, newRaw):
         origAx,origAy,origAz,origGx,origGy,origGz,origTime = self.data.Ax,self.data.Ay,self.data.Az,self.data.Gx,self.data.Gy,self.data.Gz,self.data.currTime
 
-        self.refereshIMUData(newRaw)
+        if self.refereshIMUData(newRaw)==False: return
         if(self.data.Ax==origAx and self.data.Ay==origAy and self.data.Az==origAz and self.data.Gx == origGx and self.data.Gy==origGy and self.data.Gz==origGz): return
         
         timeDiff = self.data.currTime-origTime
@@ -160,7 +160,8 @@ class IMUController():
         self.data.Vy = self.data.Vy+timeDiff*(origAy+self.data.Ay)/2
         self.data.Vz = self.data.Vz+timeDiff*(origAz+self.data.Az)/2
 
-        self.pub.publish(self.data)
+        try:self.pub.publish(self.data)
+        except rospy.exceptions.ROSException: pass
     #def run(self):
     #    while self.running and not rospy.is_shutdown():
     #        self.calc(self.imuRaw)

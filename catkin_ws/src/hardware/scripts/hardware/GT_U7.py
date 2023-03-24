@@ -15,7 +15,7 @@ except:
 
 
 def getGPSData():
-    #try:
+    try:
         line = sio.readline()
         msg = pynmea2.parse(line)
         #print(msg)
@@ -31,15 +31,15 @@ def getGPSData():
                 longitude = msg.longitude
                 #print(latitude, longitude)
                 return geometry_msgs.msg.Pose2D(latitude, longitude, 0)
-            else: return geometry_msgs.msg.Pose2D()
+            else: return None#geometry_msgs.msg.Pose2D()
 
-    #except serial.SerialException as e:
-    #    print(str(e))#pass
-    #except pynmea2.ParseError as e:
-    #    print(str(e))#raise e
-    #except UnicodeDecodeError as e:
-    #    print(str(e))#raise e
-    #except:
-    #    pass
-    #return geometry_msgs.msg.Pose2D()
+    except serial.SerialException as e:
+        print(str(e))#pass
+    except pynmea2.ParseError as e:
+        print(str(e))#raise e
+    except UnicodeDecodeError as e:
+        print(str(e))#raise e
+    except:
+        pass
+    return None#geometry_msgs.msg.Pose2D()
 

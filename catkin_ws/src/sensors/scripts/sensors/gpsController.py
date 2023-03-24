@@ -37,7 +37,7 @@ class GPSController():
        
 
         self.data.currTime = time.time()
-        self.data.time = ""#datetime.datetime.strftime(satTime,"%Y-%m-%d %H:%M:%S")
+        self.data.time = datetime.datetime.strftime(datetime.datetime.now(),"%Y-%m-%d %H:%M:%S")# satTime
         self.data.lat = lat
         self.data.long = long
         try:self.data.speed = dist(self.data,self.prevData)/(self.data.currTime-self.prevData.currTime) 

@@ -4,7 +4,7 @@ from std_msgs.msg import String
 from sensor_msgs.msg import *
 from geometry_msgs.msg import *
 def imu_callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nIMU:\n%s\n", str(data))
+    pass#rospy.loginfo(rospy.get_caller_id() + "\nIMU:\n%s\n", str(data))
 def gps_callback(data):
     rospy.loginfo(rospy.get_caller_id() + "\nGPS:\n%s\n", str(data))
 
