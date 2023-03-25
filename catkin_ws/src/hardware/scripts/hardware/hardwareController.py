@@ -25,7 +25,8 @@ def run(pub,func,_type):
     while not rospy.is_shutdown():
         val = func()
         if(type(val)==_type):
-            pub.publish(val)
+            try:pub.publish(val)
+            except:pass
 
 if __name__ == '__main__':
     try:

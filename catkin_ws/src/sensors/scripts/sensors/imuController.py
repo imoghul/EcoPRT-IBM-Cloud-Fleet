@@ -17,7 +17,6 @@ class Buffer():
 
 class IMUController():
     def __init__(self):
-        #rospy.init_node("IMU_Data",anonymous=False)
         self.pub = rospy.Publisher("imu_data",IMUData,queue_size=10)
         #MPU_Init()
         self.imuSub = rospy.Subscriber("raw_imu",Imu,self.calc)
@@ -153,7 +152,9 @@ class IMUController():
         origAx,origAy,origAz,origGx,origGy,origGz,origTime = self.data.Ax,self.data.Ay,self.data.Az,self.data.Gx,self.data.Gy,self.data.Gz,self.data.currTime
 
         if self.refereshIMUData(newRaw)==False: return
-        if(self.data.Ax==origAx and self.data.Ay==origAy and self.data.Az==origAz and self.data.Gx == origGx and self.data.Gy==origGy and self.data.Gz==origGz): return
+        if(self.data.Ax==origAx and self.data.Ay==origAy and self.data.Az==origAz and self.data.Gx == origGx and self.data.Gy==origGy and self.data.Gz==origGz): 
+            #print("double imu reading discarded")
+            return
         
         timeDiff = self.data.currTime-origTime
         self.data.Vx = self.data.Vx+timeDiff*(origAx+self.data.Ax)/2

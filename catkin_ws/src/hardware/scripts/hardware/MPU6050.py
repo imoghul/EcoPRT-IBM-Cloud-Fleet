@@ -22,6 +22,7 @@ Device_Address = 0x68
 
 bus = None
 
+last = None
 def MPU_Init():
     global bus
     bus = smbus.SMBus(1)
@@ -56,6 +57,7 @@ def read_raw_data(bus,addr):
 
 
 def getIMUData():
+    global last
     if(bus==None):
         raise Exception("IMU not initialized")
     #Read Accelerometer raw value
@@ -80,7 +82,10 @@ def getIMUData():
     imuVal=Imu()
     imuVal.angular_velocity = Vector3(Gx,Gy,Gz)
     imuVal.linear_acceleration = Vector3(Ax,Ay,Az)
-
+    if imuVal==last:
+        print("discarded double reading")
+        return
+    last = imuVal
     return imuVal#(Ax,Ay,Az,Gx,Gy,Gz)
 if __name__ == "__main__":
     MPU_Init()
