@@ -4,7 +4,7 @@ from std_msgs.msg import String
 from roadquality.msg import RoadQualityScore
 from cloud.cloudQueue import *
 import threading
-from cloud.confidential import *
+from config.config import *
 from cloud.toJson import *
 
 def run():

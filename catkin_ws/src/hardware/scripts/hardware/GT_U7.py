@@ -42,4 +42,5 @@ def getGPSData():
     except:
         pass
     return None#geometry_msgs.msg.Pose2D()
-
+if __name__=="__main__":
+    while(True):print(getGPSData())

@@ -4,7 +4,7 @@ import rospy
 import json
 import atexit
 import threading
-import cloud.confidential
+import config.config 
 from datetime import datetime
 import roadquality.msg
 import os
@@ -75,5 +75,5 @@ class CloudQueue:
 
     def putDataToCloud(self, data: dict):
         rospy.loginfo("Sent to %s cloud"%self.name)
-        data["__passcode__"] = cloud.confidential.passcode
+        data["__passcode__"] = config.config.passcode
         return requests.post(self.url, json=data) if self.callback==None else self.callback(requests.post(self.url,json=data))

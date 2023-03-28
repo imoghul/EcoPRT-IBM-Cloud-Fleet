@@ -5,7 +5,7 @@ from cloud.msg import Heartbeat
 from roadquality.msg import RoadQualityScore
 from cloud.cloudQueue import *
 import threading
-from cloud.confidential import *
+from config.config import *
 from cloud.toJson import *
 import json
 
