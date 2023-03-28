@@ -13,6 +13,7 @@ import os
 
 queuePath = os.path.abspath(__file__)#"/home/pi/EcoPRT-IBM-Cloud-Fleet/catkin_ws/src/cloud/scripts/cloud/queues/"
 queuePath = '/'.join(queuePath.split("/")[:-1])+"/queues/"
+#TODO: change this to cross platform function call
 os.system(f"mkdir -p {queuePath}")
 
 
@@ -46,7 +47,7 @@ class CloudQueue:
                     return {}
                 except Exception as e:
                     raise Exception(
-                        "corrupt queue file"
+                        "corrupt queue file, please fix or delete the file"
                     )
 
     def updateFile(self):
@@ -72,6 +73,9 @@ class CloudQueue:
                 if len(self.queue) > 0:
                     self.putDataToCloud(self.popFromQueue())
                     targetTime = time.time() + self.timeDiff
+
+    def start(self): self.thread.start()
+
 
     def putDataToCloud(self, data: dict):
         rospy.loginfo("Sent to %s cloud"%self.name)

@@ -1,13 +1,14 @@
 import rospy
 from sensors.msg import IMUData, GPSData 
 from positioning.msg import Position
+from config.config import waitForGPS
 class Localizer():
     def __init__(self):
 
         # set imuData and gpsData if you don't want to publish values with zeros, that would cause the system to think that those garbage values are valid
-
-        self.imuData = IMUData() 
-        self.gpsData = GPSData()
+        if(not waitForGPS):
+            self.imuData = IMUData() 
+            self.gpsData = GPSData()
         self.position = Position()
         self.pub = rospy.Publisher("position",Position,queue_size=10)
     def updateIMU(self,imuData):

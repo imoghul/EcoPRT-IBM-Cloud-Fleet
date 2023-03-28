@@ -32,7 +32,7 @@ def run():
 
     rospy.Subscriber("heartbeat_tx", Heartbeat, heartbeat.addToQueue)
     
-    heartbeat.thread.start()# spin() simply keeps python from exiting until this node is stopped
+    heartbeat.start()# spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
 if __name__ == '__main__':

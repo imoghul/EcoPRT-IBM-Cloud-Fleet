@@ -20,7 +20,7 @@ def run():
     rospy.Subscriber("road_quality_score", RoadQualityScore, eventIMU.addToQueue)
     
     #thread = threading.Thread(target = eventIMU.main)
-    eventIMU.thread.start()#thread.start()
+    eventIMU.start()#thread.start()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
