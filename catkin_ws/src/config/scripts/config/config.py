@@ -8,3 +8,7 @@ passcode = "ncsuECE_sdproject37"
 
 # hardware
 gpsSerPort = "/dev/ttyACM0"
+
+# sensors
+raw_imu_publisher_name = "raw_imu"
+raw_gps_publisher_name = "raw_gps"

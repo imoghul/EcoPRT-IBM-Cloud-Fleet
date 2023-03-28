@@ -1,6 +1,7 @@
 import time
 import threading
 import rospy
+from config.config import raw_imu_publisher_name
 from sensors.msg import IMUData
 from sensor_msgs.msg import *
 from geometry_msgs.msg import *
@@ -19,7 +20,7 @@ class IMUController():
     def __init__(self):
         self.pub = rospy.Publisher("imu_data",IMUData,queue_size=10)
         #MPU_Init()
-        self.imuSub = rospy.Subscriber("raw_imu",Imu,self.calc)
+        self.imuSub = rospy.Subscriber(raw_imu_publisher_name,Imu,self.calc)
         self.imuRaw = None
         
         

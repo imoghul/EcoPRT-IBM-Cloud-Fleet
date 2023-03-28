@@ -5,6 +5,7 @@ import rospy
 from geometry_msgs.msg import Pose2D
 from sensors.msg import GPSData
 import math
+from config.config import raw_gps_publisher_name
 #class GPSData():
 #    def __init__(self,t,lat,lon):
 #        self.time = t
@@ -16,7 +17,7 @@ class GPSController():
         #rospy.init_node("GPS_Data",anonymous=False)
         self.pub = rospy.Publisher("gps_data",GPSData,queue_size=10)
         self.prevData = GPSData()
-        self.sub = rospy.Subscriber("raw_gps",Pose2D,self.refreshGPSData)
+        self.sub = rospy.Subscriber(raw_gps_publisher_name,Pose2D,self.refreshGPSData)
         self.data = GPSData()
         #self.refreshGPSData()
         #self.running = True
