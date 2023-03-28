@@ -7,5 +7,4 @@ EcoPRT fleet management system with IBM Cloud
 ``` bash
 cd catkin_ws # enter the catkin worksapce directory
 catkin_make # make the project
-source devel/setup.bash # change extension to match your terminal
-rosrun <node>/<file>
+./catkin_ws/launch.sh
