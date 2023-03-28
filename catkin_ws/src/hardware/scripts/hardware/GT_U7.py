@@ -6,8 +6,9 @@ import sys
 import os
 import sensor_msgs
 import geometry_msgs
+from config.config import *
 try:
-    ser = serial.Serial(port='/dev/ttyACM0',timeout=1)
+    ser = serial.Serial(port=gpsSerPort,timeout=1)
     sio = io.TextIOWrapper(io.BufferedRWPair(ser,ser))
 except:
     ser = None
