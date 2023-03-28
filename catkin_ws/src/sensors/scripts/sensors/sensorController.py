@@ -5,7 +5,7 @@ from sensors.gpsController import *
 from sensors.imuController import * 
 import atexit
 import sys
-
+from config.config import *
 
 
 def talker():
