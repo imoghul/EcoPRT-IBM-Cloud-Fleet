@@ -26,3 +26,7 @@ The localization data is subscribed to by the road_quality and cloud packages, w
 
 ## Configuration
 The configuration file is in the config package in the ```config.py``` file.
+`putDataUrl` will contain the url to IBM Cloud function that posts data in the database
+`heartbeatURL` will contain the url to the IBM Cloud function that handles heartbeat requeusts
+`passcode` will contain the passcode that is defined in the IBM Cloud functions
+`gpsSerPort` will contain the usb port name for the gps
