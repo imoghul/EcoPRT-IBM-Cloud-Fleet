@@ -30,3 +30,8 @@ The configuration file is in the config package in the ```config.py``` file.\
 `heartbeatURL` will contain the url to the IBM Cloud function that handles heartbeat requeusts\
 `passcode` will contain the passcode that is defined in the IBM Cloud functions\
 `gpsSerPort` will contain the usb port name for the gps
+
+## Integration
+To integrate this project into existing code, complete the following:
+1. Make sure to not launch existing hardware nodes that are provided
+2. Create `raw_gps` and `raw_imu` publishers as described before in your pre-existing hardware package. Or alternatively, edit the 2 publisher names in the config file to match existing publishers in your code
