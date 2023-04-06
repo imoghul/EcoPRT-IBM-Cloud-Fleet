@@ -6,7 +6,7 @@ from positioning.localizer import Localizer
 def callback(data):
     rospy.loginfo("\nPosition:\n%s\n", str(data))
 
-def runLocalizer():
+def run():
     # In ROS, nodes are uniquely named. If two nodes with the same
     # name are launched, the previous one is kicked off. The
     # anonymous=True flag means that rospy will choose a unique
@@ -20,4 +20,4 @@ def runLocalizer():
     rospy.spin()
 
 if __name__ == '__main__':
-    runLocalizer()
+    run()

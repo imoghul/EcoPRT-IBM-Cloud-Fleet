@@ -31,7 +31,10 @@ def getGPSData():
                 latitude = msg.latitude
                 longitude = msg.longitude
                 #print(latitude, longitude)
-                return geometry_msgs.msg.Pose2D(latitude, longitude, 0)
+                ret = sensor_msgs.msg.NavSatFix()
+                ret.latitude = latitude
+                ret.longitude = longitude
+                return ret#geometry_msgs.msg.Pose2D(latitude, longitude, 0)
             else: return None#geometry_msgs.msg.Pose2D()
 
     except serial.SerialException as e:

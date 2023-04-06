@@ -2,7 +2,7 @@ import time
 import threading
 import datetime
 import rospy
-from geometry_msgs.msg import Pose2D
+from sensor_msgs.msg import NavSatFix
 from sensors.msg import GPSData
 import math
 from config.config import raw_gps_publisher_name
@@ -17,7 +17,7 @@ class GPSController():
         #rospy.init_node("GPS_Data",anonymous=False)
         self.pub = rospy.Publisher("gps_data",GPSData,queue_size=10)
         self.prevData = GPSData()
-        self.sub = rospy.Subscriber(raw_gps_publisher_name,Pose2D,self.refreshGPSData)
+        self.sub = rospy.Subscriber(raw_gps_publisher_name,NavSatFix,self.refreshGPSData)
         self.data = GPSData()
         #self.refreshGPSData()
         #self.running = True
@@ -32,7 +32,7 @@ class GPSController():
             self.prevData.currTime = self.data.currTime+0 if self.data.currTime!=None else None
         except: pass
         
-        lat, long = (newRaw.x, newRaw.y)#getGPSData()
+        lat, long = (newRaw.latitude, newRaw.longitude)#getGPSData()
         
         if(lat==None and long==None):return
        
