@@ -4,7 +4,7 @@ from std_msgs.msg import String
 from sensors.gpsController import *
 from sensors.imuController import *
 from positioning.localizer import *
-
+from sensor_msgs.msg import Image
 localizer = Localizer()
 
 
@@ -19,7 +19,7 @@ def runLocalizer():
 
     rospy.Subscriber("gps_data", GPSData, localizer.updateGPS)#gpsCallback)
     rospy.Subscriber("imu_data", IMUData, localizer.updateIMU)#imuCallback)
-
+    rospy.Subscriber("image_data", Image, localizer.updateImage)
     #while not rospy.is_shutdown():
     #    localizer.run()
     # spin() simply keeps python from exiting until this node is stopped

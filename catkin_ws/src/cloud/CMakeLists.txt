@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
   message_generation
 )
 
@@ -72,6 +73,7 @@ generate_messages(
   DEPENDENCIES
   std_msgs
   sensors
+  sensor_msgs
   positioning
   roadquality
 )

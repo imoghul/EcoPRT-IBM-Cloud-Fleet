@@ -2,7 +2,8 @@
 import rospy
 from std_msgs.msg import String
 from sensors.gpsController import *
-from sensors.imuController import * 
+from sensors.imuController import *
+from sensors.imageController import *
 import atexit
 import sys
 from config.config import *
@@ -14,7 +15,7 @@ def talker():
     
     gps = GPSController()
     imu = IMUController()
-
+    image = ImageController()
     #gps.start()
     #imu.start()
     while not rospy.is_shutdown():

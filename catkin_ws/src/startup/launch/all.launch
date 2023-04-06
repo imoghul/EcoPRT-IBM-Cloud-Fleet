@@ -1,5 +1,6 @@
 <launch>
 	<node name="sensor_io" pkg="hardware" type="hardwareController.py" output="screen"/>
+	<node name="video_pub" pkg="hardware" type="cameraFeed.py" output="screen"/>
 	<node name="Sensor_Node" pkg="sensors" type="sensorController.py" output="screen"/>
 	<node name="localization" pkg="positioning" type="localization.py" output="screen"/>
 	<node name="rq_calculation" pkg="roadquality" type="runProcess.py" output="screen"/>

@@ -162,7 +162,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
-	scripts/hardware/MPU6050.py scripts/hardware/GT_U7.py scripts/hardware/hardwareController.py scripts/hardware/listener.py
+	scripts/hardware/MPU6050.py scripts/hardware/GT_U7.py scripts/hardware/hardwareController.py scripts/hardware/listener.py scripts/hardware/cameraFeed.py scripts/hardware/cameraFeedSub.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

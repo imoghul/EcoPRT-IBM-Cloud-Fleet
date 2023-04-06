@@ -9,9 +9,9 @@ import atexit
 import sys
 import threading
 from config.config import *
-
+from cv_bridge import CvBridge 
 def talker():
-    rospy.init_node('sensor_io', anonymous=True) # talker is the node
+    rospy.init_node('_sensor_io', anonymous=True) # talker is the node
     MPU_Init()
     #rate = rospy.Rate(100) # 10hz
     gpsPub = rospy.Publisher(raw_gps_publisher_name,NavSatFix,queue_size=100000)

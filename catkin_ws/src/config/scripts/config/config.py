@@ -12,6 +12,7 @@ gpsSerPort = "/dev/ttyACM0"
 # sensors
 raw_imu_publisher_name = "raw_imu"
 raw_gps_publisher_name = "raw_gps"
+raw_image_publisher_name = "raw_image"
 
 # positioning
 waitForGPS = False

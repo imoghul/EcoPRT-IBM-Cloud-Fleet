@@ -73,6 +73,7 @@ add_message_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
+  sensor_msgs
 )
 
 ################################################
@@ -207,6 +208,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 catkin_install_python(PROGRAMS 
-	scripts/sensors/gpsController.py scripts/sensors/imuController.py scripts/sensors/sensorController.py scripts/sensors/listener.py
+	scripts/sensors/gpsController.py scripts/sensors/imuController.py scripts/sensors/sensorController.py scripts/sensors/listener.py scripts/sensors/imageController.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
