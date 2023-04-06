@@ -17,7 +17,7 @@ def talker():
     gpsPub = rospy.Publisher(raw_gps_publisher_name,NavSatFix,queue_size=100000)
     imuPub = rospy.Publisher(raw_imu_publisher_name,Imu,queue_size=10000)
     imuthread = threading.Thread(target=run,args=(imuPub,getIMUData,Imu))
-    gpsthread = threading.Thread(target=run,args=(gpsPub,getGPSData,Pose2D))
+    gpsthread = threading.Thread(target=run,args=(gpsPub,getGPSData,NavSatFix))
     imuthread.start()
     gpsthread.start()
 
