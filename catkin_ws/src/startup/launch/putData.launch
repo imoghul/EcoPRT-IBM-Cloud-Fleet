@@ -1,3 +1,0 @@
-<launch>
-	<node name="cloud_communication" pkg="cloud" type="putdata.py"/>
-</launch>
