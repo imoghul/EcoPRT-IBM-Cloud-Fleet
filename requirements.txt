@@ -1,6 +1,8 @@
 catkin_pkg==0.5.2
 catkin_pkg_modules==0.5.2
+cv_bridge==1.16.2
 genpy==0.6.15
+matplotlib==3.0.2
 numpy==1.16.2
 pynmea2==1.18.0
 pyserial==3.5
