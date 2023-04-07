@@ -2,33 +2,39 @@
 import rospy
 from std_msgs.msg import String
 from hardware.MPU6050 import *
-from hardware.GT_U7 import * 
+from hardware.GT_U7 import *
 from sensor_msgs.msg import *
 from geometry_msgs.msg import *
 import atexit
 import sys
 import threading
 from config.config import *
-from cv_bridge import CvBridge 
+from cv_bridge import CvBridge
+
+
 def talker():
-    rospy.init_node('_sensor_io', anonymous=True) # talker is the node
+    rospy.init_node("_sensor_io", anonymous=True)  # talker is the node
     MPU_Init()
-    #rate = rospy.Rate(100) # 10hz
-    gpsPub = rospy.Publisher(raw_gps_publisher_name,NavSatFix,queue_size=100000)
-    imuPub = rospy.Publisher(raw_imu_publisher_name,Imu,queue_size=10000)
-    imuthread = threading.Thread(target=run,args=(imuPub,getIMUData,Imu))
-    gpsthread = threading.Thread(target=run,args=(gpsPub,getGPSData,NavSatFix))
+    # rate = rospy.Rate(100) # 10hz
+    gpsPub = rospy.Publisher(raw_gps_publisher_name, NavSatFix, queue_size=100000)
+    imuPub = rospy.Publisher(raw_imu_publisher_name, Imu, queue_size=10000)
+    imuthread = threading.Thread(target=run, args=(imuPub, getIMUData, Imu))
+    gpsthread = threading.Thread(target=run, args=(gpsPub, getGPSData, NavSatFix))
     imuthread.start()
     gpsthread.start()
 
-def run(pub,func,_type):
+
+def run(pub, func, _type):
     while not rospy.is_shutdown():
         val = func()
-        if(type(val)==_type):
-            try:pub.publish(val)
-            except:pass
+        if type(val) == _type:
+            try:
+                pub.publish(val)
+            except:
+                pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     try:
         MPU_Init()
         talker()

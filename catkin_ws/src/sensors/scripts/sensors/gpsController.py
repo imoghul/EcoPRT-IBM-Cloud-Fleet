@@ -6,54 +6,65 @@ from sensor_msgs.msg import NavSatFix
 from sensors.msg import GPSData
 import math
 from config.config import raw_gps_publisher_name
-#class GPSData():
+
+# class GPSData():
 #    def __init__(self,t,lat,lon):
 #        self.time = t
 #        self.lat = lat
 #        self.long = lon
 
-class GPSController():
+
+class GPSController:
     def __init__(self):
-        #rospy.init_node("GPS_Data",anonymous=False)
-        self.pub = rospy.Publisher("gps_data",GPSData,queue_size=10)
+        # rospy.init_node("GPS_Data",anonymous=False)
+        self.pub = rospy.Publisher("gps_data", GPSData, queue_size=10)
         self.prevData = GPSData()
-        self.sub = rospy.Subscriber(raw_gps_publisher_name,NavSatFix,self.refreshGPSData)
+        self.sub = rospy.Subscriber(
+            raw_gps_publisher_name, NavSatFix, self.refreshGPSData
+        )
         self.data = GPSData()
-        #self.refreshGPSData()
-        #self.running = True
-        #self.thread = threading.Thread(target = self.run)
+        # self.refreshGPSData()
+        # self.running = True
+        # self.thread = threading.Thread(target = self.run)
 
-
-    def refreshGPSData(self,newRaw):
+    def refreshGPSData(self, newRaw):
         try:
-            self.prevData.time = self.data.time+"" if self.data.time!=None else None
-            self.prevData.lat = self.data.lat+0 if self.data.lat!=None else None
-            self.prevData.long = self.data.long+0 if self.data.long!=None else None
-            self.prevData.currTime = self.data.currTime+0 if self.data.currTime!=None else None
-        except: pass
-        
-        lat, long = (newRaw.latitude, newRaw.longitude)#getGPSData()
-        
-        if(lat==None and long==None):return
-       
+            self.prevData.time = self.data.time + "" if self.data.time != None else None
+            self.prevData.lat = self.data.lat + 0 if self.data.lat != None else None
+            self.prevData.long = self.data.long + 0 if self.data.long != None else None
+            self.prevData.currTime = (
+                self.data.currTime + 0 if self.data.currTime != None else None
+            )
+        except:
+            pass
+
+        lat, long = (newRaw.latitude, newRaw.longitude)  # getGPSData()
+
+        if lat == None and long == None:
+            return
 
         self.data.currTime = time.time()
-        self.data.time = datetime.datetime.strftime(datetime.datetime.now(),"%Y-%m-%d %H:%M:%S")# satTime
+        self.data.time = datetime.datetime.strftime(
+            datetime.datetime.now(), "%Y-%m-%d %H:%M:%S"
+        )  # satTime
         self.data.lat = lat
         self.data.long = long
-        try:self.data.speed = dist(self.data,self.prevData)/(self.data.currTime-self.prevData.currTime) 
-        except:pass
+        try:
+            self.data.speed = dist(self.data, self.prevData) / (
+                self.data.currTime - self.prevData.currTime
+            )
+        except:
+            pass
         self.pub.publish(self.data)
-        
 
-    #def run(self):
+    # def run(self):
     #    while self.running and not rospy.is_shutdown():
     #        self.refreshGPSData()
 
-    #def start(self):
+    # def start(self):
     #    self.running = True
     #    self.thread.start()
 
-    #def end(self):
+    # def end(self):
     #    self.running = False
     #    self.thread.join()

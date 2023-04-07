@@ -5,16 +5,17 @@ import collections, itertools
 from positioning.msg import Position
 from sensors.msg import *
 from roadquality.msg import RoadQualityScore
+
 # this function will determine the number of additional elements needed before
 # sending the data to the cloud after processing
-#~~~~~~~~~
+# ~~~~~~~~~
 # CHECK UNITS ON VELOCITY FROM IMU DATA!!!~~~!!!
-#~~~~~~~~~
-publisher = rospy.Publisher("road_quality_score",RoadQualityScore,queue_size=10)
+# ~~~~~~~~~
+publisher = rospy.Publisher("road_quality_score", RoadQualityScore, queue_size=10)
 # This function will compare current and previous speed to determine how the queue needs to scale
 # it returns a value by which to delete entries from the queue
 def queueScaling(prevSpeed, _speed, delete, dataQueue):
-    speed = _speed * 2.23694 # convert speed from m/s to mph
+    speed = _speed * 2.23694  # convert speed from m/s to mph
     oldLength = len(dataQueue)
     newLength = 0
 
@@ -22,27 +23,29 @@ def queueScaling(prevSpeed, _speed, delete, dataQueue):
     # print("Speed of IMU: " + str(speed))
     max_speed = 0.018
 
-    #sets the speed value for comparison with the previous speed
+    # sets the speed value for comparison with the previous speed
     if abs(speed) < max_speed * 0.25:
         speed = 0
-        newLength = 600 # this should be 3 full seconds of data
+        newLength = 600  # this should be 3 full seconds of data
     elif abs(speed) < max_speed * 0.5:
         speed = 1
-        newLength = 468 # this should be 2.33 seconds of data
+        newLength = 468  # this should be 2.33 seconds of data
     elif abs(speed) < max_speed * 0.75:
         speed = 2
-        newLength = 332 # this should be 1.67 seconds of data
+        newLength = 332  # this should be 1.67 seconds of data
     else:
         speed = 3
-        newLength = 200 # this should be 1 full second of data
+        newLength = 200  # this should be 1 full second of data
 
     # If the vehicle is going slower we need more data points
     if speed < prevSpeed:
-        delete = 0 # stop deleting entries in order to send more data
+        delete = 0  # stop deleting entries in order to send more data
         return delete, speed
     # if the vehicle is going faster, we need less data points
     elif speed > prevSpeed:
-        delete = (speed - prevSpeed) * 2 # delete 2 times the entries per speed level over the previous speed
+        delete = (
+            speed - prevSpeed
+        ) * 2  # delete 2 times the entries per speed level over the previous speed
         return delete, speed
     # if the vehicle is going the same speed as before, check here
     else:
@@ -56,13 +59,14 @@ def queueScaling(prevSpeed, _speed, delete, dataQueue):
         else:
             return delete, speed
 
+
 def roadQualityScore(accelData, gyroData1, gyroData2):
     if len(accelData) != 0:
         # normalize the data
-        accelData = [i/0.3 for i in accelData]
-        gyroData1 = [i/0.3 for i in gyroData1]
-        gyroData2 = [i/0.3 for i in gyroData2]
-        #print(accelData[:10])
+        accelData = [i / 0.3 for i in accelData]
+        gyroData1 = [i / 0.3 for i in gyroData1]
+        gyroData2 = [i / 0.3 for i in gyroData2]
+        # print(accelData[:10])
         # compute the average acceleration and rotation for the given period via RMS
         squaredAccel = np.square(accelData)
         squaredGyro1 = np.square(gyroData1)
@@ -74,18 +78,23 @@ def roadQualityScore(accelData, gyroData1, gyroData2):
         rmsGyro1 = np.sqrt(averageGyro1)
         rmsGyro2 = np.sqrt(averageGyro2)
 
-        #print("Accel score: " + str(averageAccel))
-        #print("Gyro1 score: " + str(averageGyro1))
-        #print("Gyro2 score: " + str(averageGyro2))
+        # print("Accel score: " + str(averageAccel))
+        # print("Gyro1 score: " + str(averageGyro1))
+        # print("Gyro2 score: " + str(averageGyro2))
         # road quality score
-        roadScore = (0.8 * rmsAccel + 0.1 * rmsGyro1 + 0.1 * rmsGyro2)
+        roadScore = 0.8 * rmsAccel + 0.1 * rmsGyro1 + 0.1 * rmsGyro2
         return roadScore
     else:
-        #print("accel array has no entries")
+        # print("accel array has no entries")
         return 0
 
-#print("controller started")
-drift = [[0.0000060728,0.0013608],[0.0000031578,-0.00030711],[-0.000012169,0.00021297]]
+
+# print("controller started")
+drift = [
+    [0.0000060728, 0.0013608],
+    [0.0000031578, -0.00030711],
+    [-0.000012169, 0.00021297],
+]
 absAz = []
 absGx = []
 absGy = []
@@ -94,24 +103,31 @@ roadScore = 0
 previousSpeed = 0
 del_value = 0
 startingUp = True
-rqScoreThresh = .95
-data = None #Position(GPSData(0,0,0),IMUData(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
+rqScoreThresh = 0.95
+data = None  # Position(GPSData(0,0,0),IMUData(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
 roadDefectsQueue = []
+
+
 def getData(d):
     global data
     data = d
 
 
 def process():
-    while not rospy.is_shutdown():runProcess()
+    while not rospy.is_shutdown():
+        runProcess()
+
+
 def runProcess():
-    global roadDefectsQueue, rqScoreThresh, imuData,absAz,absGx,absGy, pointCounter, roadScore, previousSpeed,del_value,startingUp,data,drift
+    global roadDefectsQueue, rqScoreThresh, imuData, absAz, absGx, absGy, pointCounter, roadScore, previousSpeed, del_value, startingUp, data, drift
     # populate the queue
-    if(data==None):
-        #print("waiting")
+    if data == None:
+        # print("waiting")
         return
-    #determine how to dynamically scale the queue
-    del_value, previousSpeed = queueScaling(previousSpeed, data.imu.Vx, del_value, absAz)
+    # determine how to dynamically scale the queue
+    del_value, previousSpeed = queueScaling(
+        previousSpeed, data.imu.Vx, del_value, absAz
+    )
     # print("Current rate of management: " + str(del_value)) # debug line
 
     # just get the first 300 data points at start up, then dynamically scale the queue
@@ -124,7 +140,7 @@ def runProcess():
 
         if len(absAz) >= 600:
             startingUp = False
-            #print("Done starting up: " + str(not startingUp)) # debug line
+            # print("Done starting up: " + str(not startingUp)) # debug line
     else:
         # delete values in the arrays according to scaled queue
         del absAz[0:del_value]
@@ -142,20 +158,28 @@ def runProcess():
         pointCounter -= 1
     # half a second has gone by send the data
     else:
-        pointCounter = len(absAz)#50
-        prevScore = roadScore+0
-        roadScore = roadQualityScore(absAz,absGx,absGy)#(absAz[-50:], absGx[-50:], absGy[-50:])
+        pointCounter = len(absAz)  # 50
+        prevScore = roadScore + 0
+        roadScore = roadQualityScore(
+            absAz, absGx, absGy
+        )  # (absAz[-50:], absGx[-50:], absGy[-50:])
         # putDataToCloud({"road quality score":roadScore,"IMU Data":Az})
         # uncomment the above line when ready to send data to the cloud
-        #print("Fake sent the data!\nRoad quality score: " + str(roadScore))
-        if roadScore>=rqScoreThresh:roadDefectsQueue.append(RoadQualityScore(data,roadScore))#publisher.publish(RoadQualityScore(data,roadScore))
-        elif prevScore>=rqScoreThresh: # stop putting in queue, "average queue", publish "average", reset queue
-                #lats = [i.pos.gps.lat for i in roadDefectsQueue]
-                #longs = [i.pos.gps.long for i in roadDefectsQueue]
-                positions = [i.pos for i in roadDefectsQueue] 
-                scores = [i.score for i in roadDefectsQueue]
-                rqScore = RoadQualityScore(positions[len(positions)//2],sum(scores)/len(scores))
-                publisher.publish(rqScore)
-                rospy.loginfo("Just detected rqScore with %f magnitude"%rqScore.score)
-                roadDefectsQueue = []
-
+        # print("Fake sent the data!\nRoad quality score: " + str(roadScore))
+        if roadScore >= rqScoreThresh:
+            roadDefectsQueue.append(
+                RoadQualityScore(data, roadScore)
+            )  # publisher.publish(RoadQualityScore(data,roadScore))
+        elif (
+            prevScore >= rqScoreThresh
+        ):  # stop putting in queue, "average queue", publish "average", reset queue
+            # lats = [i.pos.gps.lat for i in roadDefectsQueue]
+            # longs = [i.pos.gps.long for i in roadDefectsQueue]
+            positions = [i.pos for i in roadDefectsQueue]
+            scores = [i.score for i in roadDefectsQueue]
+            rqScore = RoadQualityScore(
+                positions[len(positions) // 2], sum(scores) / len(scores)
+            )
+            publisher.publish(rqScore)
+            rospy.loginfo("Just detected rqScore with %f magnitude" % rqScore.score)
+            roadDefectsQueue = []

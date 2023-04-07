@@ -3,8 +3,11 @@ import rospy
 from std_msgs.msg import String
 from positioning.msg import Position
 from positioning.localizer import Localizer
+
+
 def callback(data):
     rospy.loginfo("\nPosition:\n%s\n", str(data))
+
 
 def run():
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -12,12 +15,13 @@ def run():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-    rospy.init_node('localization_listener', anonymous=True)
+    rospy.init_node("localization_listener", anonymous=True)
 
     rospy.Subscriber("position", Position, callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run()

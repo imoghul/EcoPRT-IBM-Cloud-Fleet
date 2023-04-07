@@ -2,8 +2,11 @@
 import rospy
 from std_msgs.msg import String
 from roadquality.msg import *
+
+
 def callback(data):
     rospy.loginfo(rospy.get_caller_id() + "\nScore:\n%s\n", str(data))
+
 
 def run():
     # In ROS, nodes are uniquely named. If two nodes with the same
@@ -11,11 +14,12 @@ def run():
     # anonymous=True flag means that rospy will choose a unique
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
-    rospy.init_node('roadquality_listener', anonymous=True)
+    rospy.init_node("roadquality_listener", anonymous=True)
 
     rospy.Subscriber("road_quality_score", RoadQualityScore, callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run()
