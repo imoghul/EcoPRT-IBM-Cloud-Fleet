@@ -28,6 +28,8 @@ The localization data is subscribed to by the road_quality and cloud packages, w
 The configuration file is in the config package in the ```config.py``` file.\
 `putDataUrl` will contain the url to the IBM Cloud function that posts data in the database\
 `heartbeatURL` will contain the url to the IBM Cloud function that handles heartbeat requeusts\
+`sensorDbName` will contain the name of the database that holds event triggered IMU score readings\
+`mlDbName` will contain the name of the database that holds machine learning scores\
 `passcode` will contain the passcode that is defined in the IBM Cloud functions\
 `gpsSerPort` will contain the usb port name for the gps\
 `raw_imu_publisher_name` will contain the name of the raw imu data publisher\

@@ -16,8 +16,8 @@ def run():
     # run simultaneously.
     rospy.init_node("cloud_communication", anonymous=True)
 
-    eventIMU = CloudQueue("eventIMU", True, rqScoreToJson, putDataUrl,  tDiff=0.5, dbName = "sensor-data")
-    mlStream = CloudQueue("mlStream", True, mlScoreToJson, putDataUrl, tDiff=0.5, dbName = "ml-data")
+    eventIMU = CloudQueue("eventIMU", True, rqScoreToJson, putDataUrl,  tDiff=0.5, dbName = sensorDbName)
+    mlStream = CloudQueue("mlStream", True, mlScoreToJson, putDataUrl, tDiff=0.5, dbName = mlDbName)
     rospy.Subscriber("road_quality_score", RoadQualityScore, eventIMU.addToQueue)
     rospy.Subscriber("machine_learning_score", MachineLearningScore, mlStream.addToQueue)
 

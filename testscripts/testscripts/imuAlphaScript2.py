@@ -35,14 +35,16 @@ while True:
     # value of road score
     roadQualityScore = 0.8 * accelRMS + 0.1 * gyroxRMS + 0.1 * gyroyRMS
 
-    print(f"Z Accel Score: {accelRMS:.4f}    X Rot Score: {gyroxRMS:.4f}    Y Rot Score: {gyroxRMS:.4f}    RQ Score: {roadQualityScore:.4f}")
+    print(
+        f"Z Accel Score: {accelRMS:.4f}    X Rot Score: {gyroxRMS:.4f}    Y Rot Score: {gyroxRMS:.4f}    RQ Score: {roadQualityScore:.4f}"
+    )
 
     if roadQualityScore > 0.95:
         print("This data would get sent to the cloud.")
 
     orig_time = time.time()
 
-    time.sleep(0.01) # taking readings every frame
+    time.sleep(0.01)  # taking readings every frame
 
 file.close()
 print("File closed.\nPlease exit.\n\n")

@@ -6,6 +6,7 @@ import time
 import signal
 import sys
 
+
 def nextTest(trial):
     test = trial + 2
     if trial <= 2:
@@ -14,13 +15,14 @@ def nextTest(trial):
         next = "n"
     if next == "n" or trial > 2:
         # maybe put code here to send the file to me.
-        return ["Complete"," "," "," "," "," "," "]
+        return ["Complete", " ", " ", " ", " ", " ", " "]
     else:
         print("running next trial")
-        return ["Trial: " + str(test)," "," "," "," "," "," "]
-    
+        return ["Trial: " + str(test), " ", " ", " ", " ", " ", " "]
+
+
 def sigint_handler(signal, frame):
-    print('\nReceived CTRL + C, pausing collection.')
+    print("\nReceived CTRL + C, pausing collection.")
 
     proceed = False
 
@@ -37,19 +39,27 @@ def sigint_handler(signal, frame):
 
 controller = IMUController()
 controller.start()
-file = open('ml_data_collect.csv','w')
+file = open("ml_data_collect.csv", "w")
 writer = csv.writer(file)
 
 # allows our program to detect if a SIGINT signal has been received
 signal.signal(signal.SIGINT, sigint_handler)
 
-writer.writerow(["Beginning Data Collection"," "," "," "," "," "," "])
+writer.writerow(["Beginning Data Collection", " ", " ", " ", " ", " ", " "])
 
 # keeps track of time elapsed
 orig_time = time.time()
 
 while True:
-    data = [controller.Ax, controller.Ay, controller.Az, controller.Gx, controller.Gy, controller.Gz, time.time()]
+    data = [
+        controller.Ax,
+        controller.Ay,
+        controller.Az,
+        controller.Gx,
+        controller.Gy,
+        controller.Gz,
+        time.time(),
+    ]
     writer.writerow(data)
 
     time_elapsed = time.time() - orig_time
