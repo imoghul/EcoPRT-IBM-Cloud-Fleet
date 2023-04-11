@@ -10,7 +10,7 @@ from tensorflow.keras.optimizers import Adam
 import numpy as np
 from roadquality.msg import MachineLearningScore
 import tensorflow as tf
-buff = []#Buffer(240,[[[[0]]*6]*240])
+buff = []
 model = None
 lastPos = None
 def feedML(x):
@@ -18,6 +18,7 @@ def feedML(x):
     data = [[x.imu.Ax],[x.imu.Ay],[x.imu.Az],[x.imu.Gx],[x.imu.Gy],[x.imu.Gz]]
     buff.append(data) 
     lastPos = x
+
 @tf.autograph.experimental.do_not_convert
 def runML():
     global model,buff,lastPos
@@ -31,10 +32,11 @@ def runML():
     rospy.Subscriber("position", Position, feedML)
     pub = rospy.Publisher("machine_learning_score", MachineLearningScore, queue_size = 10)
 
+    rospy.loginfo("Starting model load")
     model = keras.models.load_model(modelAbsPath, compile=False)
-    print("model loaded")#(model)
+    rospy.loginfo("Model loaded, startring compilation")#(model)
     model.compile(optimizer=Adam(learning_rate = 0.001), loss = 'categorical_crossentropy', metrics = ['accuracy'])
-    print("model compiled")
+    rospy.loginfo("Model compiled")
     
     lastTime = time.time()
     while not rospy.is_shutdown():
