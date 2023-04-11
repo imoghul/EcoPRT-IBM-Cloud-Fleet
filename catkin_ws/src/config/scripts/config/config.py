@@ -19,3 +19,6 @@ raw_image_publisher_name = "raw_image"
 
 # positioning
 waitForGPS = False
+
+#roadquality
+modelAbsPath = "/home/pi/EcoPRT-IBM-Cloud-Fleet/model/rq_ml_model.h5"
