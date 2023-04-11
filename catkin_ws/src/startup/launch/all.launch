@@ -4,6 +4,7 @@
 	<node name="Sensor_Node" pkg="sensors" type="sensorController.py" output="screen"/>
 	<node name="localization" pkg="positioning" type="localization.py" output="screen"/>
 	<node name="rq_calculation" pkg="roadquality" type="runProcess.py" output="screen"/>
+	<node name="ml_calculation" pkg="roadquality" type="runML.py" output="screen"/>
 	<node name="cloud_communication" pkg="cloud" type="putdata.py" output="screen"/>
 	<node name="heartbeat_tx" pkg="positioning" type="hbGenerator.py" output="screen"/>
 	<node name="heartbeat" pkg="cloud" type="heartbeat.py" output="screen"/>

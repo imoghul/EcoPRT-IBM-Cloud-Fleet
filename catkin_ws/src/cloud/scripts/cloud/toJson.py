@@ -15,8 +15,8 @@ def rqScoreToJson(msg):
 def mlScoreToJson(msg):
     return {
         "latitude": msg.pos.gps.lat,
-        "longitude": msg.pos.pgs.long,
-        "machine_learning_score": msg.score,
+        "longitude": msg.pos.gps.long,
+        "machine_learning_classification": msg.score,
         "terraint_type": msg.type,
         "time": str(datetime.now()),
     }

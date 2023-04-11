@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy
+import time
 from std_msgs.msg import String
 from positioning.msg import Position
 import threading
@@ -28,17 +29,18 @@ def runML():
     rospy.init_node("ml_calculation", anonymous=True)
 
     rospy.Subscriber("position", Position, feedML)
-    pub = rospy.Publisher("ml_score", MachineLearningScore, queue_size = 10)
+    pub = rospy.Publisher("machine_learning_score", MachineLearningScore, queue_size = 10)
 
     model = keras.models.load_model(modelAbsPath, compile=False)
     print("model loaded")#(model)
     model.compile(optimizer=Adam(learning_rate = 0.001), loss = 'categorical_crossentropy', metrics = ['accuracy'])
     print("model compiled")
     
-    
+    lastTime = time.time()
     while not rospy.is_shutdown():
         if(len(buff)>=240):
             mlbuff = np.array([buff.copy()[0:240]])
+            buff = []
             prediction = None
             if(model!=None):
                 prediction = list(model.predict(mlbuff))
@@ -47,9 +49,12 @@ def runML():
                 mlScore.pos = lastPos
                 mlScore.score = prediction.index(max(prediction))
                 mlScore.type = ""
-                print(mlScore)
+                
+                timeDur = time.time()-lastTime
+                lastTime = time.time()
+                rospy.loginfo(f"Calculated ml score with these predictions: {prediction} in {timeDur} seconds")
                 pub.publish(mlScore) 
-            buff = []
+            
 
 
 

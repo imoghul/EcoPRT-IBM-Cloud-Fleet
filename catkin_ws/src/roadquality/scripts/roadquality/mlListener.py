@@ -16,7 +16,7 @@ def run():
     # run simultaneously.
     rospy.init_node("ml_listener", anonymous=True)
 
-    rospy.Subscriber("ml_calculation", MachineLearningScore, callback)
+    rospy.Subscriber("machine_learning_calculation", MachineLearningScore, callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
