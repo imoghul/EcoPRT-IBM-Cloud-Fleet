@@ -21,4 +21,5 @@ raw_image_publisher_name = "raw_image"
 waitForGPS = False
 
 #roadquality
-modelAbsPath = "/home/pi/EcoPRT-IBM-Cloud-Fleet/model/rq_ml_model.h5"
+modelAbsPath = "/home/pi/EcoPRT-IBM-Cloud-Fleet/model/rq_ml_model_0418231326.h5"
+modelInputLen = 160 # This is NOT to be changed unless you change the model you are using
