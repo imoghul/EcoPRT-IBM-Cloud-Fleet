@@ -30,7 +30,7 @@ The localization data is subscribed to by the road_quality and cloud packages, w
 The configuration file is in the config package in the ```config.py``` file.\
 `putDataUrl` will contain the url to the IBM Cloud function that posts data in the database\
 `heartbeatURL` will contain the url to the IBM Cloud function that handles heartbeat requeusts\
-`heartbeat_rx_publisher_name` will contain the name of the publisher that publishes what is received from the heartbeat cloud function
+`heartbeat_rx_publisher_name` will contain the name of the publisher that publishes what is received from the heartbeat cloud function\
 `sensorDbName` will contain the name of the database that holds event triggered IMU score readings\
 `mlDbName` will contain the name of the database that holds machine learning scores\
 `passcode` will contain the passcode that is defined in the IBM Cloud functions\
@@ -38,7 +38,15 @@ The configuration file is in the config package in the ```config.py``` file.\
 `raw_imu_publisher_name` will contain the name of the raw imu data publisher\
 `raw_gps_publisher_name` will contain the name of the raw gps data publisher\
 `raw_image_publisher_name` will contain the name of the raw image data publisher\
-`waitForGPS` will contain a boolean indicating whether the system should wait for gps data to start coming before computing road quality and putting data to cloud
+`waitForGPS` will contain a boolean indicating whether the system should wait for gps data to start coming before computing road quality and putting data to cloud\
+`modelAbsPath` will contain the absolute path to the IMU machine learning model\
+`modelInputLen` will contain the number of datapoints that are fed into the IMU machine learning model\
+`modelRate` will contain the rate at which the IMU machine learning model is used in Hz\
+`image_prediction_publisher_name` will contain the name of the predictions from the vision processing\
+`surfaceTypeModel` will contain the absolute path to the surface type model\
+`asphaltQualityModel` will contain the absolute path to the asphalt quality model\ 
+`pavedQualityModel` will contain the absolute path to the paved quality model\
+`unpavedQualityModel` will contain the absolute path to the unpaved quality model
 
 ## Integration
 To integrate this project into existing code, complete the following:
