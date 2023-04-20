@@ -44,7 +44,7 @@ The configuration file is in the config package in the ```config.py``` file.\
 `modelRate` will contain the rate at which the IMU machine learning model is used in Hz\
 `image_prediction_publisher_name` will contain the name of the predictions from the vision processing\
 `surfaceTypeModel` will contain the absolute path to the surface type model\
-`asphaltQualityModel` will contain the absolute path to the asphalt quality model\ 
+`asphaltQualityModel` will contain the absolute path to the asphalt quality model\
 `pavedQualityModel` will contain the absolute path to the paved quality model\
 `unpavedQualityModel` will contain the absolute path to the unpaved quality model
 
