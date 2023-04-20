@@ -30,6 +30,7 @@ The localization data is subscribed to by the road_quality and cloud packages, w
 The configuration file is in the config package in the ```config.py``` file.\
 `putDataUrl` will contain the url to the IBM Cloud function that posts data in the database\
 `heartbeatURL` will contain the url to the IBM Cloud function that handles heartbeat requeusts\
+`heartbeat_rx_publisher_name` will contain the name of the publisher that publishes what is received from the heartbeat cloud function
 `sensorDbName` will contain the name of the database that holds event triggered IMU score readings\
 `mlDbName` will contain the name of the database that holds machine learning scores\
 `passcode` will contain the passcode that is defined in the IBM Cloud functions\
@@ -43,4 +44,4 @@ The configuration file is in the config package in the ```config.py``` file.\
 To integrate this project into existing code, complete the following:
 1. Make sure to not launch existing hardware nodes that are provided
 2. Create `raw_gps`, `raw_imu`, and `raw_image` publishers as described before in your pre-existing hardware package. Or alternatively, edit the 2 publisher names in the config file to match existing publishers in your code
-3. Create your subscriber to the `heartbeat_rx_publisher_name` publisher, and load/deserialize the json object which is a list of tuples: (latitude, longitude, road_quality_score) 
+3. Create your subscriber to the `heartbeat_rx_publisher_name` publisher, which is a string of a serialized json object. Load/deserialize the json object which is a list of tuples containing: latitude, longitude, road_quality_score. This will change if you switch to the CS team's heartbeat
