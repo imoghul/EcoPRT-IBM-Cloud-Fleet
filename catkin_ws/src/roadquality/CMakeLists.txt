@@ -209,6 +209,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 catkin_install_python(PROGRAMS 
-	scripts/roadquality/runProcess.py scripts/roadquality/imuRQProcess.py scripts/roadquality/listener.py scripts/roadquality/runML.py 
+	scripts/roadquality/runProcess.py scripts/roadquality/imuRQProcess.py scripts/roadquality/listener.py scripts/roadquality/runML.py scripts/roadquality/mlListener.py scripts/roadquality/cameraDetection.py 
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -9,8 +9,9 @@ from config.config import *
 from cloud.toJson import *
 import json
 
+
 heartBeatPub = rospy.Publisher(
-    "heartbeat_rx", String, queue_size=10
+    heartbeat_rx_publisher_name, String, queue_size=10
 )  # rospy.Publisher("heartbeat_rx",RoadQualityScore,queue_size = 10)
 
 

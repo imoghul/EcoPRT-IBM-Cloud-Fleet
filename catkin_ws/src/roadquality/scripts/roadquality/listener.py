@@ -5,7 +5,7 @@ from roadquality.msg import *
 
 
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nScore:\n%s\n", str(data))
+    rospy.loginfo(rospy.get_caller_id() + "\nScore:\n%s\n", str(data.score))
 
 
 def run():

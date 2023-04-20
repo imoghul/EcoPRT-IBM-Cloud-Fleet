@@ -15,7 +15,7 @@ def gps_callback(data):
 
 
 def image_callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "\nImage:\n%s\n", str(data))
+    rospy.loginfo(rospy.get_caller_id() + "\nImage:\n%s\n", str("image received"))
 
 
 def runLocalizer():

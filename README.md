@@ -24,6 +24,8 @@ The infrastrucre is defined by ROS, for better modularity. The rqt_graph is show
 The localization data is subscribed to by the road_quality and cloud packages, which will do road quality calculation and cloud communication respectively. Cloud communication will subscribe to road_quality, in order to post data to the database
 
 
+
+
 ## Configuration
 The configuration file is in the config package in the ```config.py``` file.\
 `putDataUrl` will contain the url to the IBM Cloud function that posts data in the database\
@@ -41,3 +43,4 @@ The configuration file is in the config package in the ```config.py``` file.\
 To integrate this project into existing code, complete the following:
 1. Make sure to not launch existing hardware nodes that are provided
 2. Create `raw_gps`, `raw_imu`, and `raw_image` publishers as described before in your pre-existing hardware package. Or alternatively, edit the 2 publisher names in the config file to match existing publishers in your code
+3. Create your subscriber to the `heartbeat_rx_publisher_name` publisher, and load/deserialize the json object which is a list of tuples: (latitude, longitude, road_quality_score) 

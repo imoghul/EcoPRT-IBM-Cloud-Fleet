@@ -4,7 +4,7 @@ import time
 from std_msgs.msg import String
 from positioning.msg import Position
 import threading
-from config.config import modelAbsPath, modelInputLen
+from config.config import modelAbsPath, modelInputLen, modelRate
 from tensorflow import keras#from keras.models import load_model
 from tensorflow.keras.optimizers import Adam
 import numpy as np
@@ -48,10 +48,11 @@ def runML():
     rospy.loginfo("Starting model load")
     model = keras.models.load_model(modelAbsPath, compile=False)
     rospy.loginfo("Model loaded, startring compilation")#(model)
-    model.compile(optimizer=Adam(learning_rate = 0.001), loss = 'categorical_crossentropy', metrics = ['accuracy'])
+    model.compile()#(optimizer=Adam(learning_rate = 0.001), loss = 'categorical_crossentropy', metrics = ['accuracy'])
     rospy.loginfo("Model compiled")
     
     lastTime = time.time()
+    rate = rospy.Rate(modelRate)
     while not rospy.is_shutdown():
         if(len(buff)>=modelInputLen):
             mlbuff = np.array([buff.copy()[0:modelInputLen]])
@@ -69,13 +70,12 @@ def runML():
                 lastTime = time.time()
                 rospy.loginfo(f"Calculated ml score with these predictions: {prediction} in {timeDur} seconds")
                 pub.publish(mlScore) 
-            
+                rate.sleep()
 
 
 
 
     # spin() simply keeps python from exiting until this node is stopped
-
 
 if __name__ == "__main__":
     runML()

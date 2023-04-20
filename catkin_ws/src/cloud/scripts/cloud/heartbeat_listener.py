@@ -30,7 +30,7 @@ def run():
     rospy.init_node("heartbeat_listener", anonymous=True)
 
     rospy.Subscriber(
-        "heartbeat_rx", String, callback=hb_callback
+        heartbeat_rx_publisher_name, String, callback=hb_callback
     )  # rospy.Subscriber("heartbeat_rx", RoadQualityScore, callback)
 
     rospy.spin()
